@@ -1,8 +1,9 @@
 "use client"
 import React, { useState } from 'react'
 
-const Board2D = ({gameState, boardOrder, setGameState, isXNext, setIsXNext} : {gameState: string[], boardOrder: number, setGameState: Function, isXNext: boolean, setIsXNext: Function}) => {
+const Board2D = ({gameState, boardOrder, setGameState, isXNext, setIsXNext, winner} : {gameState: string[], boardOrder: number, setGameState: Function, isXNext: boolean, setIsXNext: Function, winner: string | null}) => {
   const handleClick = (index: number) => {
+    if (winner) return;
     if (gameState[boardOrder * 9 + index]) {
       return; 
     }
