@@ -24,7 +24,7 @@ const PlayGame = () => {
       setIsXNext(true);
     }
   }, [isXNext])
-  const status = winner ? `Winner: ${winner}` : `Next player: ${isXNext ? 'X' : 'O'}`;
+  const status = winner ? `Winner: ${isPlayWithBot && winner == "O" ? "Bot" : winner}` : `Next player: ${isXNext ? 'X' : 'O'}`;
   useEffect(() => {
     if (winner) {
       toast({
@@ -41,7 +41,7 @@ const PlayGame = () => {
     <div className="overflow-hidden flex-auto flex flex-col h-full">
       <div className="md:flex h-full flex-auto">
         <LeftNavBar isPlayWithBot={isPlayWithBot} setIsPlayWithBot={setIsPlayWithBot} setHoveredIndex={setHoveredIndex} hoveredIndex={hoveredIndex} setIsXNext={setIsXNext} winner={winner} isXNext={isXNext} gameState={gameState} setGameState={setGameState}/>
-        <TicTacToeGame gameState={gameState} hoveredIndex={hoveredIndex}/>
+        <TicTacToeGame isXNext={isXNext} gameState={gameState} hoveredIndex={hoveredIndex}/>
       </div>
       <Toaster/>
     </div>

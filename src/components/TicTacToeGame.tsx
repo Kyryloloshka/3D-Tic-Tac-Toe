@@ -7,13 +7,14 @@ import { OrbitControls } from '@react-three/drei'
 interface TicTacToeGameProps {
   gameState: string[];
   hoveredIndex: number | null;
+  isXNext: boolean;
 }
 type ExtendedMeshProps = ThreeElements['mesh'] & {
   color?: string;
   opacity?: number;
 };
 
-const TicTacToeGame = ({gameState, hoveredIndex} : TicTacToeGameProps) => {
+const TicTacToeGame = ({gameState, hoveredIndex, isXNext} : TicTacToeGameProps) => {
   const Box = (props: ExtendedMeshProps) => {
     const meshRef = useRef<THREE.Mesh>(null!);
     const [active, setActive] = useState(false);
@@ -37,8 +38,8 @@ const TicTacToeGame = ({gameState, hoveredIndex} : TicTacToeGameProps) => {
         {Array.from({ length: 3 }, (_, row) =>
           Array.from({ length: 3 }, (_, col) => 
             Array.from({length: 3}, (_, z) => {
-              const color = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? "purple" : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? "red" : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? "#61ffad" : "#555"
-              const opacity = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? 0.7 : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? 0.7 : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? 0.55 : 0.3
+              const color = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? "purple" : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? "red" : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? isXNext ? "purple" : "red"  : "#555"
+              const opacity = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? 0.7 : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? 0.7 : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? 0.4 : 0.3
               return (
                 <Box opacity={opacity} color={color} key={`${row}-${col}-${z}`} position={[col*1.3 - 1.3, row*1.3 - 1.3, z*1.3 - 1.3]}/>
               )
