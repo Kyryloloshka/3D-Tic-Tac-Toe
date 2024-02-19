@@ -66,10 +66,10 @@ const Board2D = ({
       onPointerOut={handlePointerOut}
     >
       {hoveredIndex === boardOrder * 9 + index && gameState[boardOrder * 9 + index] == null ? (
-        <span className='text-primary-500 text-3xl font-semibold text-shadow-neon select-none opacity-50'>
+        <span className='text-primary-500 text-4xl font-semibold text-shadow-neon select-none opacity-50'>
           {isXNext ? 'X' : 'O'}
         </span>
-      ) : <span className='text-primary-500 text-3xl font-semibold text-shadow-neon select-none'>
+      ) : <span className='text-primary-500 text-4xl font-semibold text-shadow-neon select-none'>
       {gameState[boardOrder * 9 + index]}
     </span>}
       
@@ -83,17 +83,17 @@ const Board2D = ({
       <div className="w-[4px] shadow-neon-primary rounded-full h-full bg-primary-500 absolute top-0 left-[33.33%] -translate-x-[2px]"></div>  
       <div className="w-[4px] shadow-neon-primary rounded-full h-full bg-primary-500 absolute top-0 left-[66.66%] -translate-x-[2px]"></div>
       <div className="absolute flex flex-col h-[100%] w-full gap-[4px]">
-        <div className="flex w-full h-[33.33%] gap-[4px]">
+        <div className="flex w-full h-[calc(33.33%-2px)] gap-[4px]">
           {renderSquare(0)}
           {renderSquare(1)}
           {renderSquare(2)}
         </div>
-        <div className="flex h-[33.33%] gap-[4px]">
+        <div className="flex h-[calc(33.33%_-4px)] gap-[4px]">
           {renderSquare(3)}
           {renderSquare(4)}
           {renderSquare(5)}
         </div>
-        <div className="flex h-[33.33%] gap-[4px]">
+        <div className="flex h-[calc(33.33%-4px)] gap-[4px]">
           {renderSquare(6)}
           {renderSquare(7)}
           {renderSquare(8)}

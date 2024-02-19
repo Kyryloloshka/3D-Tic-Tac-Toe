@@ -1,9 +1,11 @@
 "use client"
 
+import Link from "next/link"
+
 const Rules = () => {
   return (
-    <div className="overflow-hidden flex-auto flex flex-col h-full common-container p-6 gap-5 max-w-[900px]">
-      <h1 className="text-3xl font-semibold text-shadow-neon text-primary-500 tracking-wide">Rules of Tic-Tac-Toe 3D</h1>
+    <div className="overflow-hidden flex-auto flex flex-col min-h-full common-container p-6 gap-5 max-w-[900px]">
+      <h1 className="text-3xl font-semibold text-shadow-neon text-primary-500 tracking-wide">Rules of <span className=" whitespace-nowrap">Tic-Tac-Toe 3D</span></h1>
       <p className="leading-6 text-lg tracking-wide pb-3">Welcome to the exciting world of Tic-Tac-Toe 3D! This game combines the classic Tic-Tac-Toe gameplay with a three-dimensional space, creating an engaging gameplay and a visual experience.</p>
       <h3 className="text-2xl font-semibold text-shadow-neon text-primary-500 tracking-wide">Game Instructions</h3>
       <ol className="flex flex-col gap-3 ">
@@ -15,8 +17,8 @@ const Rules = () => {
         <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">Restart the Game:</span> After completing a game, you can restart it to try again.</li>
         <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">Enjoy the 3D Experience:</span> Utilize rotation and zoom features to enjoy the three-dimensional aspect of the game.</li>
       </ol>
-      <p className="leading-6 text-lg tracking-wide pt-8">
-      Playing Tic-Tac-Toe 3D is engaging and intriguing! Enjoy the game and defeat your opponent. Good luck!
+      <p className="leading-6 text-lg tracking-wide pt-8 pb-24">
+        Playing Tic-Tac-Toe 3D is engaging and intriguing! Enjoy the game and defeat your opponent. Good luck!  <Link href="/play-game" className={`link-underline capitalize relative text-primary-500`}>Play Game</Link>
       </p>
     </div>
   )  
