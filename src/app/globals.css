@@ -199,7 +199,7 @@ body {
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgb(104, 200, 184);
+    background: #68c8b8;
   }
   .common-container {
     @apply h-full custom-scrollbar overflow-y-scroll;

@@ -3,33 +3,19 @@ import * as THREE from 'three';
 import React, { useRef, useState } from 'react';
 import { Canvas, ThreeElements } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei'
+import Cross from './Cross';
+import Circle from './Circle';
+import Box from './Box';
+
 
 interface TicTacToeGameProps {
   gameState: string[];
   hoveredIndex: number | null;
   isXNext: boolean;
 }
-type ExtendedMeshProps = ThreeElements['mesh'] & {
-  color?: string;
-  opacity?: number;
-};
 
 const TicTacToeGame = ({gameState, hoveredIndex, isXNext} : TicTacToeGameProps) => {
-  const Box = (props: ExtendedMeshProps) => {
-    const meshRef = useRef<THREE.Mesh>(null!);
-    const [active, setActive] = useState(false);
-    return (
-      <mesh
-        {...props}
-        ref={meshRef}
-        onClick={() => setActive(!active)}
-      >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={props.color} transparent={true}
-        opacity={props.opacity ? props.opacity : 0.4} />
-      </mesh>
-    );
-  }
+  
   const CubeGroup = () => {
     const groupRef = useRef<THREE.Group>(null!)
 
@@ -38,10 +24,35 @@ const TicTacToeGame = ({gameState, hoveredIndex, isXNext} : TicTacToeGameProps) 
         {Array.from({ length: 3 }, (_, row) =>
           Array.from({ length: 3 }, (_, col) => 
             Array.from({length: 3}, (_, z) => {
-              const color = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? "purple" : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? "red" : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? isXNext ? "purple" : "red"  : "#555"
-              const opacity = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? 0.7 : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? 0.7 : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? 0.4 : 0.3
+              const index = z*3+ Math.abs(row-2)*9 + col
+              const elem = gameState[index]
+              const opacity = elem == "X" 
+                ? 0.85
+                : elem == "O" 
+                  ? 0.85 
+                  : index == hoveredIndex 
+                    ? 0.4 
+                    : 0.1
+              const position: [number, number, number] = [col * 1.3 - 1.3, row * 1.3 - 1.3, z * 1.3 - 1.3];
               return (
-                <Box opacity={opacity} color={color} key={`${row}-${col}-${z}`} position={[col*1.3 - 1.3, row*1.3 - 1.3, z*1.3 - 1.3]}/>
+                <>
+                  {elem == "X" || index == hoveredIndex && isXNext && gameState[hoveredIndex] == null ?
+                    <Cross
+                    opacity={opacity}
+                    key={`${row}-${col}-${z}`}
+                    position={position}
+                  />  : elem == "O" || index == hoveredIndex  ?
+                  <Circle
+                    opacity={opacity} 
+                    key={`${row}-${col}-${z}`}
+                    position={position}/> :
+                  <Box 
+                    opacity={opacity} 
+                    key={`${row}-${col}-${z}`}
+                    position={position}/>
+                  }
+                </>
+                  
               )
             })
           )

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { RotationProvider } from "@/hooks/useRotation";
 
 const poppins = Poppins({ weight: ["300", "400", "600"], subsets: ['latin'] });
 
@@ -16,13 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.className} h-[100dvh] common-container flex flex-col`}>
-        <Header/>
-        <main className="flex-auto flex flex-col">
-          {children}
-        </main>
-      </body>
-    </html>
-  );
+    <RotationProvider>
+      <html lang="en">
+        <body className={`${poppins.className} h-[100dvh] common-container flex flex-col`}>
+          <Header/>
+          <main className="flex-auto flex flex-col">
+            {children}
+          </main>
+        </body>
+      </html>
+    </RotationProvider> );
 }
