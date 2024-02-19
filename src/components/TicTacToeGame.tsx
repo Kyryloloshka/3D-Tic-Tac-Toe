@@ -1,7 +1,7 @@
 "use client";
 import * as THREE from 'three';
 import React, { useRef, useState } from 'react';
-import { Canvas, ThreeElements, useFrame } from '@react-three/fiber';
+import { Canvas, ThreeElements } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei'
 
 interface TicTacToeGameProps {
@@ -37,11 +37,13 @@ const TicTacToeGame = ({gameState, hoveredIndex} : TicTacToeGameProps) => {
         {Array.from({ length: 3 }, (_, row) =>
           Array.from({ length: 3 }, (_, col) => 
             Array.from({length: 3}, (_, z) => {
-              const color = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? "purple" : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? "red" : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? "white" : "#555"
-              const opacity = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? 0.7 : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? 0.7 : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? 0.5 : 0.4
+              const color = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? "purple" : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? "red" : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? "#61ffad" : "#555"
+              const opacity = gameState[z*3+ Math.abs(row-2)*9 + col] == "X" ? 0.7 : gameState[z*3 + Math.abs(row-2)*9 + col] == "O" ? 0.7 : z*3 + Math.abs(row-2)*9 + col == hoveredIndex ? 0.55 : 0.3
               return (
-            <Box opacity={opacity} color={color} key={`${row}-${col}-${z}`} position={[col*1.3 - 1.3, row*1.3 - 1.3, z*1.3 - 1.3]}/>
-          )}))
+                <Box opacity={opacity} color={color} key={`${row}-${col}-${z}`} position={[col*1.3 - 1.3, row*1.3 - 1.3, z*1.3 - 1.3]}/>
+              )
+            })
+          )
         )}
       </group>
     );

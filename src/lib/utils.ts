@@ -53,3 +53,52 @@ export const calculateWinner = (squares: string[]) => {
   }
   return null;
 };
+
+export const getRandomMove = (board: any[]) => {
+  const availableMoves = [];
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === null) {
+      availableMoves.push(i);
+    }
+  }
+  const randomIndex = Math.floor(Math.random() * availableMoves.length);
+  return availableMoves[randomIndex];
+}
+export const getBotMove = (board: any[]) => {
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === null) {
+      const botWinMove = checkBotWin(board, i);
+      if (botWinMove !== null) {
+        return botWinMove;
+      }
+    }
+  }
+
+  const blockOpponentWinMove = checkBlockOpponentWin(board);
+  if (blockOpponentWinMove !== null) {
+    return blockOpponentWinMove;
+  }
+
+  return getRandomMove(board);
+}
+
+const checkBotWin = (board: any[], move: number) => {
+  const newBoard = [...board];
+  newBoard[move] = 'O'; // Припускаємо, що бот грає за 'O'
+  const winner = calculateWinner(newBoard);
+  return winner === 'O' ? move : null;
+};
+
+const checkBlockOpponentWin = (board: any[]) => {
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === null) {
+      const newBoard = [...board];
+      newBoard[i] = 'X'; // Припускаємо, що гравець грає за 'X'
+      const winner = calculateWinner(newBoard);
+      if (winner === 'X') {
+        return i;
+      }
+    }
+  }
+  return null;
+};

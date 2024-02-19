@@ -1,41 +1,17 @@
-"use client"
-import Header from '@/components/Header';
-import LeftNavBar from '@/components/LeftNavBar';
-import TicTacToeGame from '@/components/TicTacToeGame';
 import { Button } from '@/components/ui/button';
-import { Toaster } from '@/components/ui/toaster';
-import { useToast } from '@/components/ui/use-toast';
-import { calculateWinner } from '@/lib/utils';
-import { ToastAction } from '@radix-ui/react-toast';
-import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import React from 'react';
 
 const Home: React.FC = () => {
-  const [gameState, setGameState] = useState(Array(27).fill(null));
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isXNext, setIsXNext] = useState(true)
-  const { toast } = useToast();
-  const winner = calculateWinner(gameState);
-  const status = winner ? `Winner: ${winner}` : `Next player: ${isXNext ? 'X' : 'O'}`;
-  useEffect(() => {
-    if (winner) {
-      toast({
-        title: "Game Over",
-        description: `${status}`,
-        action: <Button variant="neon"><ToastAction onClick={() => {
-          setGameState(Array(27).fill(null));
-          setIsXNext(true);
-        }} altText='Restart game'>Restart</ToastAction></Button>
-      })
-    }
-  }, [winner])
-  return (
-    <div className="overflow-hidden flex-auto flex flex-col">
-      <div className="flex h-full flex-auto">
-        <LeftNavBar setHoveredIndex={setHoveredIndex} hoveredIndex={hoveredIndex} setIsXNext={setIsXNext} winner={winner} isXNext={isXNext} gameState={gameState} setGameState={setGameState}/>
-        <TicTacToeGame gameState={gameState} hoveredIndex={hoveredIndex}/>
-      </div>
-      <Toaster/>
+  return <div className='flex justify-center items-center min-h-[100%] flex-auto gap-10 p-5 overflow-x-hidden'>
+    <div className="absolute top-1/2 left-1/2 text-[13vw] whitespace-nowrap -z-10 opacity-5 -translate-y-[50%] font-semibold -translate-x-[50%]">3D Tic Tac Toe</div>
+    <div className="flex flex-col gap-5 justify-center items-center flex-auto">
+      <h1 className='text-[calc(4vw+20px)] font-semibold text-primary-500 text-shadow-neon '>3D Tic Tac Toe</h1>
+      <p className='text-sm tracking-wider text-center max-w-[550px] pb-3'>
+      Welcome to the exciting world of 3D Tic Tac Toe! Immerse yourself in a unique 3D experience where you will have the opportunity to deploy your strategy in 3D space and test your mental acuity in a new dimension of this classic game.
+      </p>
+      <Link href={"/play-game"}> <Button className='px-12 text-xl py-5' variant="neon">Play</Button> </Link>
     </div>
-  )  
+  </div>
 };
 export default Home

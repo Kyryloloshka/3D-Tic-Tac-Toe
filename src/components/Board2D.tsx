@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { useToast } from './ui/use-toast';
 import { Button } from './ui/button';
+import { ToastAction } from '@radix-ui/react-toast';
 
 interface Board2DProps {
   gameState: string[];
@@ -14,7 +15,16 @@ interface Board2DProps {
   hoveredIndex: number | null; 
 }
 
-const Board2D = ({gameState, boardOrder, setGameState, isXNext, setIsXNext, winner, setHoveredIndex, hoveredIndex} : Board2DProps) => {
+const Board2D = ({
+    gameState,
+    boardOrder,
+    setGameState, 
+    isXNext, 
+    setIsXNext, 
+    winner, 
+    setHoveredIndex, 
+    hoveredIndex
+  } : Board2DProps) => {
   const {toast} = useToast()
   
   const handleClick = (index: number) => {
@@ -22,10 +32,10 @@ const Board2D = ({gameState, boardOrder, setGameState, isXNext, setIsXNext, winn
       toast({
         title: "Game Already Overed",
         description: "You can not make moves anymore",
-        action: <Button variant="neon" onClick={() => {
+        action: <Button variant="neon"><ToastAction onClick={() => {
           setGameState(Array(27).fill(null));
           setIsXNext(true);
-        }}>Restart</Button>
+        }} altText='Restart game'>Restart</ToastAction></Button>
       })
       return;
     };
