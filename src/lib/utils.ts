@@ -55,6 +55,25 @@ export const calculateWinner = (squares: string[]) => {
 };
 
 export const getRandomMove = (board: any[]) => {
+  const centerI = 13;
+  const cornersI = [0, 2, 6, 8, 18, 20, 24, 26]
+  const centersI = [4, 10, 12, 14, 16, 22]
+
+  if (board[centerI] === null) {
+    return centerI;
+  }
+
+  const availableCorners = cornersI.filter((index) => board[index] === null);
+  if (availableCorners.length > 0) {
+    const randomCorner = availableCorners[Math.floor(Math.random() * availableCorners.length)];
+    return randomCorner;
+  }
+  const availableCenters = centersI.filter((index) => board[index] === null);
+  if (availableCenters.length > 0) {
+    const randomCorner = availableCenters[Math.floor(Math.random() * availableCenters.length)];
+    return randomCorner;
+  }
+
   const availableMoves = [];
   for (let i = 0; i < board.length; i++) {
     if (board[i] === null) {
@@ -64,11 +83,14 @@ export const getRandomMove = (board: any[]) => {
   const randomIndex = Math.floor(Math.random() * availableMoves.length);
   return availableMoves[randomIndex];
 }
+
 export const getBotMove = (board: any[]) => {
   for (let i = 0; i < board.length; i++) {
     if (board[i] === null) {
       const botWinMove = checkBotWin(board, i);
       if (botWinMove !== null) {
+        // console.log("win after this move case");
+        
         return botWinMove;
       }
     }
@@ -76,9 +98,11 @@ export const getBotMove = (board: any[]) => {
 
   const blockOpponentWinMove = checkBlockOpponentWin(board);
   if (blockOpponentWinMove !== null) {
+    
     return blockOpponentWinMove;
   }
-
+  // console.log("random case");
+  
   return getRandomMove(board);
 }
 
@@ -90,15 +114,38 @@ const checkBotWin = (board: any[], move: number) => {
 };
 
 const checkBlockOpponentWin = (board: any[]) => {
+  let maxWinCaseIndex = -1;
+  let maxWinCases = 0;
   for (let i = 0; i < board.length; i++) {
     if (board[i] === null) {
       const newBoard = [...board];
       newBoard[i] = 'X'; // Припускаємо, що гравець грає за 'X'
       const winner = calculateWinner(newBoard);
       if (winner === 'X') {
+        // console.log("prevent win oponent case");
+        
         return i;
+      }
+      newBoard[i] = 'O'
+      let winCases = 0
+      let winCasesIndexesArray: number[] = []
+      for (let j = 0; j < board.length; j++) {
+        if (newBoard[j] == null) {
+          if (checkBotWin(newBoard, j)) {
+            winCases++
+            winCasesIndexesArray.push(j)
+          }
+        }
+      }
+      if (winCases > maxWinCases) {
+        maxWinCases = winCases
+        maxWinCaseIndex = i;
+        // console.log("Max ", maxWinCaseIndex, maxWinCases, newBoard);
       }
     }
   }
-  return null;
+  console.log(maxWinCaseIndex, maxWinCases);
+  // maxWinCases >=1 ? console.log("calculate win after 1 move case") : null;
+  
+  return maxWinCases >=1 ? maxWinCaseIndex : null;
 };

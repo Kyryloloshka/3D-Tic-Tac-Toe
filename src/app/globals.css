@@ -142,8 +142,11 @@ select {
   --background: 31, 31, 34;
   --text-color: 255, 255, 255;
   --primary-color: #8FEFDF;
+  --secondary-color: #e8a8f8; 
   --shadow-primary: rgba(97,255,173,0.1);
   --shadow-primary-neon: rgba(97, 255, 173, 0.302);
+  --shadow-secondary: rgba(170, 44, 199, 0.032);
+  --shadow-secondary-neon: rgba(255, 97, 250, 0.073);
 }
 
 body {
@@ -164,6 +167,11 @@ body {
     -webkit-box-shadow: 0px 0px 15px 5px var(--shadow-primary-neon);
     -moz-box-shadow: 0px 0px 15px 5px var(--shadow-primary-neon);
     box-shadow: 0px 0px 15px 5px var(--shadow-primary-neon);
+  }
+  .shadow-neon-secondary {
+    -webkit-box-shadow: 0px 0px 15px 5px var(--shadow-secondary-neon);
+    -moz-box-shadow: 0px 0px 15px 5px var(--shadow-secondary-neon);
+    box-shadow: 0px 0px 15px 5px var(--shadow-secondary-neon);
   }
   .text-shadow-neon {
     text-shadow:  0px 0px 20px var(--shadow-primary-neon);

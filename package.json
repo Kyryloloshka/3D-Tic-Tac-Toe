@@ -17,6 +17,7 @@
     "@react-three/fiber": "^8.15.16",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "lucide-react": "^0.363.0",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",

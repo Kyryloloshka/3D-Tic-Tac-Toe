@@ -17,7 +17,7 @@ const LeftNavBar = ({gameState, isPlayWithBot, setIsPlayWithBot, setGameState, i
     setIsXNext(true)
   }
   return (
-    <div className="bg-dark-3 p-6 flex flex-col gap-6">
+    <div className="bg-dark-3 py-6 px-8 flex flex-col gap-6">
       <div className="flex gap-3 justify-between items-center flex-wrap">
         {!isPlayWithBot && <h3 className="no-wrap whitespace-nowrap uppercase text-light-2">{winner == null ? `Next - ${isXNext ? ' X' : " O"}` : `winner - ${winner}`}</h3>}
         <Button onClick={() => {

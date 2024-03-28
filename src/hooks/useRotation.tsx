@@ -6,14 +6,12 @@ const RotationContext = createContext<{
   setRotation: React.Dispatch<React.SetStateAction<number>>;
 } | undefined>(undefined);
 
-// Create a provider component for the context
 export const RotationProvider = ({ children } : {children: any}) => {
   const [rotation, setRotation] = React.useState(0);
 
-  // useEffect to start the rotation on mount
   useEffect(() => {
     const rotate = () => {
-      setRotation((prevRotation) => prevRotation + 0.005);
+      setRotation((prevRotation) => prevRotation + 0.004);
       requestAnimationFrame(rotate);
     };
     rotate();

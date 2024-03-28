@@ -16,7 +16,8 @@ const config: Config = {
       colors: {
         'primary-500': '#8FEFDF',
         'primary-600': '#5D5FEF',
-        'secondary-500': '#FFB620',
+        'secondary-600': '#b868c8',
+        'secondary-500': '#e8a8f8',
         'off-white': '#D0DFFF',
         'red': '#FF5A5A',
         'dark-1': '#000000',

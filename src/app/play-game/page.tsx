@@ -30,10 +30,10 @@ const PlayGame = () => {
       toast({
         title: "Game Over",
         description: `${status}`,
-        action: <Button variant="neon"><ToastAction onClick={() => {
+        action: <ToastAction onClick={() => {
           setGameState(Array(27).fill(null));
           setIsXNext(true);
-        }} altText='Restart game'>Restart</ToastAction></Button>
+        }} altText='Restart game'>Restart</ToastAction>
       })
     }
   }, [winner])

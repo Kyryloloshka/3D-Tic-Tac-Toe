@@ -1,7 +1,7 @@
 "use client";
 import * as THREE from 'three';
-import React, { useRef, useState } from 'react';
-import { Canvas, ThreeElements } from '@react-three/fiber';
+import React, { useRef } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei'
 import Cross from './Cross';
 import Circle from './Circle';
@@ -26,10 +26,8 @@ const TicTacToeGame = ({gameState, hoveredIndex, isXNext} : TicTacToeGameProps) 
             Array.from({length: 3}, (_, z) => {
               const index = z*3+ Math.abs(row-2)*9 + col
               const elem = gameState[index]
-              const opacity = elem == "X" 
+              const opacity = elem != null
                 ? 0.85
-                : elem == "O" 
-                  ? 0.85 
                   : index == hoveredIndex 
                     ? 0.4 
                     : 0.1
@@ -67,7 +65,15 @@ const TicTacToeGame = ({gameState, hoveredIndex, isXNext} : TicTacToeGameProps) 
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
         <CubeGroup/>
-        <OrbitControls />
+        <OrbitControls 
+          enablePan={false}
+          enableDamping={true}
+          autoRotate={true}
+          autoRotateSpeed={0.5}
+          maxZoom={15} 
+          minZoom={5} 
+          maxDistance={15} 
+          minDistance={5}  />
       </Canvas>
     </div>
 

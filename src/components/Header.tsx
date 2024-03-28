@@ -16,6 +16,10 @@ const headerLinks = [
   {
     route: "/about-game",
     label: "About"
+  },
+  {
+    route: "/play-game",
+    label: "Play"
   }
 ]
 
