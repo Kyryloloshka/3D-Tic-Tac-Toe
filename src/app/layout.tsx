@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <RotationProvider>
       <html lang="en">
-        <body className={`${poppins.className} h-[100dvh] common-container flex flex-col`}>
+        <body className={`${poppins.className} h-[100dvh] common-container flex flex-col relative`}>
           <Header/>
           <main className="flex-auto flex flex-col">
             {children}
