@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { useFrame } from 'react-three-fiber';
-import { useRotation } from '@/hooks/useRotation';
 
 interface CircleProps {
   opacity?: number;
@@ -9,11 +8,9 @@ interface CircleProps {
 
 const Cross = ({opacity, position}: CircleProps) => {
   const groupRef = useRef<THREE.Group>(null!);
-  const { rotation } = useRotation();
-
-  useFrame(() => {
+  useFrame(({ clock }) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = rotation;
+      groupRef.current.rotation.y = clock.elapsedTime * 0.9; // Оновлення обертання на основі часу
     }
   });
 

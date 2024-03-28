@@ -1,4 +1,3 @@
-import { useRotation } from "@/hooks/useRotation";
 import { useRef } from "react";
 import { useFrame } from "react-three-fiber";
 
@@ -10,12 +9,13 @@ interface CircleProps {
 
 const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position }) => {
   const torusRef = useRef<THREE.Mesh>(null!);
-  const {rotation} = useRotation()
-  useFrame(() => {
+
+  useFrame(({ clock }) => {
     if (torusRef.current) {
-      torusRef.current.rotation.y = rotation*1.1;
+      torusRef.current.rotation.y = clock.elapsedTime * 1.1; // Оновлення обертання на основі часу
     }
   });
+
   return (
     <mesh ref={torusRef} position={position} onClick={() => console.log('Circle clicked')}>
       <torusGeometry args={[0.35, 0.1, 32, 32]} />
@@ -23,4 +23,5 @@ const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position }) => {
     </mesh>
   );
 };
+
 export default Circle;

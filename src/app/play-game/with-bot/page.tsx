@@ -39,7 +39,7 @@ const PlayGameWithBot = () => {
     <div className="overflow-hidden flex-auto flex flex-col h-full">
       <div className="md:flex h-full flex-auto">
         <LeftNavBar isPlayWithBot={true} setHoveredIndex={setHoveredIndex} hoveredIndex={hoveredIndex} setIsXNext={setIsXNext} winner={winner} isXNext={isXNext} gameState={gameState} setGameState={setGameState}/>
-        <TicTacToeGame isXNext={isXNext} gameState={gameState} hoveredIndex={hoveredIndex}/>
+        <TicTacToeGame gameState={gameState} hoveredIndex={hoveredIndex} isXNext={isXNext}/>
       </div>
       <Toaster/>
     </div>
