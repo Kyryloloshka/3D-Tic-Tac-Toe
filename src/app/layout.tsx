@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+"use client"
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { Provider } from "react-redux";
+import { store } from "@/state/store";
 
 const poppins = Poppins({ weight: ["300", "400", "600"], subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: "3D Tic Tac Toe",
-  description: "tic-tac-toe in 3d",
-};
+
 
 export default function RootLayout({
   children,
@@ -16,6 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <Provider store={store}>
       <html lang="en">
         <body className={`${poppins.className} h-[100dvh] common-container flex flex-col relative`}>
           <Header/>
@@ -23,5 +23,7 @@ export default function RootLayout({
             {children}
           </main>
         </body>
-      </html>);
+      </html>
+    </Provider>
+  );
 }

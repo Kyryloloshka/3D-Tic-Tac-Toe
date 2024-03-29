@@ -1,6 +1,6 @@
 {
   "name": "course_work",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -15,12 +15,14 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@react-three/drei": "^9.93.0",
     "@react-three/fiber": "^8.15.13",
+    "@reduxjs/toolkit": "^2.2.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.363.0",
     "next": "14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^9.1.0",
     "react-three-fiber": "^6.0.13",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"

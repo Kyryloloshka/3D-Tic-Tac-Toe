@@ -5,7 +5,7 @@ export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs))
 }
 
-export const calculateWinner = (squares: string[]) => {
+export const calculateWinner = (squares: Array<string | null>) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -109,8 +109,8 @@ export const getBotMove = (board: any[]) => {
 const checkBotWin = (board: any[], move: number) => {
   const newBoard = [...board];
   newBoard[move] = 'O'; // Припускаємо, що бот грає за 'O'
-  const winner = calculateWinner(newBoard);
-  return winner === 'O' ? move : null;
+  const winnerSingle = calculateWinner(newBoard);
+  return winnerSingle === 'O' ? move : null;
 };
 
 const checkBlockOpponentWin = (board: any[]) => {
@@ -120,8 +120,8 @@ const checkBlockOpponentWin = (board: any[]) => {
     if (board[i] === null) {
       const newBoard = [...board];
       newBoard[i] = 'X'; // Припускаємо, що гравець грає за 'X'
-      const winner = calculateWinner(newBoard);
-      if (winner === 'X') {
+      const winnerSingle = calculateWinner(newBoard);
+      if (winnerSingle === 'X') {
         // console.log("prevent win oponent case");
         
         return i;

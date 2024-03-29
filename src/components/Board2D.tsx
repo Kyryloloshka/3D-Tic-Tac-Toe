@@ -1,61 +1,91 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
 import { useToast } from './ui/use-toast';
-import { Button } from './ui/button';
 import { ToastAction } from '@radix-ui/react-toast';
+import { RootState } from '@/state/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGameSingleState, setGameWithBotState, setHoveredIndex, setIsXNextSingle, setIsXNextWithBot, setWinnerSingle, setWinnerWithBot } from "@/state/gameState/gameStateSlice";
+import { calculateWinner } from '@/lib/utils';
 
 interface Board2DProps {
-  gameState: string[];
   boardOrder: number;
-  setGameState: Function;
-  isXNext: boolean;
-  setIsXNext: Function;
-  winner: string | null;
-  setHoveredIndex: Function;
-  hoveredIndex: number | null; 
+  isPlayWithBot: boolean;
 }
 
 const Board2D = ({
-    gameState,
     boardOrder,
-    setGameState, 
-    isXNext, 
-    setIsXNext, 
-    winner, 
-    setHoveredIndex, 
-    hoveredIndex
+    isPlayWithBot
   } : Board2DProps) => {
   const {toast} = useToast()
-  
-  const handleClick = (index: number) => {
-    if (winner) {
-      toast({
-        title: "Game Already Overed",
-        description: "You can not make moves anymore",
-        action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
-          setGameState(Array(27).fill(null));
-          setIsXNext(true);
-        }} altText='Restart game'>Restart</ToastAction>
-      })
-      return;
-    };
-    if (gameState[boardOrder * 9 + index]) {
-      return; 
-    }
+  const dispatch = useDispatch();
+  const gameSingleState = useSelector((state: RootState) => state.gameSingleState);
+  const isXNextSingle = useSelector((state: RootState) => state.isXNextSingle);
+  const winnerSingle = useSelector((state: RootState) => state.winnerSingle);
+  const hoveredIndex = useSelector((state: RootState) => state.hoveredIndex);
+  const winnerWithBot = useSelector((state: RootState) => state.winnerWithBot);
+  const gameWithBotState = useSelector((state: RootState) => state.gameWithBotState);
+  const isXNextWithBot = useSelector((state: RootState) => state.isXNextWithBot);
 
-    const newBoard = [...gameState];
-    newBoard[boardOrder * 9 + index] = isXNext ? 'X' : 'O';
-    
-    setGameState(newBoard);
-    setIsXNext(!isXNext);
+  const handleClick = (index: number) => {
+    if (isPlayWithBot) {
+      if (winnerWithBot) {
+        toast({
+          title: "Game Already Overed",
+          description: "You can not make moves anymore",
+          action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
+            dispatch(setGameWithBotState(Array(27).fill(null)));
+            dispatch(setIsXNextWithBot(true));
+            dispatch(setWinnerWithBot(null));
+        }} altText='Restart game'>Restart</ToastAction>
+        })
+        return;
+      };
+      if (gameWithBotState[boardOrder * 9 + index]) {
+        return; 
+      }
+  
+      const newBoard = [...gameWithBotState];
+      newBoard[boardOrder * 9 + index] = isXNextWithBot ? 'X' : 'O';
+      
+      dispatch(setGameWithBotState(newBoard));
+      dispatch(setIsXNextWithBot(!isXNextWithBot));
+  
+      const newWinner = calculateWinner(newBoard);
+      dispatch(setWinnerWithBot(newWinner));
+    } else {
+      if (winnerSingle) {
+        toast({
+          title: "Game Already Overed",
+          description: "You can not make moves anymore",
+          action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
+            dispatch(setGameSingleState(Array(27).fill(null)));
+            dispatch(setIsXNextSingle(true));
+            dispatch(setWinnerSingle(null));
+        }} altText='Restart game'>Restart</ToastAction>
+        })
+        return;
+      };
+      if (gameSingleState[boardOrder * 9 + index]) {
+        return; 
+      }
+
+      const newBoard = [...gameSingleState];
+      newBoard[boardOrder * 9 + index] = isXNextSingle ? 'X' : 'O';
+      
+      dispatch(setGameSingleState(newBoard));
+      dispatch(setIsXNextSingle(!isXNextSingle));
+
+      const newWinner = calculateWinner(newBoard);
+      dispatch(setWinnerSingle(newWinner));
+    }
   };
 
   const handlePointerOver = (index: number) => {
-    setHoveredIndex(boardOrder * 9 + index);
+    dispatch(setHoveredIndex(boardOrder * 9 + index));
   };
 
   const handlePointerOut = () => {
-    setHoveredIndex(null);
+    dispatch(setHoveredIndex(null));
   };
 
   const renderCross = () => (
@@ -77,15 +107,25 @@ const Board2D = ({
       onPointerOver={() => handlePointerOver(index)}
       onPointerOut={handlePointerOut}
     >
-      {hoveredIndex === boardOrder * 9 + index && gameState[boardOrder * 9 + index] == null ? (
-        <div className='text-primary-500 text-4xl font-semibold text-shadow-neon select-none opacity-50'>
-          {isXNext ? renderCross() : renderCircle()}
+      {isPlayWithBot ? hoveredIndex === boardOrder * 9 + index 
+        && gameWithBotState[boardOrder * 9 + index] == null ? (
+        <div className='pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none opacity-50'>
+          {isXNextWithBot ? renderCross() : renderCircle()}
         </div>
-      ) : <span className='text-primary-500 text-4xl font-semibold text-shadow-neon select-none'>
-      {gameState[boardOrder * 9 + index] == 'X' ? renderCross() : gameState[boardOrder * 9 + index] == "O" ? renderCircle() : null}
+      ) : <span className='pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none'>
+      {gameWithBotState[boardOrder * 9 + index] == 'X' ? renderCross() : gameWithBotState[boardOrder * 9 + index] == "O" ? renderCircle() : null}
+    </span> :
+      hoveredIndex === boardOrder * 9 + index 
+        && gameSingleState[boardOrder * 9 + index] == null ? (
+        <div className=' pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none opacity-50'>
+          {isXNextSingle ? renderCross() : renderCircle()}
+        </div>
+      ) : <span className='pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none'>
+      {gameSingleState[boardOrder * 9 + index] == 'X' ? renderCross() : gameSingleState[boardOrder * 9 + index] == "O" ? renderCircle() : null}
     </span>}
       
     </button>
+    
   );
 
   return (
