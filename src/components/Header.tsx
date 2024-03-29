@@ -1,10 +1,8 @@
 "use client"
 import Link from "next/link"
-import { Button } from "./ui/button"
 import { usePathname } from "next/navigation"
 import { INavLink } from "@/types"
 import { useState } from "react"
-import { useRouter } from "next/router"
 
 const headerLinks = [
   {

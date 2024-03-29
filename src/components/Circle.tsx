@@ -12,7 +12,7 @@ const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position }) => {
 
   useFrame(({ clock }) => {
     if (torusRef.current) {
-      torusRef.current.rotation.y = clock.elapsedTime * 0.6; // Оновлення обертання на основі часу
+      torusRef.current.rotation.y = clock.elapsedTime * 0.6;
     }
   });
 

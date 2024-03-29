@@ -10,7 +10,7 @@ const Cross = ({opacity, position}: CircleProps) => {
   const groupRef = useRef<THREE.Group>(null!);
   useFrame(({ clock }) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = clock.elapsedTime * 0.7; // Оновлення обертання на основі часу
+      groupRef.current.rotation.y = clock.elapsedTime * 0.7;
     }
   });
 
