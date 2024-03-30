@@ -1,0 +1,78 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "play": "Spielen",
+    "playWithBot": "Gegen Bot spielen",
+    "rules": "Regeln",
+    "about": "Über uns",
+    "language": "Sprache"
+  },
+  "page": {
+    "home": {
+      "text": "Willkommen in der aufregenden Welt von 3D Tic Tac Toe! Tauchen Sie ein in ein einzigartiges 3D-Erlebnis, in dem Sie Ihre Strategie im 3D-Raum einsetzen und Ihre geistige Schärfe in einer neuen Dimension dieses klassischen Spiels testen können.",
+      "button": "Spielen"
+    },
+    "not-found": {
+      "text": "Die Seite, die Sie suchen, existiert nicht.",
+      "button": "Zurück zur Startseite"
+    },
+    "rules": {
+      "rulesTitle": "Regeln von 3D Tic Tac Toe",
+      "welcomeMessage": "Willkommen in der aufregenden Welt von 3D Tic Tac Toe! Dieses Spiel kombiniert das klassische Tic-Tac-Toe-Spiel mit einem dreidimensionalen Raum und schafft so ein fesselndes Spielerlebnis und visuelle Erfahrung.",
+      "gameInstructionsTitle": "Spielanleitung",
+      "makeMoves": "Machen Sie Ihre Züge:",
+      "makeMovesValue": "Jeder Spieler setzt abwechselnd sein Symbol ('X' oder 'O') in die verfügbaren Zellen des Spiels.",
+      "winTheGame": "Gewinnen Sie das Spiel:",
+      "winTheGameValue": "Der Spieler, der zuerst eine Linie von drei seiner Symbole in horizontaler, vertikaler oder diagonaler Richtung bildet, gewinnt das Spiel.",
+      "gameCompletion": "Spielende:",
+      "gameCompletionValue": "Wenn alle Zellen gefüllt sind und keine Linie gebildet wird, endet das Spiel theoretisch unentschieden. Aber es gibt einen Beweis dafür, dass es unmöglich ist, in 3D Tic-Tac-Toe unentschieden zu spielen. Hier",
+      "gameCompletionValue2": "Ein interessanter Artikel",
+      "gameCompletionValue3": "darüber.",
+      "restartGame": "Spiel neu starten:",
+      "restartGameValue": "Sie können das Spiel jederzeit neu starten und von vorne beginnen, indem Sie auf die entsprechende Schaltfläche klicken.",
+      "enjoyExperience": "Genießen Sie das 3D-Erlebnis:",
+      "enjoyExperienceValue": "Nutzen Sie Dreh- und Zoomfunktionen, um den dreidimensionalen Aspekt des Spiels zu genießen.",
+      "enjoyMessage": "Das Spielen von 3D Tic Tac Toe ist fesselnd und faszinierend! Genießen Sie das Spiel und besiegen Sie Ihren Gegner. Viel Glück!",
+      "playGameLink": "Spiel spielen"
+    }, 
+    "about": {
+      "aboutTitle": "Über uns",
+      "aboutMessage": "Bei 3D Tic Tac Toe glauben wir daran, Nostalgie mit Innovation zu verbinden. Unser Ziel ist es, den Spielern eine frische Perspektive auf ein zeitloses Spiel zu bieten und Spannung und Strategie in jeden Zug zu bringen.",
+      "visionTitle": "Unsere Vision",
+      "visionMessage": "Willkommen bei 3D Tic Tac Toe, einer modernen Variante des klassischen Spiels, das wir alle kennen und lieben. Dieses immersive Erlebnis führt das traditionelle Tic-Tac-Toe buchstäblich in eine ganz neue Dimension!",
+      "featuresTitle": "Features:",
+      "feature1Title": "Dreidimensionales Gameplay:",
+      "feature1Description": "Tauchen Sie ein in eine optisch atemberaubende 3D-Umgebung, die eine neue Herausforderung und Freude bietet.",
+      "feature2Title": "Strategisches Denken:",
+      "feature2Description": "Mit der zusätzlichen Dimension erfordert das Spiel einen strategischen Ansatz, um Ihren Gegner zu besiegen. Denken Sie voraus und planen Sie Ihre Züge klug.",
+      "feature3Title": "Intuitive Steuerung:",
+      "feature3Description": "Navigieren Sie einfach durch das Spiel mit benutzerfreundlichen Steuerelementen. Drehen und zoomen Sie, um das 3D-Spielfeld mühelos zu erkunden.",
+      "feature4Title": "Klassische Regeln, modernes Design:",
+      "feature4Description": "Während wir die klassischen Regeln von Tic-Tac-Toe begrüßen, bieten unser modernes Design und die 3D-Umgebung ein erfrischendes und fesselndes Spielerlebnis.",
+      "enjoyMessage": "Ob Sie ein erfahrener Tic-Tac-Toe-Spieler sind oder neu im Spiel, 3D Tic Tac Toe verspricht ein unterhaltsames und herausforderndes Spielerlebnis für Spieler jeden Alters. Tauchen Sie ein in die Welt der dreidimensionalen Strategie und haben Sie Spaß beim Spielen von Tic-Tac-Toe wie nie zuvor!",
+      "playGameLink": "Spiel spielen"
+    }
+  },
+  "toast": {
+    "gameOver": "Spiel vorbei!",
+    "winner": "Gewinner",
+    "nextPlayer": "Nächster Spieler",
+    "restart": "Neustart",
+    "bot": "Bot"
+  },
+  "leftNavBar": {
+    "turn": "Zug",
+    "winner": "Gewinner",
+    "restart": "Neustart",
+    "onOneDevice": "Auf einem Gerät spielen",
+    "withBot": "Gegen Bot spielen",
+    "topLayer": "Oberste Ebene",
+    "middleLayer": "Mittlere Ebene",
+    "bottomLayer": "Unterste Ebene"
+  },
+  "board": {
+    "gameAlreadyOveredTitle": "Spiel bereits beendet",
+    "gameAlreadyOveredDescription": "Sie können keine Züge mehr machen",
+    "restartGame": "Neustart"
+  }
+}

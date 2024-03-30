@@ -17,8 +17,8 @@
       "button": "Go Home"
     },
     "rules": {
-      "rulesTitle": "Rules of Tic-Tac-Toe 3D",
-      "welcomeMessage": "Welcome to the exciting world of Tic-Tac-Toe 3D! This game combines the classic Tic-Tac-Toe gameplay with a three-dimensional space, creating an engaging gameplay and a visual experience.",
+      "rulesTitle": "Rules of 3D Tic Tac Toe",
+      "welcomeMessage": "Welcome to the exciting world of 3D Tic Tac Toe! This game combines the classic Tic-Tac-Toe gameplay with a three-dimensional space, creating an engaging gameplay and a visual experience.",
       "gameInstructionsTitle": "Game Instructions",
       "makeMoves": "Make Your Moves:",
       "makeMovesValue": "Each player takes turns placing their symbol ('X' or 'O') on the available cells of the game.",
@@ -32,14 +32,14 @@
       "restartGameValue": "At any point you can restart the game and start it from the very beginning by clicking on the appropriate button",
       "enjoyExperience": "Enjoy the 3D Experience:",
       "enjoyExperienceValue": "Utilize rotation and zoom features to enjoy the three-dimensional aspect of the game.",
-      "enjoyMessage": "Playing Tic-Tac-Toe 3D is engaging and intriguing! Enjoy the game and defeat your opponent. Good luck!",
+      "enjoyMessage": "Playing 3D Tic Tac Toe is engaging and intriguing! Enjoy the game and defeat your opponent. Good luck!",
       "playGameLink": "Play Game"
     }, 
     "about": {
       "aboutTitle": "About",
-      "aboutMessage": "At Tic-Tac-Toe 3D, we believe in blending nostalgia with innovation. Our vision is to provide players with a fresh perspective on a timeless game, bringing excitement and strategy to each move.",
+      "aboutMessage": "At 3D Tic Tac Toe, we believe in blending nostalgia with innovation. Our vision is to provide players with a fresh perspective on a timeless game, bringing excitement and strategy to each move.",
       "visionTitle": "Our Vision",
-      "visionMessage": "Welcome to Tic-Tac-Toe 3D, a modern twist on the classic game we all know and love. This immersive experience takes the traditional Tic-Tac-Toe to a whole new dimension, quite literally!",
+      "visionMessage": "Welcome to 3D Tic Tac Toe, a modern twist on the classic game we all know and love. This immersive experience takes the traditional Tic-Tac-Toe to a whole new dimension, quite literally!",
       "featuresTitle": "Features:",
       "feature1Title": "Three-Dimensional Gameplay:",
       "feature1Description": "Immerse yourself in a visually stunning 3D environment that adds a new layer of challenge and enjoyment.",
@@ -49,7 +49,7 @@
       "feature3Description": "Easily navigate through the game with user-friendly controls. Rotate and zoom to explore the 3D game board effortlessly.",
       "feature4Title": "Classic Rules, Modern Design:",
       "feature4Description": "While we embrace the classic rules of Tic-Tac-Toe, our modern design and 3D setting offer a refreshing and engaging experience.",
-      "enjoyMessage": "Whether you're a seasoned Tic-Tac-Toe player or new to the game, Tic-Tac-Toe 3D promises an entertaining and challenging experience for players of all ages. Dive into the world of three-dimensional strategy and have fun playing Tic-Tac-Toe like never before!",
+      "enjoyMessage": "Whether you're a seasoned Tic-Tac-Toe player or new to the game, 3D Tic Tac Toe promises an entertaining and challenging experience for players of all ages. Dive into the world of three-dimensional strategy and have fun playing Tic-Tac-Toe like never before!",
       "playGameLink": "Play Game"
     }
   },
