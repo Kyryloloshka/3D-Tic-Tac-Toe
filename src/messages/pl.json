@@ -1,0 +1,78 @@
+{
+  "navigation": {
+    "home": "Strona główna",
+    "play": "Grać",
+    "playWithBot": "Grać z botem",
+    "rules": "Zasady",
+    "about": "O nas",
+    "language": "Język"
+  },
+  "page": {
+    "home": {
+      "text": "Witaj w ekscytującym świecie 3D Tic Tac Toe! Zanurz się w unikalnym doświadczeniu 3D, gdzie będziesz miał okazję wdrożyć swoją strategię w trójwymiarowej przestrzeni i przetestować swoją sprawność umysłową w nowym wymiarze tej klasycznej gry.",
+      "button": "Grać"
+    },
+    "not-found": {
+      "text": "Strona, którą próbujesz znaleźć, nie istnieje.",
+      "button": "Przejdź do strony głównej"
+    },
+    "rules": {
+      "rulesTitle": "Zasady 3D Tic Tac Toe",
+      "welcomeMessage": "Witaj w ekscytującym świecie 3D Tic Tac Toe! Ta gra łączy klasyczny gameplay Tic-Tac-Toe z trójwymiarową przestrzenią, tworząc wciągającą rozgrywkę i doświadczenie wizualne.",
+      "gameInstructionsTitle": "Instrukcje gry",
+      "makeMoves": "Wykonuj swoje ruchy:",
+      "makeMovesValue": "Każdy gracz wykonuje ruchy, umieszczając swoje symbole ('X' lub 'O') na dostępnych komórkach gry.",
+      "winTheGame": "Wygraj grę:",
+      "winTheGameValue": "Gracz, który jako pierwszy utworzy linię trzech swoich symboli w poziomie, pionie lub na ukos, wygrywa grę.",
+      "gameCompletion": "Zakończenie gry:",
+      "gameCompletionValue": "Jeśli wszystkie komórki są zapełnione, a żadna linia nie jest utworzona, gra kończy się remisem, teoretycznie. Ale istnieje dowód, że niemożliwe jest grać w remis w 3D Tic-Tac-Toe. Tutaj",
+      "gameCompletionValue2": "Ciekawy artykuł",
+      "gameCompletionValue3": "na ten temat.",
+      "restartGame": "Zrestartuj grę:",
+      "restartGameValue": "W dowolnym momencie możesz zrestartować grę i rozpocząć ją od nowa, klikając odpowiedni przycisk.",
+      "enjoyExperience": "Ciesz się doświadczeniem 3D:",
+      "enjoyExperienceValue": "Wykorzystaj funkcje obrotu i zbliżania, aby cieszyć się trójwymiarowym aspektem gry.",
+      "enjoyMessage": "Gra w 3D Tic Tac Toe jest emocjonująca i intrygująca! Ciesz się grą i pokonaj swojego przeciwnika. Powodzenia!",
+      "playGameLink": "Grać w grę"
+    },
+    "about": {
+      "aboutTitle": "O nas",
+      "aboutMessage": "W 3D Tic Tac Toe wierzymy w połączenie nostalgii z innowacją. Naszą wizją jest zapewnienie graczom świeżego spojrzenia na klasyczną grę, przynosząc ekscytację i strategię do każdego ruchu.",
+      "visionTitle": "Nasza wizja",
+      "visionMessage": "Witaj w 3D Tic Tac Toe, nowoczesnej wersji klasycznej gry, którą wszyscy znamy i kochamy. To wciągające doświadczenie przenosi tradycyjnego Tic-Tac-Toe na zupełnie nowy poziom, dosłownie!",
+      "featuresTitle": "Funkcje:",
+      "feature1Title": "Gra trójwymiarowa:",
+      "feature1Description": "Zanurz się w wizualnie oszałamiającym środowisku 3D, które dodaje nową warstwę wyzwania i zabawy.",
+      "feature2Title": "Myślenie strategiczne:",
+      "feature2Description": "Dzięki dodatkowemu wymiarowi gra wymaga strategicznego podejścia do pokonania przeciwnika. Pomyśl z wyprzedzeniem i mądrze planuj swoje ruchy.",
+      "feature3Title": "Intuicyjne sterowanie:",
+      "feature3Description": "Łatwo poruszaj się po grze dzięki przyjaznym dla użytkownika kontrolom. Obracaj i przybliżaj, aby swobodnie eksplorować trójwymiarową planszę do gry.",
+      "feature4Title": "Klasyczne zasady, nowoczesny design:",
+      "feature4Description": "Choć przyjmujemy klasyczne zasady Tic-Tac-Toe, nasz nowoczesny design i ustawienia 3D oferują świeże i angażujące doświadczenie.",
+      "enjoyMessage": "Czy jesteś doświadczonym graczem Tic-Tac-Toe czy nowicjuszem, 3D Tic Tac Toe obiecuje rozrywkowe i wymagające doświadczenie dla graczy w każdym wieku. Zanurz się w świat trójwymiarowej strategii i baw się grając w Tic-Tac-Toe jak nigdy dotąd!",
+      "playGameLink": "Grać w grę"
+    }
+  },
+  "toast": {
+    "gameOver": "Koniec gry!",
+    "winner": "Zwycięzca",
+    "nextPlayer": "Następny gracz",
+    "restart": "Zrestartować",
+    "bot": "Bot"
+  },
+  "leftNavBar": {
+    "turn": "Tura",
+    "winner": "Zwycięzca",
+    "restart": "Zrestartować",
+    "onOneDevice": "Gra na jednym urządzeniu",
+    "withBot": "Grać z botem",
+    "topLayer": "Górny poziom",
+    "middleLayer": "Środkowy poziom",
+    "bottomLayer": "Dolny poziom"
+  },
+  "board": {
+    "gameAlreadyOveredTitle": "Gra już zakończona",
+    "gameAlreadyOveredDescription": "Nie możesz już wykonywać ruchów",
+    "restartGame": "Zrestartować"
+  }
+}
