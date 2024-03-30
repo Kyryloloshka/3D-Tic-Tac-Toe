@@ -1,0 +1,78 @@
+{
+  "navigation": {
+    "home": "ホーム",
+    "play": "プレイ",
+    "playWithBot": "ボットとプレイ",
+    "rules": "ルール",
+    "about": "約",
+    "language": "言語"
+  },
+  "page": {
+    "home": {
+      "text": "3D Tic Tac Toeのエキサイティングな世界へようこそ！ユニークな3D体験に没入し、このクラシックゲームの新しい次元で戦略を展開し、精神的な鋭さを試す機会を得ることができます。",
+      "button": "プレイ"
+    },
+    "not-found": {
+      "text": "お探しのページは存在しません。",
+      "button": "ホームに戻る"
+    },
+    "rules": {
+      "rulesTitle": "3D Tic Tac Toeのルール",
+      "welcomeMessage": "3D Tic Tac Toeのエキサイティングな世界へようこそ！このゲームは、クラシックなTic-Tac-Toeのゲームプレイを三次元空間と組み合わせ、魅力的なゲームプレイとビジュアル体験を創造しています。",
+      "gameInstructionsTitle": "ゲームの説明",
+      "makeMoves": "あなたの手を打ちます：",
+      "makeMovesValue": "各プレイヤーは、利用可能なセルに自分の記号（'X'または'O'）を順番に置いています。",
+      "winTheGame": "ゲームに勝つ：",
+      "winTheGameValue": "横、縦、または対角線上に自分の記号を3つ並べた最初のプレイヤーがゲームに勝ちます。",
+      "gameCompletion": "ゲームの完了：",
+      "gameCompletionValue": "すべてのセルが埋まり、ラインが形成されない場合、理論的にはゲームは引き分けで終了します。ただし、3D Tic-Tac-Toeで引き分けることは不可能であることが証明されています。こちら",
+      "gameCompletionValue2": "興味深い記事",
+      "gameCompletionValue3": "について。",
+      "restartGame": "ゲームを再起動する：",
+      "restartGameValue": "いつでも適切なボタンをクリックしてゲームを再起動し、最初からやり直すことができます",
+      "enjoyExperience": "3D体験をお楽しみください：",
+      "enjoyExperienceValue": "回転やズーム機能を利用して、立体的なゲームの側面をお楽しみください。",
+      "enjoyMessage": "3D Tic Tac Toeをプレイすることは、魅力的で興味深いものです！ゲームを楽しんで、相手を打ち負かしてください。がんばって！",
+      "playGameLink": "ゲームをプレイ"
+    },
+    "about": {
+      "aboutTitle": "約",
+      "aboutMessage": "3D Tic Tac Toeでは、ノスタルジアと革新を融合させることを信じています。私たちのビジョンは、時代を超えたゲームに新しい視点を提供し、各手に興奮と戦略をもたらすことです。",
+      "visionTitle": "私たちのビジョン",
+      "visionMessage": "3D Tic Tac Toeへようこそ、私たちが皆知っているクラシックゲームの現代的なアレンジです。この没入型体験は、伝統的なTic-Tac-Toeをまったく新しい次元に引き上げます。",
+      "featuresTitle": "特徴：",
+      "feature1Title": "立体的なゲームプレイ：",
+      "feature1Description": "視覚的に魅力的な3D環境に没入し、新しい挑戦と楽しみを加えます。",
+      "feature2Title": "戦略的思考：",
+      "feature2Description": "追加された次元により、ゲームは相手を制するための戦略的なアプローチを必要とします。先を見越して賢く手を打ちましょう。",
+      "feature3Title": "直感的なコントロール：",
+      "feature3Description": "使いやすいコントロールでゲームを簡単に操作します。回転やズームを使用して、3Dのゲームボードを楽に探索します。",
+      "feature4Title": "クラシックなルール、モダンなデザイン：",
+      "feature4Description": "Tic-Tac-Toeのクラシックなルールを採用しながらも、私たちのモダンなデザインと3Dの設定は、新鮮で魅力的な体験を提供します。",
+      "enjoyMessage": "経験豊富なTic-Tac-Toeプレイヤーであっても、初心者であっても、3D Tic Tac Toeはすべての年齢のプレイヤーに楽しく、挑戦的な体験を約束します。立体的な戦略の世界に飛び込んで、今までにないTic-Tac-Toeを楽しんでください！",
+      "playGameLink": "ゲームをプレイ"
+    }
+  },
+  "toast": {
+    "gameOver": "ゲームオーバー！",
+    "winner": "勝者",
+    "nextPlayer": "次のプレイヤー",
+    "restart": "再起動",
+    "bot": "ボット"
+  },
+  "leftNavBar": {
+    "turn": "ターン",
+    "winner": "勝者",
+    "restart": "再起動",
+    "onOneDevice": "1つのデバイスで再生",
+    "withBot": "ボットと再生",
+    "topLayer": "上位レベル",
+    "middleLayer": "中間レベル",
+    "bottomLayer": "下層"
+  },
+  "board": {
+    "gameAlreadyOveredTitle": "ゲームはすでに終了しました",
+    "gameAlreadyOveredDescription": "もう動けません",
+    "restartGame": "リスタート"
+  }
+}

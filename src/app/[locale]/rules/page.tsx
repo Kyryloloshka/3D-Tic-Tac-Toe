@@ -18,7 +18,7 @@ const Rules = () => {
         <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">{t("enjoyExperience")} </span>{t("enjoyExperienceValue")}</li>
       </ol>
       <p className="leading-6 text-lg tracking-wide pt-8 pb-24 ">
-        {t("enjoyMessage")} <Link href="/play-game" className={`link-underline transition capitalize relative text-primary-500`}>{t("playGameLink")}</Link>
+        {t("enjoyMessage")} <Link href="/play-game" className={`link-underline transition capitalize relative text-primary-500 whitespace-nowrap`}>{t("playGameLink")}</Link>
       </p>
     </div>
   )  
