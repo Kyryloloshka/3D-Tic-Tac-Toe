@@ -16,7 +16,7 @@ const PlayGame = () => {
   const dispatch = useDispatch();
   const isXNextSingle = useSelector((state: RootState) => state.isXNextSingle);
   const winnerSingle = useSelector((state: RootState) => state.winnerSingle);
-  
+  const player = useSelector((state: RootState) => state.player);
   const status = winnerSingle ? `${t("winner")}: ${winnerSingle}` : `${t("nextPlayer")}: ${isXNextSingle ? 'X' : 'O'}`;
   useEffect(() => {
     if (winnerSingle) {
@@ -25,7 +25,7 @@ const PlayGame = () => {
         description: `${status}`,
         action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#75ebbc]' onClick={() => {
           dispatch(setGameSingleState(Array(27).fill(null)));
-          dispatch(setIsXNextSingle(true));
+          dispatch(setIsXNextSingle(player === "X"));
           dispatch(setWinnerSingle(null));
         }} altText='Restart game'>{t("restart")}</ToastAction>
       })

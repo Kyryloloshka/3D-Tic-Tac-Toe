@@ -8,9 +8,11 @@ interface GameState {
   gameWithBotState: Array<string | null>;
   isXNextWithBot: boolean;
   winnerWithBot: string | null;
+  player: "X" | "O";
 }
 
 const initialState: GameState = {
+  player: "X",
   gameSingleState: Array(27).fill(null),
   isXNextSingle: true,
   winnerSingle: null,
@@ -45,6 +47,9 @@ const gameSlice = createSlice({
     setWinnerWithBot: (state, action) => {
       state.winnerWithBot = action.payload;
     },
+    setPlayer: (state, action) => {
+      state.player = action.payload;
+    }
   }
 })
 
@@ -56,6 +61,7 @@ export const {
   setGameWithBotState,
   setIsXNextWithBot,
   setWinnerWithBot,
+  setPlayer,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;
