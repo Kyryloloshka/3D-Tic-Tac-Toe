@@ -212,6 +212,11 @@ body {
   .common-container {
     @apply h-full custom-scrollbar overflow-y-scroll;
   }
+
+  .container-restrictive {
+    @apply max-w-[1100px] mx-auto px-4;
+  }
+
   .link-underline {
     transition: all 0.3s ease;
   }

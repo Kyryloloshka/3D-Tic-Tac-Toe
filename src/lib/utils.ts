@@ -144,7 +144,7 @@ const checkBlockOpponentWin = (board: any[]) => {
       }
     }
   }
-  console.log(maxWinCaseIndex, maxWinCases);
+  // console.log(maxWinCaseIndex, maxWinCases);
   // maxWinCases >=1 ? console.log("calculate win after 1 move case") : null;
   
   return maxWinCases >=1 ? maxWinCaseIndex : null;

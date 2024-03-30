@@ -1,0 +1,76 @@
+{
+  "navigation": {
+    "home": "Home",
+    "play": "Play",
+    "playWithBot": "Play with Bot",
+    "rules": "Rules",
+    "about": "About",
+    "language": "Language"
+  },
+  "page": {
+    "home": {
+      "text": "Welcome to the exciting world of 3D Tic Tac Toe! Immerse yourself in a unique 3D experience where you will have the opportunity to deploy your strategy in 3D space and test your mental acuity in a new dimension of this classic game.",
+      "button": "Play"
+    },
+    "not-found": {
+      "text": "The page you are looking for does not exist.",
+      "button": "Go Home"
+    },
+    "rules": {
+      "rulesTitle": "Rules of Tic-Tac-Toe 3D",
+      "welcomeMessage": "Welcome to the exciting world of Tic-Tac-Toe 3D! This game combines the classic Tic-Tac-Toe gameplay with a three-dimensional space, creating an engaging gameplay and a visual experience.",
+      "gameInstructionsTitle": "Game Instructions",
+      "makeMoves": "Make Your Moves:",
+      "makeMovesValue": "Each player takes turns placing their symbol ('X' or 'O') on the available cells of the game.",
+      "winTheGame": "Win the Game:",
+      "winTheGameValue": "The player who first forms a line of three of their symbols in a horizontal, vertical, or diagonal direction wins the game.",
+      "gameCompletion": "Game Completion:",
+      "gameCompletionValue": "If all cells are filled, and no line is formed, the game ends in a draw, theoretically. But there is a proof that it is impossible to play in a draw in 3D Tic-Tac-Toe. Here an interesting article about this.",
+      "restartGame": "Restart the Game:",
+      "restartGameValue": "At any point you can restart the game and start it from the very beginning by clicking on the appropriate button",
+      "enjoyExperience": "Enjoy the 3D Experience:",
+      "enjoyExperienceValue": "Utilize rotation and zoom features to enjoy the three-dimensional aspect of the game.",
+      "enjoyMessage": "Playing Tic-Tac-Toe 3D is engaging and intriguing! Enjoy the game and defeat your opponent. Good luck!",
+      "playGameLink": "Play Game"
+    }, 
+    "about": {
+      "aboutTitle": "About",
+      "aboutMessage": "At Tic-Tac-Toe 3D, we believe in blending nostalgia with innovation. Our vision is to provide players with a fresh perspective on a timeless game, bringing excitement and strategy to each move.",
+      "visionTitle": "Our Vision",
+      "visionMessage": "Welcome to Tic-Tac-Toe 3D, a modern twist on the classic game we all know and love. This immersive experience takes the traditional Tic-Tac-Toe to a whole new dimension, quite literally!",
+      "featuresTitle": "Features:",
+      "feature1Title": "Three-Dimensional Gameplay:",
+      "feature1Description": "Immerse yourself in a visually stunning 3D environment that adds a new layer of challenge and enjoyment.",
+      "feature2Title": "Strategic Thinking:",
+      "feature2Description": "With the added dimension, the game requires a strategic approach to conquer your opponent. Think ahead and plan your moves wisely.",
+      "feature3Title": "Intuitive Controls:",
+      "feature3Description": "Easily navigate through the game with user-friendly controls. Rotate and zoom to explore the 3D game board effortlessly.",
+      "feature4Title": "Classic Rules, Modern Design:",
+      "feature4Description": "While we embrace the classic rules of Tic-Tac-Toe, our modern design and 3D setting offer a refreshing and engaging experience.",
+      "enjoyMessage": "Whether you're a seasoned Tic-Tac-Toe player or new to the game, Tic-Tac-Toe 3D promises an entertaining and challenging experience for players of all ages. Dive into the world of three-dimensional strategy and have fun playing Tic-Tac-Toe like never before!",
+      "playGameLink": "Play Game"
+    }
+  },
+  "toast": {
+    "gameOver": "Game Over!",
+    "winner": "Winner",
+    "nextPlayer": "Next Player",
+    "restart": "Restart",
+    "bot": "Bot"
+  },
+  "leftNavBar": {
+    "turn": "Turn",
+    "winner": "Winner",
+    "restart": "Restart",
+    "onOneDevice": "Play on one device",
+    "withBot": "Play with Bot",
+    "topLayer": "Верхній рівень",
+    "middleLayer": "Середній рівень",
+    "bottomLayer": "Нижній рівень"
+  },
+  "board": {
+    "gameAlreadyOveredTitle": "Game Already Overed",
+    "gameAlreadyOveredDescription": "You can not make moves anymore",
+    "restartGame": "Restart"
+  }
+}

@@ -9,6 +9,7 @@ import { ToastAction } from '@radix-ui/react-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 import { setGameWithBotState, setIsXNextWithBot, setWinnerWithBot } from "@/state/gameState/gameStateSlice";
+import { useTranslations } from 'next-intl';
 
 const PlayGameWithBot = () => {
   const { toast } = useToast();
@@ -16,7 +17,7 @@ const PlayGameWithBot = () => {
   const gameWithBotState = useSelector((state: RootState) => state.gameWithBotState);
   const isXNextWithBot = useSelector((state: RootState) => state.isXNextWithBot);
   const winnerWithBot = useSelector((state: RootState) => state.winnerWithBot);
-
+  const t = useTranslations("toast");
   useEffect(() => {
     if (!isXNextWithBot && !winnerWithBot) {
       const robotMove = getBotMove(gameWithBotState)
@@ -28,17 +29,17 @@ const PlayGameWithBot = () => {
       dispatch(setWinnerWithBot(newWinner));
     }
   }, [isXNextWithBot, winnerWithBot])
-  const status = winnerWithBot ? `Winner: ${winnerWithBot == "O" ? "Bot" : winnerWithBot}` : `Next player: ${isXNextWithBot ? 'X' : 'O'}`;
+  const status = winnerWithBot ? `${t("winner")}: ${winnerWithBot == "O" ? t("bot") : winnerWithBot}` : `${t("nextPlayer")}: ${isXNextWithBot ? 'X' : t("bot")}`;
   useEffect(() => {
     if (winnerWithBot) {
       toast({
-        title: "Game Over",
+        title: t("gameOver"),
         description: `${status}`,
         action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
           dispatch(setGameWithBotState(Array(27).fill(null)));
           dispatch(setIsXNextWithBot(true));
           dispatch(setWinnerWithBot(null));
-        }} altText='Restart game'>Restart</ToastAction>
+        }} altText={t("restart")}>{t("restart")}</ToastAction>
       })
     }
   }, [winnerWithBot])

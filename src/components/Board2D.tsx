@@ -1,4 +1,3 @@
-"use client"
 import React from 'react'
 import { useToast } from './ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
@@ -6,6 +5,7 @@ import { RootState } from '@/state/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGameSingleState, setGameWithBotState, setHoveredIndex, setIsXNextSingle, setIsXNextWithBot, setWinnerSingle, setWinnerWithBot } from "@/state/gameState/gameStateSlice";
 import { calculateWinner } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 interface Board2DProps {
   boardOrder: number;
@@ -25,19 +25,19 @@ const Board2D = ({
   const winnerWithBot = useSelector((state: RootState) => state.winnerWithBot);
   const gameWithBotState = useSelector((state: RootState) => state.gameWithBotState);
   const isXNextWithBot = useSelector((state: RootState) => state.isXNextWithBot);
-
+  const t = useTranslations("board");
   const handleClick = (index: number) => {
     if (isPlayWithBot) {
       if (winnerWithBot) {
         toast({
-          title: "Game Already Overed",
-          description: "You can not make moves anymore",
+          title: t("gameAlreadyOveredTitle"),
+          description: t("gameAlreadyOveredDescription"),
           action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
             dispatch(setGameWithBotState(Array(27).fill(null)));
             dispatch(setIsXNextWithBot(true));
             dispatch(setWinnerWithBot(null));
-        }} altText='Restart game'>Restart</ToastAction>
-        })
+          }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
+        });
         return;
       };
       if (gameWithBotState[boardOrder * 9 + index]) {
@@ -55,13 +55,13 @@ const Board2D = ({
     } else {
       if (winnerSingle) {
         toast({
-          title: "Game Already Overed",
-          description: "You can not make moves anymore",
+          title: t("gameAlreadyOveredTitle"),
+          description: t("gameAlreadyOveredDescription"),
           action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
             dispatch(setGameSingleState(Array(27).fill(null)));
             dispatch(setIsXNextSingle(true));
             dispatch(setWinnerSingle(null));
-        }} altText='Restart game'>Restart</ToastAction>
+        }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
         })
         return;
       };

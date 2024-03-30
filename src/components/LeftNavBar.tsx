@@ -1,16 +1,12 @@
-"use client"
 import Link from "next/link";
 import Board2D from "./Board2D"
 import { Button } from "./ui/button"
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import { setGameSingleState, setGameWithBotState, setIsXNextSingle, setIsXNextWithBot, setWinnerSingle, setWinnerWithBot } from "@/state/gameState/gameStateSlice"
+import { useTranslations } from "next-intl";
 
-const layers = [
-  "top layer",
-  "middle layer",
-  "bottom layer"
-]
+
 
 const LeftNavBar = ({isPlayWithBot}: {isPlayWithBot: boolean}) => {
   const dispatch = useDispatch();
@@ -28,36 +24,38 @@ const LeftNavBar = ({isPlayWithBot}: {isPlayWithBot: boolean}) => {
       dispatch(setWinnerSingle(null))
     }
   }
-  
+  const t = useTranslations("leftNavBar")
   return (
     <div className="bg-dark-3 py-3 pb-6 flex flex-col gap-6">
-      <div className="flex gap-x-3 gap-y-2 flex-wrap px-6">
-        <div className="flex gap-3 items-center justify-between flex-auto">
-          {!isPlayWithBot && 
-            <h3 className="no-wrap w-[88px] whitespace-nowrap uppercase text-light-2">{
-              winnerSingle == null 
-                ? `Turn - ${isXNextSingle 
-                  ? ' X'
-                  : " O"}` 
-                : `winner - ${winnerSingle}`
-            }</h3>
-          }
-          
-          <Button onClick={() => {
-            restartGame()
-          }} variant="neon">Restart</Button>
-        </div>
+      <div className="flex flex-col gap-x-3 gap-y-2 px-6 pt-2">
+        {!isPlayWithBot && 
+          <h3 className="no-wrap whitespace-nowrap uppercase text-light-2">{
+            winnerSingle == null 
+              ? `${t("turn")} - ${isXNextSingle 
+                ? ' X'
+                : " O"}` 
+              : `${t("winner")} - ${winnerSingle}`
+          }</h3>
+        }
+        
+        <Button onClick={() => {
+          restartGame()
+        }} variant="neon">{t("restart")}</Button>
         {isPlayWithBot 
           ? <Button variant={"neon"}>
-              <Link href="/play-game/">Play on one device</Link>
+              <Link href="/play-game/">{t("onOneDevice")}</Link>
             </Button> 
           : <Button variant="neon">
-            <Link href="/play-game/with-bot">Play with bot</Link>
+            <Link href="/play-game/with-bot">{t("withBot")}</Link>
           </Button>
         }
       </div>
       <div className="flex md:flex-col md:gap-6 gap-5 md:px-6 flex-wrap justify-center">
-        {layers.map((layer, index) => (
+        {[
+          t("topLayer"),
+          t("middleLayer"),
+          t("bottomLayer")
+        ].map((layer, index) => (
           <div className="flex flex-col items-center gap-3" key={index}>
             <span className="text-shadow-neon text-primary-500 select-none">{layer}</span>
             <Board2D boardOrder={index} isPlayWithBot={isPlayWithBot}/>
