@@ -3,6 +3,21 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { INavLink } from "@/types"
 import { useState } from "react"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const headerLinks = [
   {
@@ -62,9 +77,29 @@ const Header = () => {
           })}
         </ul>
       </div>
-      <div className="flex gap-5">
-        <div className="h-8 w-8 rounded-full bg-primary-500"></div>
-      </div>
+      
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="flex gap-5">
+            <div className="h-8 w-8 rounded-full bg-primary-500"></div>
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="bg-dark-2 p-2 mr-6">
+          <DropdownMenuGroup>
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a language" />
+            </SelectTrigger>
+            <SelectContent className="bg-dark-2">
+              <SelectGroup>
+                <SelectItem value="en">English</SelectItem>
+                <SelectItem value="uk">Українська</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </header>
   )
 }
