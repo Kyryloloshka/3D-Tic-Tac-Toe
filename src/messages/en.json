@@ -66,9 +66,9 @@
     "restart": "Restart",
     "onOneDevice": "Play on one device",
     "withBot": "Play with Bot",
-    "topLayer": "Верхній рівень",
-    "middleLayer": "Середній рівень",
-    "bottomLayer": "Нижній рівень"
+    "topLayer": "Top layer",
+    "middleLayer": "Middle layer",
+    "bottomLayer": "Bottom layer"
   },
   "board": {
     "gameAlreadyOveredTitle": "Game Already Overed",

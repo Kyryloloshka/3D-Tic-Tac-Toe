@@ -1,0 +1,78 @@
+{
+  "navigation": {
+    "home": "Página Inicial",
+    "play": "Jogar",
+    "playWithBot": "Jogar com Bot",
+    "rules": "Regras",
+    "about": "Sobre",
+    "language": "Idioma"
+  },
+  "page": {
+    "home": {
+      "text": "Bem-vindo ao emocionante mundo do 3D Tic Tac Toe! Mergulhe em uma experiência única em 3D, onde você terá a oportunidade de aplicar sua estratégia no espaço tridimensional e testar sua acuidade mental em uma nova dimensão deste jogo clássico.",
+      "button": "Jogar"
+    },
+    "not-found": {
+      "text": "A página que você está procurando não existe.",
+      "button": "Voltar para Casa"
+    },
+    "rules": {
+      "rulesTitle": "Regras do 3D Tic Tac Toe",
+      "welcomeMessage": "Bem-vindo ao emocionante mundo do 3D Tic Tac Toe! Este jogo combina a jogabilidade clássica do Tic-Tac-Toe com um espaço tridimensional, criando uma experiência de jogo envolvente e visual.",
+      "gameInstructionsTitle": "Instruções do Jogo",
+      "makeMoves": "Faça seus Movimentos:",
+      "makeMovesValue": "Cada jogador se reveza colocando seu símbolo ('X' ou 'O') nas células disponíveis do jogo.",
+      "winTheGame": "Vencer o Jogo:",
+      "winTheGameValue": "O jogador que primeiro formar uma linha de três de seus símbolos na horizontal, vertical ou diagonal vence o jogo.",
+      "gameCompletion": "Conclusão do Jogo:",
+      "gameCompletionValue": "Se todas as células estiverem preenchidas e nenhuma linha for formada, o jogo termina em um empate, teoricamente. Mas há uma prova de que é impossível empatar no 3D Tic-Tac-Toe. Aqui",
+      "gameCompletionValue2": "Um Artigo Interessante",
+      "gameCompletionValue3": "sobre isso.",
+      "restartGame": "Reiniciar o Jogo:",
+      "restartGameValue": "A qualquer momento, você pode reiniciar o jogo e começar do início clicando no botão apropriado",
+      "enjoyExperience": "Aproveite a Experiência 3D:",
+      "enjoyExperienceValue": "Utilize recursos de rotação e zoom para aproveitar o aspecto tridimensional do jogo.",
+      "enjoyMessage": "Jogar 3D Tic Tac Toe é envolvente e intrigante! Aproveite o jogo e derrote seu oponente. Boa sorte!",
+      "playGameLink": "Jogar Jogo"
+    },
+    "about": {
+      "aboutTitle": "Sobre",
+      "aboutMessage": "No 3D Tic Tac Toe, acreditamos em combinar nostalgia com inovação. Nossa visão é proporcionar aos jogadores uma nova perspectiva sobre um jogo atemporal, trazendo emoção e estratégia para cada movimento.",
+      "visionTitle": "Nossa Visão",
+      "visionMessage": "Bem-vindo ao 3D Tic Tac Toe, uma reviravolta moderna no jogo clássico que todos conhecemos e amamos. Esta experiência imersiva leva o Tic-Tac-Toe tradicional a uma nova dimensão, literalmente!",
+      "featuresTitle": "Recursos:",
+      "feature1Title": "Jogabilidade Tridimensional:",
+      "feature1Description": "Mergulhe em um ambiente visualmente impressionante em 3D que adiciona um novo desafio e diversão.",
+      "feature2Title": "Pensamento Estratégico:",
+      "feature2Description": "Com a dimensão adicionada, o jogo requer uma abordagem estratégica para conquistar seu oponente. Pense à frente e planeje seus movimentos com sabedoria.",
+      "feature3Title": "Controles Intuitivos:",
+      "feature3Description": "Navegue facilmente pelo jogo com controles amigáveis. Gire e dê zoom para explorar o tabuleiro de jogo 3D sem esforço.",
+      "feature4Title": "Regras Clássicas, Design Moderno:",
+      "feature4Description": "Enquanto abraçamos as regras clássicas do Tic-Tac-Toe, nosso design moderno e configuração em 3D oferecem uma experiência refrescante e envolvente.",
+      "enjoyMessage": "Seja você um jogador experiente de Tic-Tac-Toe ou novo no jogo, o 3D Tic Tac Toe promete uma experiência divertida e desafiadora para jogadores de todas as idades. Mergulhe no mundo da estratégia tridimensional e divirta-se jogando Tic-Tac-Toe como nunca antes!",
+      "playGameLink": "Jogar Jogo"
+    }
+  },
+  "toast": {
+    "gameOver": "Fim de Jogo!",
+    "winner": "Vencedor",
+    "nextPlayer": "Próximo Jogador",
+    "restart": "Reiniciar",
+    "bot": "Bot"
+  },
+  "leftNavBar": {
+    "turn": "Vez",
+    "winner": "Vencedor",
+    "restart": "Reiniciar",
+    "onOneDevice": "Jogar em um dispositivo",
+    "withBot": "Jogar com Bot",
+    "topLayer": "Camada Superior",
+    "middleLayer": "Camada do Meio",
+    "bottomLayer": "Camada Inferior"
+  },
+  "board": {
+    "gameAlreadyOveredTitle": "Jogo Já Encerrado",
+    "gameAlreadyOveredDescription": "Você não pode mais fazer movimentos",
+    "restartGame": "Reiniciar"
+  }
+}
