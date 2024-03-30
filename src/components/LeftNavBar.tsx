@@ -26,8 +26,8 @@ const LeftNavBar = ({isPlayWithBot}: {isPlayWithBot: boolean}) => {
   }
   const t = useTranslations("leftNavBar")
   return (
-    <div className="bg-dark-3 py-3 pb-6 flex flex-col gap-6">
-      <div className="flex flex-col gap-x-3 gap-y-2 px-6 pt-2">
+    <div className="bg-dark-3 pt-3 pb-6 flex flex-col gap-6">
+      <div className="flex flex-col gap-x-3 gap-y-2 px-3 md:px-6 pt-2">
         {!isPlayWithBot && 
           <h3 className="no-wrap whitespace-nowrap uppercase text-light-2">{
             winnerSingle == null 

@@ -214,7 +214,7 @@ body {
   }
 
   .container-restrictive {
-    @apply max-w-[1100px] mx-auto px-4;
+    @apply max-w-[1100px] mx-auto px-3 md:px-6;
   }
 
   .link-underline {
