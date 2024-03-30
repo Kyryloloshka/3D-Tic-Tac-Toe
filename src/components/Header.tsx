@@ -121,7 +121,8 @@ const Header = () => {
                 <SelectItem value="pl">Polski</SelectItem>
                 <SelectItem value="fr">Français</SelectItem>
                 <SelectItem value="ja">日本語</SelectItem>
-                <SelectItem value="pt">português</SelectItem>
+                <SelectItem value="pt">Português</SelectItem>
+                <SelectItem value="es">Español</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
