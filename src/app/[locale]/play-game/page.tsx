@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect } from 'react';
 import LeftNavBar from '@/components/LeftNavBar';
-import TicTacToeGame from '@/components/TicTacToeGame';
 import { Toaster } from '@/components/ui/toaster';
 import { useToast } from '@/components/ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
@@ -9,6 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 import { setGameSingleState, setIsXNextSingle, setWinnerSingle } from '@/state/gameState/gameStateSlice';
 import { useTranslations } from 'next-intl';
+import dynamic from 'next/dynamic'
+import Loading from "../loading";
+
+const ComponentPlayGame = dynamic(() => import('@/components/TicTacToeGame'), { ssr: false, loading: () => <Loading/>})
 
 const PlayGame = () => {
   const { toast } = useToast();
@@ -16,7 +19,7 @@ const PlayGame = () => {
   const dispatch = useDispatch();
   const isXNextSingle = useSelector((state: RootState) => state.isXNextSingle);
   const winnerSingle = useSelector((state: RootState) => state.winnerSingle);
-  const player = useSelector((state: RootState) => state.player);
+  const firstPlayer = useSelector((state: RootState) => state.firstPlayer);
   const status = winnerSingle ? `${t("winner")}: ${winnerSingle}` : `${t("nextPlayer")}: ${isXNextSingle ? 'X' : 'O'}`;
   useEffect(() => {
     if (winnerSingle) {
@@ -25,7 +28,7 @@ const PlayGame = () => {
         description: `${status}`,
         action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#75ebbc]' onClick={() => {
           dispatch(setGameSingleState(Array(27).fill(null)));
-          dispatch(setIsXNextSingle(player === "X"));
+          dispatch(setIsXNextSingle(firstPlayer === "X"));
           dispatch(setWinnerSingle(null));
         }} altText='Restart game'>{t("restart")}</ToastAction>
       })
@@ -33,9 +36,9 @@ const PlayGame = () => {
   }, [winnerSingle])
   return (
     <div className="overflow-hidden flex-auto flex flex-col h-full">
-      <div className="md:flex h-full flex-auto">
+      <div className="flex flex-col md:flex-row h-full flex-auto">
         <LeftNavBar isPlayWithBot={false}/>
-        <TicTacToeGame />
+        <ComponentPlayGame/>
       </div>
       <Toaster/>
     </div>

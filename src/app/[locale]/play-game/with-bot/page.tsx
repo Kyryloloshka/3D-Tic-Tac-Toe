@@ -10,6 +10,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 import { setGameWithBotState, setIsXNextWithBot, setWinnerWithBot } from "@/state/gameState/gameStateSlice";
 import { useTranslations } from 'next-intl';
+import dynamic from 'next/dynamic';
+import Loading from '../../loading';
+
+const ComponentPlayGame = dynamic(() => import('@/components/TicTacToeGame'), { ssr: false, loading: () => <Loading/>})
 
 const PlayGameWithBot = () => {
   const { toast } = useToast();
@@ -45,9 +49,9 @@ const PlayGameWithBot = () => {
   }, [winnerWithBot])
   return (
     <div className="overflow-hidden flex-auto flex flex-col h-full">
-      <div className="md:flex h-full flex-auto">
+      <div className="flex flex-col md:flex-row h-full flex-auto">
         <LeftNavBar isPlayWithBot={true}/>
-        <TicTacToeGame isPlayWithBot={true}/>
+        <ComponentPlayGame isPlayWithBot={true}/>
       </div>
       <Toaster/>
     </div>

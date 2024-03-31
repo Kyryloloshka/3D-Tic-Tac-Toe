@@ -3,3 +3,4 @@ export type INavLink = {
   label: string;
   translateKey: string;
 };
+export type IPlayer = "X" | "O";

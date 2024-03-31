@@ -4,60 +4,39 @@ import Board2D from "./Board2D"
 import { Button } from "./ui/button"
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
-import { setGameSingleState, setGameWithBotState, setIsXNextSingle, setIsXNextWithBot, setPlayer, setWinnerSingle, setWinnerWithBot } from "@/state/gameState/gameStateSlice"
+import { setGameSingleState, setGameWithBotState, setIsXNextSingle, setIsXNextWithBot, setWinnerSingle, setWinnerWithBot } from "@/state/gameState/gameStateSlice"
 import { useTranslations } from "next-intl";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import Loading from "@/app/[locale]/loading";
+import LoaderSpinner from "./LoaderSpinner";
 
+const ComponentDialogSettings = dynamic(
+  () => import('@/components/DialogSettings'),
+  { ssr: false, loading: () => <LoaderSpinner /> }
+);
 
 const LeftNavBar = ({isPlayWithBot}: {isPlayWithBot: boolean}) => {
   const dispatch = useDispatch();
   const isXNextSingle = useSelector((state: RootState) => state.isXNextSingle);
   const winnerSingle = useSelector((state: RootState) => state.winnerSingle);
-  const player = useSelector((state: RootState) => state.player);
-  const [selectedPlayer, setSelectedPlayer] = useState(player);
-  const [open, setOpen] = useState(false);
-  const restartGame = () => {
+
+  const restartGame = (selectedFirstPlayer?: "X" | "O") => {
     if (isPlayWithBot) {
       dispatch(setGameWithBotState(Array(27).fill(null)));
       dispatch(setIsXNextWithBot(true));
       dispatch(setWinnerWithBot(null))
     } else {
       dispatch(setGameSingleState(Array(27).fill(null)));
-      dispatch(setIsXNextSingle(selectedPlayer === "X"));  
+      dispatch(setIsXNextSingle(selectedFirstPlayer === "X"));  
       dispatch(setWinnerSingle(null))
     }
   }
-
-
-  const submitSettings = (e: any) => {
-    e.preventDefault();
-    restartGame();
-    dispatch(setPlayer(selectedPlayer));
-    setOpen(false)
-  }
-
-  const handlePlayerChange = (param: any) => {
-    setSelectedPlayer(param)
-  };
 
   const t = useTranslations("leftNavBar")
   return (
     <div className="bg-dark-3 pt-3 pb-6 flex flex-col gap-6">
       <div className="flex flex-col gap-x-3 relative gap-y-2 px-3 md:px-6 pt-2">
-        <div className="flex gap-3 justify-between flex-wrap">
+        <div className="flex gap-3 justify-between flex-wrap items-center">
           {!isPlayWithBot && <>
             <h3 className="no-wrap whitespace-nowrap uppercase text-light-2">{
               winnerSingle == null 
@@ -66,38 +45,7 @@ const LeftNavBar = ({isPlayWithBot}: {isPlayWithBot: boolean}) => {
                   : " O"}` 
                 : `${t("winner")} - ${winnerSingle}`
             }</h3>
-            <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <img src="/assets/icons/settings.svg" alt="setting" className="h-6 cursor-pointer" />
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] bg-dark-2 shadow-primary">
-              <form onSubmit={submitSettings}>
-                <DialogHeader>
-                  <DialogTitle>Settings of game</DialogTitle>
-                </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-3 items-center gap-4">
-                    <Label htmlFor="playFor" className="text-right">
-                      First move for
-                    </Label>
-                    <RadioGroup defaultValue={selectedPlayer} onValueChange={handlePlayerChange}>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="X" id="r1" />
-                        <Label htmlFor="r1">X</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="O" id="r2" />
-                        <Label htmlFor="r2">O</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-                </div>
-                <DialogFooter>
-                  <Button variant="neon" type="submit">Save and restart</Button>
-                </DialogFooter>
-              </form>
-            </DialogContent>
-          </Dialog>
+            <ComponentDialogSettings restartGame={restartGame}/>
           </>
         }
         </div>
