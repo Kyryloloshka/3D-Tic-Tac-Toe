@@ -26,7 +26,7 @@ const Board2D = ({
   const winnerWithBot = useSelector((state: RootState) => state.winnerWithBot);
   const gameWithBotState = useSelector((state: RootState) => state.gameWithBotState);
   const isXNextWithBot = useSelector((state: RootState) => state.isXNextWithBot);
-  const player = useSelector((state: RootState) => state.player);
+  const firstPlayer = useSelector((state: RootState) => state.firstPlayer);
   const t = useTranslations("board");
   const handleClick = (index: number) => {
     if (isPlayWithBot) {
@@ -61,7 +61,7 @@ const Board2D = ({
           description: t("gameAlreadyOveredDescription"),
           action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
             dispatch(setGameSingleState(Array(27).fill(null)));
-            dispatch(setIsXNextSingle(player === "X"));
+            dispatch(setIsXNextSingle(firstPlayer === "X"));
             dispatch(setWinnerSingle(null));
         }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
         })
