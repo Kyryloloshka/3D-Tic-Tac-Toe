@@ -7,12 +7,17 @@ import { RootState } from "@/state/store";
 import { setGameSingleState, setGameWithBotState, setIsXNextSingle, setIsXNextWithBot, setWinnerSingle, setWinnerWithBot } from "@/state/gameState/gameStateSlice"
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import Loading from "@/app/[locale]/loading";
 import LoaderSpinner from "./LoaderSpinner";
+import { Skeleton } from "./ui/skeleton";
 
 const ComponentDialogSettings = dynamic(
   () => import('@/components/DialogSettings'),
   { ssr: false, loading: () => <LoaderSpinner /> }
+);
+
+const Component2DBoard = dynamic(
+  () => import('@/components/Board2D'),
+  { ssr: false, loading: () => <Skeleton className="aspect-square rounded-xl relative min-h-[140px] min-w-[140px] h-[20vw] max-h-[180px] max-w-[180px] w-[20vw]" /> }
 );
 
 const LeftNavBar = ({isPlayWithBot}: {isPlayWithBot: boolean}) => {
@@ -69,7 +74,7 @@ const LeftNavBar = ({isPlayWithBot}: {isPlayWithBot: boolean}) => {
         ].map((layer, index) => (
           <div className="flex flex-col items-center gap-3" key={index}>
             <span className="text-shadow-neon text-primary-500 select-none">{layer}</span>
-            <Board2D boardOrder={index} isPlayWithBot={isPlayWithBot}/>
+            <Component2DBoard boardOrder={index} isPlayWithBot={isPlayWithBot}/>
           </div>
         ))}
       </div>

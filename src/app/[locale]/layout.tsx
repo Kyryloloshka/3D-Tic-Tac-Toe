@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <Provider store={store}>
-      <html lang={params.locale}>
+      <html lang={params.locale} >
         <body className={`${inter.className} h-[100dvh] common-container flex flex-col relative`}>
             <Header/>
             <main className="flex-auto flex flex-col">
