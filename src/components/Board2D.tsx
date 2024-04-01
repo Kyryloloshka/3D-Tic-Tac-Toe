@@ -4,7 +4,7 @@ import { ToastAction } from '@radix-ui/react-toast';
 import { RootState } from '@/state/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGameSingleState, setGameWithBotState, setHoveredIndex, setIsXNextSingle, setIsXNextWithBot, setWinnerSingle, setWinnerWithBot } from "@/state/gameState/gameStateSlice";
-import { calculateWinner } from '@/lib/utils';
+import { calculateWinner } from '@/lib/gameLogic';
 import { useTranslations } from 'next-intl';
 
 interface Board2DProps {

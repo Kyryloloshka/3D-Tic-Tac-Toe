@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import LeftNavBar from '@/components/LeftNavBar';
 import { Toaster } from '@/components/ui/toaster';
 import { useToast } from '@/components/ui/use-toast';
@@ -14,6 +14,8 @@ import Loading from "../loading";
 const ComponentPlayGame = dynamic(() => import('@/components/TicTacToeGame'), { ssr: false, loading: () => <Loading/>})
 
 const PlayGame = () => {
+  const [showRecomendation, setShowRecomendation] = useState(true)
+
   const { toast } = useToast();
   const t = useTranslations("toast");
   const dispatch = useDispatch();
@@ -21,6 +23,7 @@ const PlayGame = () => {
   const winnerSingle = useSelector((state: RootState) => state.winnerSingle);
   const firstPlayer = useSelector((state: RootState) => state.firstPlayer);
   const status = winnerSingle ? `${t("winner")}: ${winnerSingle}` : `${t("nextPlayer")}: ${isXNextSingle ? 'X' : 'O'}`;
+  
   useEffect(() => {
     if (winnerSingle) {
       toast({
@@ -34,8 +37,10 @@ const PlayGame = () => {
       })
     }
   }, [winnerSingle])
+  
   return (
     <div className="overflow-hidden flex-auto flex flex-col h-full">
+      <div className={`${!showRecomendation && "hidden opacity-0"} bg-primary-500 text-center md:hidden md:opacity-0 select-none px-3 text-dark-2 flex gap-3 justify-center items-center`}>For better experience we recommend to open on the big screen <span onClick={() => setShowRecomendation(false)} className="cross"></span></div>
       <div className="flex flex-col md:flex-row h-full flex-auto">
         <LeftNavBar isPlayWithBot={false}/>
         <ComponentPlayGame/>

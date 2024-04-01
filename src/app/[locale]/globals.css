@@ -157,7 +157,6 @@ body {
 
 
 @layer utilities {
-  
   .shadow-primary {
     -webkit-box-shadow: 0px 1px 68px -1px var(--shadow-primary);
     -moz-box-shadow: 0px 1px 68px -1px var(--shadow-primary);
@@ -332,5 +331,32 @@ body {
   @keyframes rotation-loader {
     0% { transform: rotate(0deg) }
     100% { transform: rotate(360deg)}
-  } 
+  }
+  .cross {
+    position: relative;
+    width: 20px;
+    cursor: pointer;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cross::after, .cross::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 1px;
+    background: #000;
+    transition: background 0.1s ease;
+  }
+  .cross::after {
+    transform: rotate(45deg);
+  }
+  .cross::before {
+    transform: rotate(-45deg);
+  }
+  .cross:hover::after, .cross:hover::before {
+    background: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+  }
 }
