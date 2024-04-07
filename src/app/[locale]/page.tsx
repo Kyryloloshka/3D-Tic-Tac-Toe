@@ -14,7 +14,7 @@ const Home = () => {
       </p>
       <Link href={"/play-game"}> <Button className='px-12 text-xl py-5' variant="neon">{t("button")}</Button> </Link>
     </div>
-    <p className="absolute left-3 bottom-2 text-primary-500 text-shadow-neon">0.1.5</p>
+    <p className="absolute left-3 bottom-2 text-primary-500 text-shadow-neon">0.1.6</p>
   </div>
 };
 export default Home

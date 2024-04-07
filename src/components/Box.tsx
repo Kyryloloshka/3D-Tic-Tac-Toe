@@ -15,7 +15,7 @@ const Box = (props: ExtendedMeshProps) => {
       onClick={() => setActive(!active)}
     >
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={"#555"} transparent={true}
+      <meshStandardMaterial color={props.color} transparent={true}
       opacity={props.opacity ? props.opacity : 0.4} />
     </mesh>
   );

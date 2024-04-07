@@ -33,11 +33,6 @@ const headerLinks = [
     translateKey: "play"
   },
   {
-    route: "/play-game/with-bot",
-    label: "Play with bot",
-    translateKey: "playWithBot"
-  },
-  {
     route: "/rules",
     label: "Rules",
     translateKey: "rules"

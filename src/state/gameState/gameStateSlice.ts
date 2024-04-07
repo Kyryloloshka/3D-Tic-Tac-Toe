@@ -1,67 +1,69 @@
+import { Player } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
+import { set } from "nprogress";
 
 interface GameState {
-  gameSingleState: Array<string | null>;
-  isXNextSingle: boolean;
-  winnerSingle: string | null;
+  gameState: Array<string | null>;
+  isXNext: boolean;
+  winner: string | null;
   hoveredIndex: number | null;
-  gameWithBotState: Array<string | null>;
-  isXNextWithBot: boolean;
-  winnerWithBot: string | null;
-  firstPlayer: "X" | "O";
+  firstPlayer: Player;
+  isCenterAvailable: boolean;
+  isPlayWithBot: boolean;
+  botPlayer: Player;
 }
 
 const initialState: GameState = {
-  firstPlayer: "X",
-  gameSingleState: Array(27).fill(null),
-  isXNextSingle: true,
-  winnerSingle: null,
+  firstPlayer: Player.X,
+  gameState: Array(27).fill(null),
+  isXNext: true,
+  winner: null,
   hoveredIndex: null,
-  gameWithBotState: Array(27).fill(null),
-  isXNextWithBot: true,
-  winnerWithBot: null,
+  isCenterAvailable: true,
+  isPlayWithBot: false,
+  botPlayer: Player.O,
 };
 
 const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
-    setGameSingleState: (state, action) => {
-      state.gameSingleState = action.payload;
+    setGameState(state, action) {
+      state.gameState = action.payload;
     },
-    setIsXNextSingle: (state, action) => {
-      state.isXNextSingle = action.payload;
+    setIsXNext(state, action) {
+      state.isXNext = action.payload;
     },
-    setWinnerSingle: (state, action) => {
-      state.winnerSingle = action.payload;
+    setWinner(state, action) {
+      state.winner = action.payload;
     },
-    setHoveredIndex: (state, action) => {
+    setHoveredIndex(state, action) {
       state.hoveredIndex = action.payload;
     },
-    setGameWithBotState: (state, action) => {
-      state.gameWithBotState = action.payload;
-    },
-    setIsXNextWithBot: (state, action) => {
-      state.isXNextWithBot = action.payload;
-    },
-    setWinnerWithBot: (state, action) => {
-      state.winnerWithBot = action.payload;
-    },
-    setFirstPlayer: (state, action) => {
+    setFirstPlayer(state, action) {
       state.firstPlayer = action.payload;
-    }
+    },
+    setIsCenterAvailable(state, action) {
+      state.isCenterAvailable = action.payload;
+    },
+    setIsPlayWithBot(state, action) {
+      state.isPlayWithBot = action.payload;
+    },
+    setBotPlayer(state, action) {
+      state.botPlayer = action.payload;
+    },
   }
 })
 
 export const {
-  setGameSingleState, 
-  setIsXNextSingle, 
-  setWinnerSingle, 
+  setGameState,
+  setIsXNext,
+  setWinner,
   setHoveredIndex,
-  setGameWithBotState,
-  setIsXNextWithBot,
-  setWinnerWithBot,
   setFirstPlayer,
+  setIsCenterAvailable,
+  setIsPlayWithBot,
+  setBotPlayer,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

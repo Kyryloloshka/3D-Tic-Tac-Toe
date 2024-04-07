@@ -10,12 +10,14 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/state/store';
 
 const TicTacToeGame = ({isPlayWithBot = false}: {isPlayWithBot?: boolean}) => {
-  const gameSingleState = useSelector((state: RootState) => state.gameSingleState);
-  const isXNextSingle = useSelector((state: RootState) => state.isXNextSingle);
+  const gameSingleState = useSelector((state: RootState) => state.gameState);
+  const isXNextSingle = useSelector((state: RootState) => state.isXNext);
   const hoveredIndex = useSelector((state: RootState) => state.hoveredIndex);
 
-  const gameWithBotState = useSelector((state: RootState) => state.gameWithBotState);
-  const isXNextWithBot = useSelector((state: RootState) => state.isXNextWithBot);
+  const gameWithBotState = useSelector((state: RootState) => state.gameState);
+  const isXNextWithBot = useSelector((state: RootState) => state.isXNext);
+  const isCenterAvailable = useSelector((state: RootState) => state.isCenterAvailable);
+
   const CubeGroup = () => {
     const groupRef = useRef<THREE.Group>(null!)
 
@@ -28,7 +30,7 @@ const TicTacToeGame = ({isPlayWithBot = false}: {isPlayWithBot?: boolean}) => {
               const elem = isPlayWithBot ? gameWithBotState[index] : gameSingleState[index]
               const opacity = elem != null
                 ? 0.85
-                  : index == hoveredIndex 
+                  : index == hoveredIndex || !isCenterAvailable && index == 13
                     ? 0.4 
                     : 0.1
               const position: [number, number, number] = [col * 1.3 - 1.3, row * 1.3 - 1.3, z * 1.3 - 1.3];
@@ -51,7 +53,9 @@ const TicTacToeGame = ({isPlayWithBot = false}: {isPlayWithBot?: boolean}) => {
                     : <Box 
                       opacity={opacity} 
                       key={`${row}-${col}-${z}`}
-                      position={position}/>
+                      position={position}
+                      color={index === 13 && !isCenterAvailable ? "#000" : "#555"}
+                      />
                     }
                 </>
                   

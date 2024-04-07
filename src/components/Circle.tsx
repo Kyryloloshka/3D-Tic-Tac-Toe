@@ -15,7 +15,7 @@ const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position }) => {
       torusRef.current.rotation.y = clock.elapsedTime * 0.6;
     }
   });
-
+  
   return (
     <mesh ref={torusRef} position={position} onClick={() => console.log('Circle clicked')}>
       <torusGeometry args={[0.35, 0.1, 32, 32]} />

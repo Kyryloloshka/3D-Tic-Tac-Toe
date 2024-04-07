@@ -3,4 +3,7 @@ export type INavLink = {
   label: string;
   translateKey: string;
 };
-export type IPlayer = "X" | "O";
+export enum Player {
+  X = "X",
+  O = "O",
+}

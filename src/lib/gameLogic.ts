@@ -1,3 +1,7 @@
+import { RootState } from "@/state/store";
+import { Player } from "@/types";
+import { useSelector } from "react-redux";
+
 export const calculateWinner = (squares: Array<string | null>) => {
   const lines = [
     [0, 1, 2],
@@ -47,12 +51,12 @@ export const calculateWinner = (squares: Array<string | null>) => {
   return null;
 };
 
-export const getRandomMove = (board: any[]) => {
+export const getRandomMove = (board: any[], isCenterAvailable: boolean) => {
   const centerI = 13;
   const cornersI = [0, 2, 6, 8, 18, 20, 24, 26]
   const centersI = [4, 10, 12, 14, 16, 22]
 
-  if (board[centerI] === null) {
+  if (board[centerI] === null && isCenterAvailable) {
     return centerI;
   }
 
@@ -77,54 +81,53 @@ export const getRandomMove = (board: any[]) => {
   return availableMoves[randomIndex];
 }
 
-export const getBotMove = (board: any[]) => {
-  for (let i = 0; i < board.length; i++) {
+export const getBotMove = (board: any[], player: Player, isCenterAvailable: boolean) => {
+  for (let i = 0; isCenterAvailable ? i < board.length : i < board.length && i != 13; i++) {
     if (board[i] === null) {
-      const botWinMove = checkBotWin(board, i);
+      const botWinMove = checkBotWin(board, i, player);
       if (botWinMove !== null) {
         // console.log("win after this move case");
-        
         return botWinMove;
       }
     }
   }
 
-  const blockOpponentWinMove = checkBlockOpponentWin(board);
+  const blockOpponentWinMove = checkBlockOpponentWin(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
   if (blockOpponentWinMove !== null) {
     
     return blockOpponentWinMove;
   }
   // console.log("random case");
   
-  return getRandomMove(board);
+  return getRandomMove(board, isCenterAvailable);
 }
 
-const checkBotWin = (board: any[], move: number) => {
+const checkBotWin = (board: any[], move: number, player: Player) => {
   const newBoard = [...board];
-  newBoard[move] = 'O'; // Припускаємо, що бот грає за 'O'
+  newBoard[move] = player; 
   const winnerSingle = calculateWinner(newBoard);
-  return winnerSingle === 'O' ? move : null;
+  return winnerSingle === player ? move : null;
 };
 
-const checkBlockOpponentWin = (board: any[]) => {
+const checkBlockOpponentWin = (board: any[], player: Player, isCenterAvailable: boolean) => {
   let maxWinCaseIndex = -1;
   let maxWinCases = 0;
   for (let i = 0; i < board.length; i++) {
-    if (board[i] === null) {
+    if (board[i] === null && (isCenterAvailable ? i != 13 : true)) {
       const newBoard = [...board];
-      newBoard[i] = 'X'; // Припускаємо, що гравець грає за 'X'
+      newBoard[i] = player;
       const winnerSingle = calculateWinner(newBoard);
-      if (winnerSingle === 'X') {
+      if (winnerSingle === player) {
         // console.log("prevent win oponent case");
         
         return i;
       }
-      newBoard[i] = 'O'
+      newBoard[i] = player === Player.X ? Player.O : Player.X;
       let winCases = 0
       let winCasesIndexesArray: number[] = []
       for (let j = 0; j < board.length; j++) {
-        if (newBoard[j] == null) {
-          if (checkBotWin(newBoard, j)) {
+        if (newBoard[j] == null && (isCenterAvailable ? j != 13 : true)) {
+          if (checkBotWin(newBoard, j, player === Player.X ? Player.O : Player.X)) {
             winCases++
             winCasesIndexesArray.push(j)
           }

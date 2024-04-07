@@ -3,82 +3,80 @@ import { useToast } from './ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
 import { RootState } from '@/state/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { setGameSingleState, setGameWithBotState, setHoveredIndex, setIsXNextSingle, setIsXNextWithBot, setWinnerSingle, setWinnerWithBot } from "@/state/gameState/gameStateSlice";
 import { calculateWinner } from '@/lib/gameLogic';
 import { useTranslations } from 'next-intl';
+import { setGameState, setHoveredIndex, setIsXNext, setWinner } from '@/state/gameState/gameStateSlice';
 
 interface Board2DProps {
   boardOrder: number;
-  isPlayWithBot: boolean;
 }
 
 const Board2D = ({
     boardOrder,
-    isPlayWithBot
   } : Board2DProps) => {
 
   const {toast} = useToast()
   const dispatch = useDispatch();
-  const gameSingleState = useSelector((state: RootState) => state.gameSingleState);
-  const isXNextSingle = useSelector((state: RootState) => state.isXNextSingle);
-  const winnerSingle = useSelector((state: RootState) => state.winnerSingle);
+  const gameState = useSelector((state: RootState) => state.gameState);
+  const isXNext = useSelector((state: RootState) => state.isXNext);
+  const winner = useSelector((state: RootState) => state.winner);
+  const isPlayWithBot = useSelector((state: RootState) => state.isPlayWithBot);
   const hoveredIndex = useSelector((state: RootState) => state.hoveredIndex);
-  const winnerWithBot = useSelector((state: RootState) => state.winnerWithBot);
-  const gameWithBotState = useSelector((state: RootState) => state.gameWithBotState);
-  const isXNextWithBot = useSelector((state: RootState) => state.isXNextWithBot);
   const firstPlayer = useSelector((state: RootState) => state.firstPlayer);
+  const isCenterAvailable = useSelector((state: RootState) => state.isCenterAvailable);
   const t = useTranslations("board");
+  const botPlayer = useSelector((state: RootState) => state.botPlayer);
   const handleClick = (index: number) => {
     if (isPlayWithBot) {
-      if (winnerWithBot) {
+      if (winner) {
         toast({
           title: t("gameAlreadyOveredTitle"),
           description: t("gameAlreadyOveredDescription"),
           action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
-            dispatch(setGameWithBotState(Array(27).fill(null)));
-            dispatch(setIsXNextWithBot(true));
-            dispatch(setWinnerWithBot(null));
+            dispatch(setGameState(Array(27).fill(null)));
+            dispatch(setIsXNext(true));
+            dispatch(setWinner(null));
           }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
         });
         return;
       };
-      if (gameWithBotState[boardOrder * 9 + index]) {
+      if (gameState[boardOrder * 9 + index]) {
         return; 
       }
   
-      const newBoard = [...gameWithBotState];
-      newBoard[boardOrder * 9 + index] = isXNextWithBot ? 'X' : 'O';
+      const newBoard = [...gameState];
+      newBoard[boardOrder * 9 + index] = isXNext ? 'X' : 'O';
       
-      dispatch(setGameWithBotState(newBoard));
-      dispatch(setIsXNextWithBot(!isXNextWithBot));
+      dispatch(setGameState(newBoard));
+      dispatch(setIsXNext(!isXNext));
   
       const newWinner = calculateWinner(newBoard);
-      dispatch(setWinnerWithBot(newWinner));
+      dispatch(setWinner(newWinner));
     } else {
-      if (winnerSingle) {
+      if (winner) {
         toast({
           title: t("gameAlreadyOveredTitle"),
           description: t("gameAlreadyOveredDescription"),
           action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
-            dispatch(setGameSingleState(Array(27).fill(null)));
-            dispatch(setIsXNextSingle(firstPlayer === "X"));
-            dispatch(setWinnerSingle(null));
+            dispatch(setGameState(Array(27).fill(null)));
+            dispatch(setIsXNext(firstPlayer === "X"));
+            dispatch(setWinner(null));
         }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
         })
         return;
       };
-      if (gameSingleState[boardOrder * 9 + index]) {
+      if (gameState[boardOrder * 9 + index]) {
         return; 
       }
 
-      const newBoard = [...gameSingleState];
-      newBoard[boardOrder * 9 + index] = isXNextSingle ? 'X' : 'O';
+      const newBoard = [...gameState];
+      newBoard[boardOrder * 9 + index] = isXNext ? 'X' : 'O';
       
-      dispatch(setGameSingleState(newBoard));
-      dispatch(setIsXNextSingle(!isXNextSingle));
+      dispatch(setGameState(newBoard));
+      dispatch(setIsXNext(!isXNext));
 
       const newWinner = calculateWinner(newBoard);
-      dispatch(setWinnerSingle(newWinner));
+      dispatch(setWinner(newWinner));
     }
   };
 
@@ -103,31 +101,35 @@ const Board2D = ({
   )
 
   const renderSquare = (index: number) => (
-    <button
-      className='w-[33.33%] h-full flex justify-center items-center overflow-hidden relative'
-      onClick={() => handleClick(index)}
-      onPointerOver={() => handlePointerOver(index)}
-      onPointerOut={handlePointerOut}
-    >
-      {isPlayWithBot ? hoveredIndex === boardOrder * 9 + index 
-        && gameWithBotState[boardOrder * 9 + index] == null ? (
-        <div className='pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none opacity-50'>
-          {isXNextWithBot ? renderCross() : renderCircle()}
-        </div>
-      ) : <span className='pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none'>
-      {gameWithBotState[boardOrder * 9 + index] == 'X' ? renderCross() : gameWithBotState[boardOrder * 9 + index] == "O" ? renderCircle() : null}
-    </span> :
-      hoveredIndex === boardOrder * 9 + index 
-        && gameSingleState[boardOrder * 9 + index] == null ? (
-        <div className=' pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none opacity-50'>
-          {isXNextSingle ? renderCross() : renderCircle()}
-        </div>
-      ) : <span className='pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none'>
-      {gameSingleState[boardOrder * 9 + index] == 'X' ? renderCross() : gameSingleState[boardOrder * 9 + index] == "O" ? renderCircle() : null}
-    </span>}
+    <>
+      {!isCenterAvailable && index === 4 && boardOrder === 1 ?  <div className='w-[33.33%] bg-primary-500 h-[101%]'></div> :
+        <button
+          className='w-[33.33%] h-full flex justify-center items-center overflow-hidden relative'
+          onClick={() => handleClick(index)}
+          onPointerOver={() => handlePointerOver(index)}
+          onPointerOut={handlePointerOut}
+        >
+          {isPlayWithBot ? hoveredIndex === boardOrder * 9 + index 
+            && gameState[boardOrder * 9 + index] == null ? (
+            <div className='pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none opacity-50'>
+              {isXNext ? renderCross() : renderCircle()}
+            </div>
+          ) : <span className='pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none'>
+          {gameState[boardOrder * 9 + index] == 'X' ? renderCross() : gameState[boardOrder * 9 + index] == "O" ? renderCircle() : null}
+        </span> :
+          hoveredIndex === boardOrder * 9 + index 
+            && gameState[boardOrder * 9 + index] == null ? (
+            <div className=' pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none opacity-50'>
+              {isXNext ? renderCross() : renderCircle()}
+            </div>
+          ) : <span className='pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none'>
+          {gameState[boardOrder * 9 + index] == 'X' ? renderCross() : gameState[boardOrder * 9 + index] == "O" ? renderCircle() : null}
+        </span>}
+          
+        </button>
+      }
       
-    </button>
-    
+    </>
   );
 
   return (
