@@ -63,7 +63,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <img src="/assets/icons/settings.svg" alt="setting" className="h-6 cursor-pointer" />
+        <img src="/assets/icons/settings.svg" alt="setting" className="h-6 cursor-pointer select-none" />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-dark-2 shadow-primary border-primary-500/90">
         <form onSubmit={submitSettings}>
