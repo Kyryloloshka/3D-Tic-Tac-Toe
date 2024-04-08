@@ -1,6 +1,7 @@
-import { Player } from "@/types";
+import { GameStateType, Player } from "@/types";
+import { randInt } from "./utils";
 
-export const calculateWinner = (squares: Array<string | null>) => {
+export const calculateWinner = (squares: GameStateType) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -11,14 +12,15 @@ export const calculateWinner = (squares: Array<string | null>) => {
     [0, 4, 8],
     [2, 4, 6],
   ];
+  
   const diagonals = [
     [0, 13, 26],
     [2, 13, 24],
     [6, 13, 20],
     [8, 13, 18],
-  ]
-  for (let j = 0; j < 3; j++) {
+  ];
 
+  for (let j = 0; j < 3; j++) {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[j * 9 + a] && squares[j * 9 + a] === squares[j * 9 + b] && squares[j * 9 + a] === squares[j * 9 + c]) {
@@ -26,12 +28,14 @@ export const calculateWinner = (squares: Array<string | null>) => {
       }
     }
   }
+
   for (let i = 0; i < diagonals.length; i++) {
     const [a, b, c] = diagonals[i]
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
   }
+
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b+9] && squares[a] === squares[c+18]) {
@@ -41,15 +45,17 @@ export const calculateWinner = (squares: Array<string | null>) => {
       return squares[a+18];
     }
   }
+
   for (let i = 0; i < 9; i++) {
     if (squares[i] && squares[i] == squares[i+9] && squares[i] == squares[i+18] ) {
       return squares[i];
     }
   }
+
   return null;
 };
 
-export const getRandomMove = (board: any[], isCenterAvailable: boolean) => {
+export const getRandomMove = (board: GameStateType, isCenterAvailable: boolean) => {
   const centerI = 13;
   const cornersI = [0, 2, 6, 8, 18, 20, 24, 26]
   const centersI = [4, 10, 12, 14, 16, 22]
@@ -63,12 +69,13 @@ export const getRandomMove = (board: any[], isCenterAvailable: boolean) => {
     const randomCorner = availableCorners[Math.floor(Math.random() * availableCorners.length)];
     return randomCorner;
   }
+
   const availableCenters = centersI.filter((index) => board[index] === null);
   if (availableCenters.length > 0) {
     const randomCorner = availableCenters[Math.floor(Math.random() * availableCenters.length)];
     return randomCorner;
   }
-
+  
   const availableMoves = [];
   for (let i = 0; i < board.length; i++) {
     if (board[i] === null) {
@@ -79,68 +86,72 @@ export const getRandomMove = (board: any[], isCenterAvailable: boolean) => {
   return availableMoves[randomIndex];
 }
 
-export const getBotMove = async (board: any[], player: Player, isCenterAvailable: boolean) => {
-  return new Promise((resolve) => {
+export const getBotMove = async (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
+  return new Promise((resolve: (value: number) => void) => {
+    const delayOfBotMove = 1000;
+
     setTimeout(() => {
-      for (let i = 0; i < board.length; i++) {
-        if (board[i] === null && (isCenterAvailable || i != 13)) {
-          const botWinMove = checkBotWin(board, i, player);
-          if (botWinMove !== null) {
-            resolve(botWinMove);
-          }
-        }
+      const botWins = checkWinPlayer(board, player, isCenterAvailable)
+      if (botWins) {
+        resolve(botWins);
+        return;
       }
 
-      const blockOpponentWinMove = checkBlockOpponentWin(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
-      if (blockOpponentWinMove !== null) {
+      const blockOpponentWinMove = checkWinPlayer(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
+      if (blockOpponentWinMove) {
         resolve(blockOpponentWinMove);
+        return;
+      }
+
+      const forkMove = checkFork(board, player, isCenterAvailable);
+      if (forkMove) {
+        resolve(forkMove);
+        return;
       }
 
       resolve(getRandomMove(board, isCenterAvailable));
-    }, 1000); 
+    }, delayOfBotMove); 
   });
 }
 
-const checkBotWin = (board: any[], move: number, player: Player) => {
+const checkWinPlayer = (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === null && (isCenterAvailable || i != 13)) {
+      const botWinMove = checkWinMove(board, i, player);
+      if (botWinMove) {
+        return botWinMove;
+      }
+    }
+  }
+}
+
+const checkWinMove = (board: GameStateType, move: number, player: Player) => {
   const newBoard = [...board];
   newBoard[move] = player; 
-  const winnerSingle = calculateWinner(newBoard);
-  return winnerSingle === player ? move : null;
+  const winner = calculateWinner(newBoard);
+  return winner === player ? move : null;
 };
 
-const checkBlockOpponentWin = (board: any[], player: Player, isCenterAvailable: boolean) => {
-  let maxWinCaseIndex = -1;
-  let maxWinCases = 0;
+const checkFork = (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
+  const forkMoves = [];
   for (let i = 0; i < board.length; i++) {
     if (board[i] === null && (isCenterAvailable || i != 13)) {
       const newBoard = [...board];
       newBoard[i] = player;
-      const winnerSingle = calculateWinner(newBoard);
-      if (winnerSingle === player) {
-        // console.log("prevent win oponent case");
-        
-        return i;
-      }
-      newBoard[i] = player === Player.X ? Player.O : Player.X;
       let winCases = 0
-      let winCasesIndexesArray: number[] = []
-      for (let j = 0; j < board.length; j++) {
+      for (let j = 0; j < newBoard.length; j++) {
         if (newBoard[j] == null && (isCenterAvailable || j != 13)) {
-          if (checkBotWin(newBoard, j, player === Player.X ? Player.O : Player.X)) {
+          if (checkWinMove(newBoard, j, player)) {
             winCases++
-            winCasesIndexesArray.push(j)
           }
         }
       }
-      if (winCases > maxWinCases) {
-        maxWinCases = winCases
-        maxWinCaseIndex = i;
-        // console.log("Max ", maxWinCaseIndex, maxWinCases, newBoard);
+      if (winCases >= 2) {
+        forkMoves.push(i);
       }
     }
   }
-  // console.log(maxWinCaseIndex, maxWinCases);
-  // maxWinCases >=1 ? console.log("calculate win after 1 move case") : null;
-  
-  return maxWinCases >=1 ? maxWinCaseIndex : null;
-};
+  // console.log(forkMoves);
+
+  return forkMoves.length >=1 ? forkMoves[randInt(0, forkMoves.length-1)] : null;
+}
