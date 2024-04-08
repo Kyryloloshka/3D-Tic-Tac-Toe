@@ -18,12 +18,12 @@ export default function RootLayout({
   return (
     <Provider store={store}>
       <html lang={params.locale} >
-        <Analytics/>
         <body className={`${rubik.className} h-[100dvh] common-container flex flex-col relative`}>
-            <Header/>
-            <main className="flex-auto flex flex-col">
-              {children}
-            </main>
+          <Analytics/>
+          <Header/>
+          <main className="flex-auto flex flex-col">
+            {children}
+          </main>
         </body>
       </html>
     </Provider>
