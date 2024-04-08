@@ -14,7 +14,7 @@ const ToastViewport = React.forwardRef<
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      "fixed z-[100] flex max-h-screen w-full flex-col-reverse p-4 top-4 left-[50%] -translate-x-[50%] sm:flex-col max-w-[calc(100vw-20px)] right-3 md:max-w-[420px]",
+      "fixed z-[100] flex max-h-screen w-full flex-col-reverse p-4 top-4 left-[50%] -translate-x-[50%] sm:flex-col max-w-[calc(100vw-20px)] md:max-w-[420px]",
       className
     )}
     {...props}
@@ -23,7 +23,7 @@ const ToastViewport = React.forwardRef<
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName
 
 const toastVariants = cva(
-  "group pointer-events-auto relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border p-4 pr-7 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80  md:data-[state=closed]:slide-out-to-top-full data-[state=open]:slide-in-from-left-full data-[state=open]:sm:slide-in-from-right-full data-[state=closed]:slide-out-to-top-full md:data-[state=open]:slide-in-from-top-full md:data-[state=open]:sm:slide-in-from-top-full",
+  "group pointer-events-auto relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border p-4 pr-7 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80  md:data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-top-full data-[state=closed]:slide-out-to-right-full md:data-[state=open]:slide-in-from-top-full md:data-[state=open]:sm:slide-in-from-top-full",
   {
     variants: {
       variant: {

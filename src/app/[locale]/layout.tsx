@@ -1,11 +1,11 @@
 "use client"
-import { Inter } from "next/font/google";
+import { Inter, Rubik } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { Provider } from "react-redux";
 import { store } from "@/state/store";
 
-const inter = Inter({ weight: ["300", "400", "600"], subsets: ['latin'] });
+const inter = Rubik({weight: ["400", "600", "300"], subsets: ["latin", "cyrillic"]});
 
 export default function RootLayout({
   children,

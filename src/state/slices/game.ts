@@ -1,5 +1,5 @@
 import { GameStateType, Player } from "@/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface GameState {
   gameState: GameStateType;
@@ -10,7 +10,6 @@ interface GameState {
   isCenterAvailable: boolean;
   isPlayWithBot: boolean;
   botPlayer: Player;
-  status: "init" | "loading" | "success" | "error";
 }
 
 const initialState: GameState = {
@@ -22,7 +21,6 @@ const initialState: GameState = {
   isCenterAvailable: true,
   isPlayWithBot: false,
   botPlayer: Player.O,
-  status: "init",
 };
 
 const slice = createSlice({
