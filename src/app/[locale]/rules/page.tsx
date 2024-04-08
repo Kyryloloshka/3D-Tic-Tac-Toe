@@ -13,7 +13,7 @@ const Rules = () => {
       <ol className="flex flex-col gap-3 ">
         <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">{t("makeMoves")} </span>{t("makeMovesValue")}</li>
         <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">{t("winTheGame")} </span>{t("winTheGameValue")}</li>
-        <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">{t("gameCompletion")} </span>{t("gameCompletionValue1")} <a href="https://puzzling.stackexchange.com/questions/70699/can-you-tie-in-3d-tic-tac-toe" className="underline capitalize relative text-primary-500 hover:text-secondary-500 transition">{t("gameCompletionValue2")}</a> {t("gameCompletionValue3")} </li>
+        <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">{t("gameCompletion")} </span>{t("gameCompletionValue")} <a href="https://puzzling.stackexchange.com/questions/70699/can-you-tie-in-3d-tic-tac-toe" className="underline capitalize relative text-primary-500 hover:text-secondary-500 transition">{t("gameCompletionValue2")}</a> {t("gameCompletionValue3")} </li>
         <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">{t("restartGame")} </span>{t("restartGameValue")}</li>
         <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">{t("enjoyExperience")} </span>{t("enjoyExperienceValue")}</li>
       </ol>
