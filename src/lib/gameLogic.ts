@@ -82,8 +82,8 @@ export const getRandomMove = (board: any[], isCenterAvailable: boolean) => {
 }
 
 export const getBotMove = (board: any[], player: Player, isCenterAvailable: boolean) => {
-  for (let i = 0; isCenterAvailable ? i < board.length : i < board.length && i != 13; i++) {
-    if (board[i] === null) {
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === null && (isCenterAvailable || i != 13)) {
       const botWinMove = checkBotWin(board, i, player);
       if (botWinMove !== null) {
         // console.log("win after this move case");
@@ -91,10 +91,9 @@ export const getBotMove = (board: any[], player: Player, isCenterAvailable: bool
       }
     }
   }
-
+  
   const blockOpponentWinMove = checkBlockOpponentWin(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
   if (blockOpponentWinMove !== null) {
-    
     return blockOpponentWinMove;
   }
   // console.log("random case");
@@ -113,7 +112,7 @@ const checkBlockOpponentWin = (board: any[], player: Player, isCenterAvailable: 
   let maxWinCaseIndex = -1;
   let maxWinCases = 0;
   for (let i = 0; i < board.length; i++) {
-    if (board[i] === null && (isCenterAvailable ? i != 13 : true)) {
+    if (board[i] === null && (isCenterAvailable || i != 13)) {
       const newBoard = [...board];
       newBoard[i] = player;
       const winnerSingle = calculateWinner(newBoard);
@@ -126,7 +125,7 @@ const checkBlockOpponentWin = (board: any[], player: Player, isCenterAvailable: 
       let winCases = 0
       let winCasesIndexesArray: number[] = []
       for (let j = 0; j < board.length; j++) {
-        if (newBoard[j] == null && (isCenterAvailable ? j != 13 : true)) {
+        if (newBoard[j] == null && (isCenterAvailable || j != 13)) {
           if (checkBotWin(newBoard, j, player === Player.X ? Player.O : Player.X)) {
             winCases++
             winCasesIndexesArray.push(j)
