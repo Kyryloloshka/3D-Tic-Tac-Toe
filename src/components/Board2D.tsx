@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { calculateWinner } from '@/lib/gameLogic';
 import { useTranslations } from 'next-intl';
 import { setGameState, setHoveredIndex, setIsXNext, setWinner } from '@/state/gameState/gameStateSlice';
+import { Player } from '@/types';
 
 interface Board2DProps {
   boardOrder: number;
@@ -40,12 +41,12 @@ const Board2D = ({
         });
         return;
       };
-      if (gameState[boardOrder * 9 + index]) {
+      if (gameState[boardOrder * 9 + index] || isXNext === (botPlayer === Player.X)) {
         return; 
       }
   
       const newBoard = [...gameState];
-      newBoard[boardOrder * 9 + index] = isXNext ? 'X' : 'O';
+      newBoard[boardOrder * 9 + index] = isXNext ? Player.X : Player.O;
       
       dispatch(setGameState(newBoard));
       dispatch(setIsXNext(!isXNext));
@@ -70,7 +71,7 @@ const Board2D = ({
       }
 
       const newBoard = [...gameState];
-      newBoard[boardOrder * 9 + index] = isXNext ? 'X' : 'O';
+      newBoard[boardOrder * 9 + index] = isXNext ? Player.X : Player.O;
       
       dispatch(setGameState(newBoard));
       dispatch(setIsXNext(!isXNext));
@@ -81,7 +82,9 @@ const Board2D = ({
   };
 
   const handlePointerOver = (index: number) => {
-    dispatch(setHoveredIndex(boardOrder * 9 + index));
+    if (!isPlayWithBot || isXNext !== (botPlayer === Player.X)) {
+      dispatch(setHoveredIndex(boardOrder * 9 + index));
+    }
   };
 
   const handlePointerOut = () => {

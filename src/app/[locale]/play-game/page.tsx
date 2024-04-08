@@ -45,15 +45,19 @@ const PlayGame = () => {
   }, [winner])
 
   useEffect(() => {
-    if (isPlayWithBot && isXNext === (botPlayer === Player.X) && !winner) {
-      const robotMove = getBotMove(gameState, botPlayer, isCenterAvailable)
-      const board = [...gameState];
-      board[robotMove] = botPlayer;
-      dispatch(setGameState(board));
-      dispatch(setIsXNext(botPlayer !== Player.X));
-      const newWinner = calculateWinner(board);
-      dispatch(setWinner(newWinner));
-    }
+    const makeBotMove = async () => {
+      if (isPlayWithBot && isXNext === (botPlayer === Player.X) && !winner) {
+        await getBotMove(gameState, botPlayer, isCenterAvailable).then((robotMove) => {
+        const board = [...gameState];
+        board[robotMove as number] = botPlayer;
+        dispatch(setGameState(board));
+        dispatch(setIsXNext(botPlayer !== Player.X));
+        const newWinner = calculateWinner(board);
+        dispatch(setWinner(newWinner));
+      })
+    }}
+  
+    makeBotMove();
   }, [gameState, winner, botPlayer, isXNext, isPlayWithBot, isCenterAvailable])
   
   return (

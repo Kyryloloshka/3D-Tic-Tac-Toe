@@ -81,24 +81,26 @@ export const getRandomMove = (board: any[], isCenterAvailable: boolean) => {
   return availableMoves[randomIndex];
 }
 
-export const getBotMove = (board: any[], player: Player, isCenterAvailable: boolean) => {
-  for (let i = 0; i < board.length; i++) {
-    if (board[i] === null && (isCenterAvailable || i != 13)) {
-      const botWinMove = checkBotWin(board, i, player);
-      if (botWinMove !== null) {
-        // console.log("win after this move case");
-        return botWinMove;
+export const getBotMove = async (board: any[], player: Player, isCenterAvailable: boolean) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      for (let i = 0; i < board.length; i++) {
+        if (board[i] === null && (isCenterAvailable || i != 13)) {
+          const botWinMove = checkBotWin(board, i, player);
+          if (botWinMove !== null) {
+            resolve(botWinMove);
+          }
+        }
       }
-    }
-  }
-  
-  const blockOpponentWinMove = checkBlockOpponentWin(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
-  if (blockOpponentWinMove !== null) {
-    return blockOpponentWinMove;
-  }
-  // console.log("random case");
-  
-  return getRandomMove(board, isCenterAvailable);
+
+      const blockOpponentWinMove = checkBlockOpponentWin(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
+      if (blockOpponentWinMove !== null) {
+        resolve(blockOpponentWinMove);
+      }
+
+      resolve(getRandomMove(board, isCenterAvailable));
+    }, 1000); 
+  });
 }
 
 const checkBotWin = (board: any[], move: number, player: Player) => {
