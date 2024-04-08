@@ -73,5 +73,13 @@
     "gameAlreadyOveredTitle": "Jogo Já Encerrado",
     "gameAlreadyOveredDescription": "Você não pode mais fazer movimentos",
     "restartGame": "Reiniciar"
+  },
+  "settings": {
+    "title": "Configurações do jogo",
+    "firstMoveFor": "Primeiro movimento para",
+    "centerAvailable": "Centro disponível",
+    "gameWithBot": "Jogo com bot",
+    "botPlaysAs": "O Bot joga como",
+    "saveAndRestart": "Salvar e reiniciar"
   }
 }

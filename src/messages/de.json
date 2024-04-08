@@ -73,5 +73,13 @@
     "gameAlreadyOveredTitle": "Spiel bereits beendet",
     "gameAlreadyOveredDescription": "Sie können keine Züge mehr machen",
     "restartGame": "Neustart"
+  },
+  "settings": {
+    "title": "Spieleinstellungen",
+    "firstMoveFor": "Erster Zug für",
+    "centerAvailable": "Mitte verfügbar",
+    "gameWithBot": "Spiel mit Bot",
+    "botPlaysAs": "Der Bot spielt als",
+    "saveAndRestart": "Speichern und neu starten"
   }
 }

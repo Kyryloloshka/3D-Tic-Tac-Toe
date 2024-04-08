@@ -73,5 +73,13 @@
     "gameAlreadyOveredTitle": "Гра вже закінчилася!",
     "gameAlreadyOveredDescription": "Ви більше не можете робити ходи",
     "restartGame": "Почати знову"
+  },
+  "settings": {
+    "title": "Налаштування гри",
+    "firstMoveFor": "Перший хід для",
+    "centerAvailable": "Доступно центральне поле",
+    "gameWithBot": "Гра з ботом",
+    "botPlaysAs": "Бот грає як",
+    "saveAndRestart": "Зберегти та перезапустити"
   }
 }

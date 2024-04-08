@@ -73,5 +73,13 @@
     "gameAlreadyOveredTitle": "ゲームはすでに終了しました",
     "gameAlreadyOveredDescription": "もう動けません",
     "restartGame": "リスタート"
+  },
+  "settings": {
+    "title": "ゲームの設定",
+    "firstMoveFor": "最初の動き",
+    "centerAvailable": "中心が利用可能",
+    "gameWithBot": "ボットとのゲーム",
+    "botPlaysAs": "ボットのプレイヤー",
+    "saveAndRestart": "保存して再起動"
   }
 }

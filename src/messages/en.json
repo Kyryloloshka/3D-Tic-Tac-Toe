@@ -73,5 +73,13 @@
     "gameAlreadyOveredTitle": "Game Already Overed",
     "gameAlreadyOveredDescription": "You can not make moves anymore",
     "restartGame": "Restart"
+  },
+  "settings": {
+    "title": "Settings of game",
+    "firstMoveFor": "First move for",
+    "centerAvailable": "Center Available",
+    "gameWithBot": "Game with Bot",
+    "botPlaysAs": "The Bot Plays as",
+    "saveAndRestart": "Save and restart"
   }
 }
