@@ -60,7 +60,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
       <DialogTrigger asChild>
         <img src="/assets/icons/settings.svg" alt="setting" className="h-6 cursor-pointer" />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-dark-2 shadow-primary">
+      <DialogContent className="sm:max-w-[425px] bg-dark-2 shadow-primary border-primary-500/90">
         <form onSubmit={submitSettings}>
           <DialogHeader>
             <DialogTitle>Settings of game</DialogTitle>

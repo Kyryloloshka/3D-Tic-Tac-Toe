@@ -27,58 +27,33 @@ const Board2D = ({
   const isCenterAvailable = useSelector((state: RootState) => state.isCenterAvailable);
   const t = useTranslations("board");
   const botPlayer = useSelector((state: RootState) => state.botPlayer);
+
+
+
   const handleClick = (index: number) => {
-    if (isPlayWithBot) {
-      if (winner) {
-        toast({
-          title: t("gameAlreadyOveredTitle"),
-          description: t("gameAlreadyOveredDescription"),
-          action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
-            dispatch(setGameState(Array(27).fill(null)));
-            dispatch(setIsXNext(true));
-            dispatch(setWinner(null));
-          }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
-        });
-        return;
-      };
-      if (gameState[boardOrder * 9 + index] || isXNext === (botPlayer === Player.X)) {
-        return; 
-      }
-  
-      const newBoard = [...gameState];
-      newBoard[boardOrder * 9 + index] = isXNext ? Player.X : Player.O;
-      
-      dispatch(setGameState(newBoard));
-      dispatch(setIsXNext(!isXNext));
-  
-      const newWinner = calculateWinner(newBoard);
-      dispatch(setWinner(newWinner));
-    } else {
-      if (winner) {
-        toast({
-          title: t("gameAlreadyOveredTitle"),
-          description: t("gameAlreadyOveredDescription"),
-          action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
-            dispatch(setGameState(Array(27).fill(null)));
-            dispatch(setIsXNext(firstPlayer === "X"));
-            dispatch(setWinner(null));
+    if (winner) {
+      toast({
+        title: t("gameAlreadyOveredTitle"),
+        description: t("gameAlreadyOveredDescription"),
+        action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
+          dispatch(setGameState(Array(27).fill(null)));
+          dispatch(setIsXNext(true));
+          dispatch(setWinner(null));
         }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
-        })
-        return;
-      };
-      if (gameState[boardOrder * 9 + index]) {
-        return; 
-      }
-
-      const newBoard = [...gameState];
-      newBoard[boardOrder * 9 + index] = isXNext ? Player.X : Player.O;
-      
-      dispatch(setGameState(newBoard));
-      dispatch(setIsXNext(!isXNext));
-
-      const newWinner = calculateWinner(newBoard);
-      dispatch(setWinner(newWinner));
+      });
+      return;
+    };
+    if (isPlayWithBot && (gameState[boardOrder * 9 + index] || isXNext === (botPlayer === Player.X)) || gameState[boardOrder * 9 + index]) {
+      return; 
     }
+    const newBoard = [...gameState];
+    newBoard[boardOrder * 9 + index] = isXNext ? Player.X : Player.O;
+    
+    dispatch(setGameState(newBoard));
+    dispatch(setIsXNext(!isXNext));
+
+    const newWinner = calculateWinner(newBoard);
+    dispatch(setWinner(newWinner));
   };
 
   const handlePointerOver = (index: number) => {
