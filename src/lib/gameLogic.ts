@@ -1,6 +1,4 @@
-import { RootState } from "@/state/store";
 import { Player } from "@/types";
-import { useSelector } from "react-redux";
 
 export const calculateWinner = (squares: Array<string | null>) => {
   const lines = [

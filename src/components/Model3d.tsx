@@ -6,19 +6,18 @@ import { OrbitControls } from '@react-three/drei'
 import Cross from './Cross';
 import Circle from './Circle';
 import Box from './Box';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/state/store';
+import { useStateSelector } from '@/state/hooks';
+import { Player } from '@/types';
 
-const TicTacToeGame = ({isPlayWithBot = false}: {isPlayWithBot?: boolean}) => {
-  const gameSingleState = useSelector((state: RootState) => state.gameState);
-  const isXNextSingle = useSelector((state: RootState) => state.isXNext);
-  const hoveredIndex = useSelector((state: RootState) => state.hoveredIndex);
+const distanceBetweenCubes = 1.3;
 
-  const gameWithBotState = useSelector((state: RootState) => state.gameState);
-  const isXNextWithBot = useSelector((state: RootState) => state.isXNext);
-  const isCenterAvailable = useSelector((state: RootState) => state.isCenterAvailable);
+const TicTacToeGame = () => {
+  const gameState = useStateSelector((state) => state.game.gameState);
+  const isXNext = useStateSelector((state) => state.game.isXNext);
+  const hoveredIndex = useStateSelector((state) => state.game.hoveredIndex);
+  const isCenterAvailable = useStateSelector((state) => state.game.isCenterAvailable);
 
-  const CubeGroup = () => {
+  const CubeModel = () => {
     const groupRef = useRef<THREE.Group>(null!)
 
     return (
@@ -27,32 +26,32 @@ const TicTacToeGame = ({isPlayWithBot = false}: {isPlayWithBot?: boolean}) => {
           Array.from({ length: 3 }, (_, col) => 
             Array.from({length: 3}, (_, z) => {
               const index = z*3+ Math.abs(row-2)*9 + col
-              const elem = isPlayWithBot ? gameWithBotState[index] : gameSingleState[index]
+              const elem = gameState[index]
               const opacity = elem != null
                 ? 0.85
                   : index == hoveredIndex || !isCenterAvailable && index == 13
                     ? 0.4 
                     : 0.1
-              const position: [number, number, number] = [col * 1.3 - 1.3, row * 1.3 - 1.3, z * 1.3 - 1.3];
+              const position: [number, number, number] = [
+                col * distanceBetweenCubes - distanceBetweenCubes, 
+                row * distanceBetweenCubes - distanceBetweenCubes, 
+                z * distanceBetweenCubes - distanceBetweenCubes
+              ];
               return (
                 <>
-                  {elem === "X" 
+                  {elem === Player.X
                     || index === hoveredIndex 
-                    && (!isPlayWithBot && isXNextSingle && gameSingleState[hoveredIndex] === null 
-                      || isPlayWithBot && isXNextWithBot && gameWithBotState[hoveredIndex] === null) 
+                    && (isXNext && gameState[hoveredIndex] === null) 
                   ? <Cross
                     opacity={opacity}
-                    key={`${row}-${col}-${z}`}
                     position={position}
                   />  
-                  : elem === "O" || index === hoveredIndex  
+                  : elem === Player.O || index === hoveredIndex  
                     ? <Circle
                       opacity={opacity} 
-                      key={`${row}-${col}-${z}`}
                       position={position}/> 
                     : <Box 
                       opacity={opacity} 
-                      key={`${row}-${col}-${z}`}
                       position={position}
                       color={index === 13 && !isCenterAvailable ? "#000" : "#555"}
                       />
@@ -68,11 +67,34 @@ const TicTacToeGame = ({isPlayWithBot = false}: {isPlayWithBot?: boolean}) => {
   }
   return (
     <div className="h-[100%] flex flex-auto items-center my-auto justify-center w-[100%] pb-24" >
-      <Canvas style={{objectPosition: "center", objectFit: "contain", aspectRatio: "1/1", maxWidth: "700px", minHeight: "100%", overflow: "visible"}} camera={{ position: [0, 4, 5.25], near: 0.3 }}>
+      <Canvas 
+        style={{
+          objectPosition: "center",
+          objectFit: "contain", 
+          aspectRatio: "1/1", 
+          maxWidth: "700px", 
+          minHeight: "100%", 
+          overflow: "visible"
+        }} 
+        camera={{
+          position: [0, 4, 5.25], 
+          near: 0.3 
+        }}
+      >
         <ambientLight intensity={Math.PI / 2} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        <CubeGroup/>
+        <spotLight 
+          position={[10, 10, 10]}
+          angle={0.15} 
+          penumbra={1} 
+          decay={0} 
+          intensity={Math.PI} 
+        />
+        <pointLight 
+          position={[-10, -10, -10]} 
+          decay={0} 
+          intensity={Math.PI} 
+        />
+        <CubeModel/>
         <OrbitControls 
           enablePan={false}
           enableDamping={true}
@@ -81,7 +103,8 @@ const TicTacToeGame = ({isPlayWithBot = false}: {isPlayWithBot?: boolean}) => {
           maxZoom={15} 
           minZoom={5} 
           maxDistance={15} 
-          minDistance={5}  />
+          minDistance={5}  
+        />
       </Canvas>
     </div>
 

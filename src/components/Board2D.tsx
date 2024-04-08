@@ -1,12 +1,11 @@
 import React from 'react'
 import { useToast } from './ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
-import { RootState } from '@/state/store';
-import { useDispatch, useSelector } from 'react-redux';
 import { calculateWinner } from '@/lib/gameLogic';
 import { useTranslations } from 'next-intl';
-import { setGameState, setHoveredIndex, setIsXNext, setWinner } from '@/state/gameState/gameStateSlice';
-import { Player } from '@/types';
+import { gameActions } from '@/state/slices/game';
+import { GameStateType, Player } from '@/types';
+import { useActionCreators, useStateSelector } from '@/state/hooks';
 
 interface Board2DProps {
   boardOrder: number;
@@ -17,17 +16,15 @@ const Board2D = ({
   } : Board2DProps) => {
 
   const {toast} = useToast()
-  const dispatch = useDispatch();
-  const gameState = useSelector((state: RootState) => state.gameState);
-  const isXNext = useSelector((state: RootState) => state.isXNext);
-  const winner = useSelector((state: RootState) => state.winner);
-  const isPlayWithBot = useSelector((state: RootState) => state.isPlayWithBot);
-  const hoveredIndex = useSelector((state: RootState) => state.hoveredIndex);
-  const firstPlayer = useSelector((state: RootState) => state.firstPlayer);
-  const isCenterAvailable = useSelector((state: RootState) => state.isCenterAvailable);
+  const gameState = useStateSelector((state) => state.game.gameState);
+  const isXNext = useStateSelector((state) => state.game.isXNext);
+  const winner = useStateSelector((state) => state.game.winner);
+  const isPlayWithBot = useStateSelector((state) => state.game.isPlayWithBot);
+  const hoveredIndex = useStateSelector((state) => state.game.hoveredIndex);
+  const isCenterAvailable = useStateSelector((state) => state.game.isCenterAvailable);
+  const botPlayer = useStateSelector((state) => state.game.botPlayer);
   const t = useTranslations("board");
-  const botPlayer = useSelector((state: RootState) => state.botPlayer);
-
+  const actions = useActionCreators(gameActions);
 
 
   const handleClick = (index: number) => {
@@ -36,34 +33,35 @@ const Board2D = ({
         title: t("gameAlreadyOveredTitle"),
         description: t("gameAlreadyOveredDescription"),
         action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
-          dispatch(setGameState(Array(27).fill(null)));
-          dispatch(setIsXNext(true));
-          dispatch(setWinner(null));
+          actions.setGameState(Array(27).fill(null));
+          actions.setIsXNext(true);
+          actions.setWinner(null);
         }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
       });
       return;
     };
+    
     if (isPlayWithBot && (gameState[boardOrder * 9 + index] || isXNext === (botPlayer === Player.X)) || gameState[boardOrder * 9 + index]) {
       return; 
     }
     const newBoard = [...gameState];
     newBoard[boardOrder * 9 + index] = isXNext ? Player.X : Player.O;
     
-    dispatch(setGameState(newBoard));
-    dispatch(setIsXNext(!isXNext));
+    actions.setGameState(newBoard);
+    actions.setIsXNext(!isXNext);
 
     const newWinner = calculateWinner(newBoard);
-    dispatch(setWinner(newWinner));
+    actions.setWinner(newWinner);
   };
 
   const handlePointerOver = (index: number) => {
     if (!isPlayWithBot || isXNext !== (botPlayer === Player.X)) {
-      dispatch(setHoveredIndex(boardOrder * 9 + index));
+      actions.setHoveredIndex(boardOrder * 9 + index);
     }
   };
 
   const handlePointerOut = () => {
-    dispatch(setHoveredIndex(null));
+    actions.setHoveredIndex(null);
   };
 
   const renderCross = () => (
@@ -78,8 +76,8 @@ const Board2D = ({
     </div>
   )
 
-  const renderSquare = (index: number) => (
-    <>
+  const renderSquare = (index: number) => {
+    return <>
       {!isCenterAvailable && index === 4 && boardOrder === 1 ?  <div className='w-[33.33%] bg-primary-500 h-[101%]'></div> :
         <button
           className='w-[33.33%] h-full flex justify-center items-center overflow-hidden relative'
@@ -108,7 +106,7 @@ const Board2D = ({
       }
       
     </>
-  );
+  }
 
   return (
     <div className="relative min-h-[140px] min-w-[140px] h-[20vw] max-h-[180px] max-w-[180px] w-[20vw]">

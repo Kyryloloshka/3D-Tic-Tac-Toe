@@ -7,7 +7,6 @@ export default function PlayGameLayout({
 }>) {
   const messages = useMessages();
   const locale = useLocale()
-  console.log(messages, locale);
   
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>

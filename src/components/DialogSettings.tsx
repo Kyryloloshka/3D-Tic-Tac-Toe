@@ -9,36 +9,39 @@ import {
 } from "@/components/ui/dialog"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "./ui/label";
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/state/store';
-import { setBotPlayer, setFirstPlayer, setIsCenterAvailable, setIsPlayWithBot, setIsXNext } from '@/state/gameState/gameStateSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from "@/state/types";
 import { Button } from './ui/button';
 import { Player } from '@/types';
 import { Checkbox } from './ui/checkbox';
 import { Separator } from './ui/separator';
 import { useTranslations } from 'next-intl';
+import { useActionCreators, useAppDispatch } from '@/state/hooks';
+import { gameActions } from '@/state/slices/game';
 
 const DialogSettings = ({restartGame}: {restartGame: Function}) => {
+  const firstPlayer = useSelector((state: RootState) => state.game.firstPlayer);
+  const isCenterAvailable = useSelector((state: RootState) => state.game.isCenterAvailable);
+  const isPlayWithBot = useSelector((state: RootState) => state.game.isPlayWithBot);
+  const botPlayer = useSelector((state: RootState) => state.game.botPlayer);
+
   const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
-  const firstPlayer = useSelector((state: RootState) => state.firstPlayer);
-  const isCenterAvailable = useSelector((state: RootState) => state.isCenterAvailable);
-  const isPlayWithBot = useSelector((state: RootState) => state.isPlayWithBot);
-  const botPlayer = useSelector((state: RootState) => state.botPlayer);
   const [selectedFirstPlayer, setSelectedFirstPlayer] = useState<Player>(firstPlayer);
   const [selectedIsCenterAvailable, setSelectedIsCenterAvailable] = useState(isCenterAvailable);
   const [selectedIsPlayWithBot, setSelectedIsPlayWithBot] = useState(isPlayWithBot);
   const [selectedBotPlayer, setSelectedBotPlayer] = useState(botPlayer);
+
   const t = useTranslations("settings");
 
+  const actions = useActionCreators(gameActions);
   const submitSettings = (e: any) => {
     e.preventDefault();
     restartGame(selectedFirstPlayer);
-    dispatch(setFirstPlayer(selectedFirstPlayer));
-    dispatch(setIsXNext(selectedFirstPlayer === Player.X))
-    dispatch(setIsCenterAvailable(selectedIsCenterAvailable));
-    dispatch(setIsPlayWithBot(selectedIsPlayWithBot));
-    dispatch(setBotPlayer(selectedBotPlayer));
+    actions.setFirstPlayer(selectedFirstPlayer);
+    actions.setIsXNext(selectedFirstPlayer === Player.X)
+    actions.setIsCenterAvailable(selectedIsCenterAvailable);
+    actions.setIsPlayWithBot(selectedIsPlayWithBot);
+    actions.setBotPlayer(selectedBotPlayer);
     setOpen(false)
   }
 

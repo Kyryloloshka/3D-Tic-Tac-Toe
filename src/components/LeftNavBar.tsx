@@ -1,14 +1,15 @@
 "use client"
 import Link from "next/link";
 import { Button } from "./ui/button"
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/state/store";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/types";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import LoaderSpinner from "./LoaderSpinner";
 import { Skeleton } from "./ui/skeleton";
-import { setGameState, setIsXNext, setWinner } from "@/state/gameState/gameStateSlice";
 import { Player } from "@/types";
+import { useActionCreators, useAppDispatch } from "@/state/hooks";
+import { gameActions } from "@/state/slices/game";
 
 const ComponentDialogSettings = dynamic(
   () => import('@/components/DialogSettings'),
@@ -21,14 +22,16 @@ const Component2DBoard = dynamic(
 );
 
 const LeftNavBar = () => {
-  const dispatch = useDispatch();
-  const isXNext = useSelector((state: RootState) => state.isXNext);
-  const winner = useSelector((state: RootState) => state.winner);
-  const firstPlayer = useSelector((state: RootState) => state.firstPlayer);
+  const isXNext = useSelector((state: RootState) => state.game.isXNext);
+  const winner = useSelector((state: RootState) => state.game.winner);
+  const firstPlayer = useSelector((state: RootState) => state.game.firstPlayer);
+  
+  const actions = useActionCreators(gameActions);
+
   const restartGame = () => {
-    dispatch(setGameState(Array(27).fill(null)));
-    dispatch(setIsXNext(firstPlayer === Player.X));
-    dispatch(setWinner(null))
+    actions.setGameState(Array(27).fill(null));
+    actions.setIsXNext(firstPlayer === Player.X);
+    actions.setWinner(null)
   }
 
   const t = useTranslations("leftNavBar")

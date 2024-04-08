@@ -1,16 +1,16 @@
-import { Player } from "@/types";
+import { GameStateType, Player } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
-import { set } from "nprogress";
 
 interface GameState {
-  gameState: Array<string | null>;
+  gameState: GameStateType;
   isXNext: boolean;
-  winner: string | null;
+  winner: Player | null;
   hoveredIndex: number | null;
   firstPlayer: Player;
   isCenterAvailable: boolean;
   isPlayWithBot: boolean;
   botPlayer: Player;
+  status: "init" | "loading" | "success" | "error";
 }
 
 const initialState: GameState = {
@@ -22,9 +22,10 @@ const initialState: GameState = {
   isCenterAvailable: true,
   isPlayWithBot: false,
   botPlayer: Player.O,
+  status: "init",
 };
 
-const gameSlice = createSlice({
+const slice = createSlice({
   name: "game",
   initialState,
   reducers: {
@@ -55,15 +56,4 @@ const gameSlice = createSlice({
   }
 })
 
-export const {
-  setGameState,
-  setIsXNext,
-  setWinner,
-  setHoveredIndex,
-  setFirstPlayer,
-  setIsCenterAvailable,
-  setIsPlayWithBot,
-  setBotPlayer,
-} = gameSlice.actions;
-
-export default gameSlice.reducer;
+export const {reducer: gameReducer, actions: gameActions } = slice;
