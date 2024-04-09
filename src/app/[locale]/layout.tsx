@@ -1,12 +1,12 @@
 "use client"
-import { Rubik } from "next/font/google";
+import { Rubik_Mono_One } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { Provider } from "react-redux";
 import { store } from "@/state/store";
 import { Analytics } from "@vercel/analytics/react"
 
-const rubik = Rubik({weight: ["400", "600", "300"], subsets: ["latin", "cyrillic"]});
+const rubikMonoOne = Rubik_Mono_One({weight: ["400"], subsets: ["latin", "cyrillic"]});
 
 export default function RootLayout({
   children,
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <Provider store={store}>
       <html lang={params.locale} >
-        <body className={`${rubik.className} h-[100dvh] common-container flex flex-col relative`}>
+        <body className={`${rubikMonoOne.className} h-[100dvh] common-container flex flex-col relative`}>
           <Analytics/>
           <Header/>
           <main className="flex-auto flex flex-col">

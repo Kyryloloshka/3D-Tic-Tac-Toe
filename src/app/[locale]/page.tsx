@@ -6,13 +6,13 @@ import { Link } from '@/navigation';
 const Home = () => {
   const t = useTranslations("page.home")
   return <div className='flex justify-center items-center min-h-[100%] flex-auto gap-10 p-5 overflow-x-hidden'>
-    <div className="absolute top-1/2 left-1/2 text-[13vw] whitespace-nowrap -z-10 opacity-5 -translate-y-[50%] font-semibold -translate-x-[50%]">3D Tic Tac Toe</div>
+    <div className="absolute top-1/2 left-1/2 text-[7vw] whitespace-nowrap -z-10 opacity-5 -translate-y-[50%] font-semibold -translate-x-[50%]">3D Tic Tac Toe</div>
     <div className="flex flex-col gap-5 justify-center items-center flex-auto">
       <h1 className='text-[calc(4vw+20px)] font-semibold text-primary-500 text-shadow-neon '>3D Tic Tac Toe</h1>
       <p className='text-sm tracking-wider text-center max-w-[550px] pb-3'>
         {t("text")}
       </p>
-      <Link href={"/play-game"}> <Button className='px-12 text-xl py-5' variant="neon">{t("button")}</Button> </Link>
+      <Link href={"/play-game"}> <Button className='px-12 text-md py-5' variant="neon">{t("button")}</Button> </Link>
     </div>
     <p className="absolute left-3 bottom-2 text-primary-500 text-shadow-neon">0.1.6</p>
   </div>

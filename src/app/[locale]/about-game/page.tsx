@@ -1,12 +1,13 @@
 "use client"
-
 import { useTranslations } from "next-intl"
+import { Rubik } from "next/font/google";
 import Link from "next/link"
+const rubik = Rubik({weight: ["400"], subsets: ["latin", "cyrillic"]});
 
 const About = () => {
   const t = useTranslations("page.about")
   return (
-    <div className="overflow-hidden text-light-2 flex-auto flex flex-col min-h-full common-container container-restrictive p-3 md:p-6 gap-5">
+    <div className={`${rubik.className} overflow-hidden text-light-2 flex-auto flex flex-col min-h-full common-container container-restrictive p-3 md:p-6 gap-5`}>
       <h1 className="text-3xl font-semibold text-shadow-neon text-primary-500 tracking-wide">{t("aboutTitle")} <span className=" whitespace-nowrap">3D Tic Tac Toe</span></h1>
       <p className="leading-6 text-lg tracking-wide pb-3">{t("aboutMessage")}</p>
       <h3 className="text-2xl font-semibold text-shadow-neon text-primary-500 tracking-wide">{t("visionTitle")}</h3>

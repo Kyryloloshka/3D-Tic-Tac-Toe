@@ -108,6 +108,11 @@ export const getBotMove = async (board: GameStateType, player: Player, isCenterA
         resolve(forkMove);
         return;
       }
+      const blockOpponentForkMove = checkFork(board, player === Player.X ? Player.O : Player.X, isCenterAvailable)
+      if (blockOpponentForkMove) {
+        resolve(blockOpponentForkMove);
+        return;
+      }
 
       resolve(getRandomMove(board, isCenterAvailable));
     }, delayOfBotMove); 

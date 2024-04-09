@@ -18,6 +18,8 @@ import { Separator } from './ui/separator';
 import { useTranslations } from 'next-intl';
 import { useActionCreators, useAppDispatch } from '@/state/hooks';
 import { gameActions } from '@/state/slices/game';
+import { Rubik } from 'next/font/google';
+const rubik = Rubik({weight: ["400"], subsets: ["latin", "cyrillic"]});
 
 const DialogSettings = ({restartGame}: {restartGame: Function}) => {
   const firstPlayer = useSelector((state: RootState) => state.game.firstPlayer);
@@ -65,12 +67,12 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
       <DialogTrigger asChild>
         <img src="/assets/icons/settings.svg" alt="setting" className="h-6 cursor-pointer select-none" />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-dark-2 shadow-primary border-primary-500/90">
+      <DialogContent className={`sm:max-w-[425px] bg-dark-2 shadow-primary border-primary-500/90`}>
         <form onSubmit={submitSettings}>
           <DialogHeader>
-            <DialogTitle>{t("title")}</DialogTitle>
+            <DialogTitle className='font-light tracking-wider'>{t("title")}</DialogTitle>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
+          <div className={`${rubik.className} grid gap-4 py-4`}>
             <div className="grid grid-cols-5 items-center gap-2">
               <Label htmlFor="playFor" className=" col-span-4">
                 {t("firstMoveFor")}

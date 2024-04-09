@@ -59,7 +59,7 @@ const LeftNavBar = () => {
           t("bottomLayer")
         ].map((layer, index) => (
           <div className="flex flex-col items-center gap-3" key={index}>
-            <span className="text-shadow-neon text-primary-500 select-none">{layer}</span>
+            <span className="text-center text-sm text-shadow-neon text-primary-500 select-none">{layer}</span>
             <Component2DBoard boardOrder={index}/>
           </div>
         ))}
