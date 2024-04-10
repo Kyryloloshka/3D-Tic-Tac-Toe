@@ -8,4 +8,11 @@ export enum Player {
   O = "O",
 }
 
+export enum Difficulty {
+  easy,
+  medium,
+  hard,
+  expert
+}
+
 export type GameStateType = (Player | null)[];

@@ -12,13 +12,16 @@ import { Label } from "./ui/label";
 import { useSelector } from 'react-redux';
 import { RootState } from "@/state/types";
 import { Button } from './ui/button';
-import { Player } from '@/types';
+import { Difficulty, Player } from '@/types';
 import { Checkbox } from './ui/checkbox';
 import { Separator } from './ui/separator';
 import { useTranslations } from 'next-intl';
 import { useActionCreators, useAppDispatch } from '@/state/hooks';
 import { gameActions } from '@/state/slices/game';
 import { Rubik } from 'next/font/google';
+import * as Slider from '@radix-ui/react-slider';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+
 const rubik = Rubik({weight: ["400"], subsets: ["latin", "cyrillic"]});
 
 const DialogSettings = ({restartGame}: {restartGame: Function}) => {
@@ -26,12 +29,14 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
   const isCenterAvailable = useSelector((state: RootState) => state.game.isCenterAvailable);
   const isPlayWithBot = useSelector((state: RootState) => state.game.isPlayWithBot);
   const botPlayer = useSelector((state: RootState) => state.game.botPlayer);
+  const botDifficulty = useSelector((state: RootState) => state.game.botDifficulty);
 
   const [open, setOpen] = useState(false);
   const [selectedFirstPlayer, setSelectedFirstPlayer] = useState<Player>(firstPlayer);
   const [selectedIsCenterAvailable, setSelectedIsCenterAvailable] = useState(isCenterAvailable);
   const [selectedIsPlayWithBot, setSelectedIsPlayWithBot] = useState(isPlayWithBot);
   const [selectedBotPlayer, setSelectedBotPlayer] = useState(botPlayer);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>(botDifficulty);
 
   const t = useTranslations("settings");
 
@@ -44,6 +49,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
     actions.setIsCenterAvailable(selectedIsCenterAvailable);
     actions.setIsPlayWithBot(selectedIsPlayWithBot);
     actions.setBotPlayer(selectedBotPlayer);
+    actions.setBotDifficulty(selectedDifficulty);
     setOpen(false)
   }
 
@@ -60,6 +66,11 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
   };
   const handleBotPlayerChange = (param: any) => {
     setSelectedBotPlayer(param)
+  }
+
+  const handleDifficultyChange = (value: number[]) => {
+    const difficulty = Math.floor(value[0] / 100 * 3);
+    difficulty <= 3 && setSelectedDifficulty(difficulty)
   }
 
   return (
@@ -103,24 +114,39 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
                 {t("gameWithBot")}
               </Label>
               <Checkbox defaultChecked={selectedIsPlayWithBot} onCheckedChange={handlePlayWithBotChange} className='col-span-1' id="bot" />
-              {selectedIsPlayWithBot && 
-                <>
-                <Separator className="col-span-5 w-full bg-dark-5" />
-                  <Label htmlFor="botPlayer" className="col-span-4">
-                  {t("botPlaysAs")}
-                  </Label>
-                  <RadioGroup className="col-span-1" defaultValue={selectedBotPlayer} onValueChange={handleBotPlayerChange}>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value={Player.X} id="r1" />
-                      <Label htmlFor="r1">{Player.X}</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value={Player.O} id="r2" />
-                      <Label htmlFor="r2">{Player.O}</Label>
-                    </div>
-                  </RadioGroup>
-                </>
-              }
+              <Separator className="col-span-5 w-full bg-dark-5" />
+              <Label  htmlFor="botPlayer" className="col-span-4">
+              {t("botPlaysAs")}
+              </Label>
+              <RadioGroup disabled={!selectedIsPlayWithBot} className="col-span-1" defaultValue={selectedBotPlayer} onValueChange={handleBotPlayerChange}>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value={Player.X} id="r1" />
+                  <Label htmlFor="r1">{Player.X}</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value={Player.O} id="r2" />
+                  <Label htmlFor="r2">{Player.O}</Label>
+                </div>
+              </RadioGroup>
+              <Separator className="col-span-5 w-full bg-dark-5" />
+              <Label  htmlFor="botDifficulty" className="col-span-2">
+                Difficulty
+              </Label>
+              <Slider.Root disabled={!selectedIsPlayWithBot} className="SliderRoot" defaultValue={[selectedDifficulty*100/3]} onValueChange={handleDifficultyChange} max={100} step={100/3}>
+                <Slider.Track className="SliderTrack">
+                  <Slider.Range className="SliderRange" />
+                </Slider.Track>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Slider.Thumb className="SliderThumb" aria-label="botDifficulty" />
+                    </TooltipTrigger>
+                    <TooltipContent className='bg-dark-2'>
+                      {Difficulty[selectedDifficulty]}
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </Slider.Root>
             </div>
           </div>
           <DialogFooter>

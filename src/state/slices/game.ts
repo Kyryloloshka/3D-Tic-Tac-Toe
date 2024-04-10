@@ -1,5 +1,5 @@
-import { GameStateType, Player } from "@/types";
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { Difficulty, GameStateType, Player } from "@/types";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface GameState {
   gameState: GameStateType;
@@ -10,6 +10,7 @@ interface GameState {
   isCenterAvailable: boolean;
   isPlayWithBot: boolean;
   botPlayer: Player;
+  botDifficulty: Difficulty;
 }
 
 const initialState: GameState = {
@@ -21,6 +22,7 @@ const initialState: GameState = {
   isCenterAvailable: true,
   isPlayWithBot: false,
   botPlayer: Player.O,
+  botDifficulty: Difficulty.easy,
 };
 
 const slice = createSlice({
@@ -50,6 +52,9 @@ const slice = createSlice({
     },
     setBotPlayer(state, action) {
       state.botPlayer = action.payload;
+    },
+    setBotDifficulty(state, action) {
+      state.botDifficulty = action.payload;
     },
   }
 })

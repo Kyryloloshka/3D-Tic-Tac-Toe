@@ -147,6 +147,17 @@ select {
   --shadow-primary-neon: rgba(97, 255, 173, 0.302);
   --shadow-secondary: rgba(170, 44, 199, 0.032);
   --shadow-secondary-neon: rgba(255, 97, 250, 0.073);
+  --dark-1: #000000;
+  --dark-2: #09090A;
+  --dark-3: #101012;
+  --dark-4: #1F1F22;
+  --dark-5: #2F2F32;
+  --light-2: #EFEFF1;
+  --light-3: #7878A3;
+  --light-4: #5C5C7B;
+  --light-5: #aCaCcB;
+  --light-6: #cCcCdB;
+  --light-1: #FFFFFF;
 }
 
 body {
@@ -359,4 +370,55 @@ body {
     background: var(--primary-color);
     box-shadow: 0 0 5px var(--primary-color);
   }
+}
+
+.SliderRoot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  width: 200px;
+  height: 20px;
+}
+
+.SliderTrack {
+  background-color: var(--dark-5);
+  position: relative;
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 3px;
+}
+
+.SliderRange {
+  position: absolute;
+  background-color: var(--primary-color);
+  border-radius: 9999px;
+  height: 100%;
+}
+
+.SliderThumb {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  transition: box-shadow 0.2s;
+}
+
+.SliderRoot[data-disabled] .SliderThumb {
+  background-color: var(--dark-5);
+}
+.SliderRoot[data-disabled] .SliderTrack {
+  background-color: var(--dark-4);
+}
+.SliderRoot[data-disabled] .SliderRange {
+  background-color: var(--dark-5);
+}
+
+.SliderThumb:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 15px 0px var(--shadow-primary-neon);
+  -moz-box-shadow: 0px 0px 15px 0px var(--shadow-primary-neon);
+  box-shadow: 0px 0px 15px 0px var(--shadow-primary-neon);
 }
