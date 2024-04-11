@@ -358,7 +358,7 @@ body {
     width: 20px;
     height: 1px;
     background: #000;
-    transition: background 0.1s ease;
+    transition: height 0.1s ease;
   }
   .cross::after {
     transform: rotate(45deg);
@@ -367,8 +367,7 @@ body {
     transform: rotate(-45deg);
   }
   .cross:hover::after, .cross:hover::before {
-    background: var(--primary-color);
-    box-shadow: 0 0 5px var(--primary-color);
+    height: 1.2px;
   }
 }
 
@@ -378,7 +377,6 @@ body {
   align-items: center;
   user-select: none;
   touch-action: none;
-  width: 200px;
   height: 20px;
 }
 
@@ -416,7 +414,7 @@ body {
   background-color: var(--dark-5);
 }
 
-.SliderThumb:focus {
+.SliderThumb:hover {
   outline: none;
   -webkit-box-shadow: 0px 0px 15px 0px var(--shadow-primary-neon);
   -moz-box-shadow: 0px 0px 15px 0px var(--shadow-primary-neon);

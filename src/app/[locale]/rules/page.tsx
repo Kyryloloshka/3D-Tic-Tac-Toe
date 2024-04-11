@@ -2,8 +2,8 @@
 import { useTranslations } from "next-intl"
 import { Rubik } from "next/font/google";
 import Link from "next/link"
+import { rubik } from "../layout";
 
-const rubik = Rubik({weight: ["400"], subsets: ["latin", "cyrillic"]});
 
 const Rules = () => {
   const t = useTranslations("page.rules")

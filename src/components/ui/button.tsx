@@ -22,7 +22,7 @@ const buttonVariants = cva(
         neon: "border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]"
       },
       size: {
-        default: "h-9 px-4 py-2",
+        default: "px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",

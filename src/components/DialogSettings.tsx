@@ -21,8 +21,8 @@ import { gameActions } from '@/state/slices/game';
 import { Rubik } from 'next/font/google';
 import * as Slider from '@radix-ui/react-slider';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+import { rubik } from '@/app/[locale]/layout';
 
-const rubik = Rubik({weight: ["400"], subsets: ["latin", "cyrillic"]});
 
 const DialogSettings = ({restartGame}: {restartGame: Function}) => {
   const firstPlayer = useSelector((state: RootState) => state.game.firstPlayer);
@@ -32,6 +32,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
   const botDifficulty = useSelector((state: RootState) => state.game.botDifficulty);
 
   const [open, setOpen] = useState(false);
+  const [openTipSlider, setOpenTipSlider] = useState(false);
   const [selectedFirstPlayer, setSelectedFirstPlayer] = useState<Player>(firstPlayer);
   const [selectedIsCenterAvailable, setSelectedIsCenterAvailable] = useState(isCenterAvailable);
   const [selectedIsPlayWithBot, setSelectedIsPlayWithBot] = useState(isPlayWithBot);
@@ -132,16 +133,16 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
               <Label  htmlFor="botDifficulty" className="col-span-2">
                 Difficulty
               </Label>
-              <Slider.Root disabled={!selectedIsPlayWithBot} className="SliderRoot" defaultValue={[selectedDifficulty*100/3]} onValueChange={handleDifficultyChange} max={100} step={100/3}>
+              <Slider.Root onMouseEnter={() => setOpenTipSlider(true)} onMouseLeave={() => setOpenTipSlider(false)} disabled={!selectedIsPlayWithBot} className="SliderRoot col-span-3" defaultValue={[selectedDifficulty*100/3]} onValueChange={handleDifficultyChange} max={100} step={100/3}>
                 <Slider.Track className="SliderTrack">
                   <Slider.Range className="SliderRange" />
                 </Slider.Track>
-                <TooltipProvider>
-                  <Tooltip>
+                <TooltipProvider delayDuration={0}>
+                  <Tooltip open={openTipSlider && selectedIsPlayWithBot}>
                     <TooltipTrigger asChild>
                       <Slider.Thumb className="SliderThumb" aria-label="botDifficulty" />
                     </TooltipTrigger>
-                    <TooltipContent className='bg-dark-2'>
+                    <TooltipContent className='bg-dark-2 border-primary-500 shadow-primary'>
                       {Difficulty[selectedDifficulty]}
                     </TooltipContent>
                   </Tooltip>
@@ -150,7 +151,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="neon" type="submit">{t("saveAndRestart")}</Button>
+            <Button className='whitespace-normal' variant="neon" type="submit">{t("saveAndRestart")}</Button>
           </DialogFooter>
         </form>
       </DialogContent>

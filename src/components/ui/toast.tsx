@@ -2,9 +2,8 @@ import * as React from "react"
 import { Cross2Icon } from "@radix-ui/react-icons"
 import * as ToastPrimitives from "@radix-ui/react-toast"
 import { cva, type VariantProps } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
-
+import { rubik, rubikMonoOne } from "@/app/[locale]/layout"
 const ToastProvider = ToastPrimitives.Provider
 
 const ToastViewport = React.forwardRef<
@@ -15,7 +14,8 @@ const ToastViewport = React.forwardRef<
     ref={ref}
     className={cn(
       "fixed z-[100] flex max-h-screen w-full flex-col-reverse p-4 top-4 left-[50%] -translate-x-[50%] sm:flex-col max-w-[calc(100vw-20px)] md:max-w-[420px]",
-      className
+      className,
+      rubik.className
     )}
     {...props}
   />
@@ -61,7 +61,7 @@ const ToastAction = React.forwardRef<
     ref={ref}
     className={cn(
       "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium transition-colors hover:bg-secondary focus:outline-none focus:ring-1 focus:ring-ring disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
-      className
+      className,
     )}
     {...props}
   />

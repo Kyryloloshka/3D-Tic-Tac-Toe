@@ -1,5 +1,6 @@
-import { GameStateType, Player } from "@/types";
+import { Difficulty, GameStateType, Player } from "@/types";
 import { randInt } from "./utils";
+import { store } from "@/state";
 
 export const calculateWinner = (squares: GameStateType) => {
   const lines = [
@@ -86,26 +87,43 @@ export const getRandomMove = (board: GameStateType, isCenterAvailable: boolean) 
   return availableMoves[randomIndex];
 }
 
-export const getBotMove = async (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
+export const getBotMove = async () => {
+  const state = store.getState();
+  const board = state.game.gameState;
+  const player = state.game.botPlayer;
+  const isCenterAvailable = state.game.isCenterAvailable;
+  const difficulty = state.game.botDifficulty;
+
   return new Promise((resolve: (value: number) => void) => {
     const delayOfBotMove = 1000;
 
     setTimeout(() => {
+      const randomMove = getRandomMove(board, isCenterAvailable);
       const botWins = checkWinPlayer(board, player, isCenterAvailable)
       if (botWins) {
         resolve(botWins);
         return;
       }
-
+      if (difficulty === Difficulty.easy) {
+        resolve(randomMove);
+        return;
+      }
       const blockOpponentWinMove = checkWinPlayer(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
       if (blockOpponentWinMove) {
         resolve(blockOpponentWinMove);
         return;
       }
-
+      if (difficulty === Difficulty.medium) {
+        resolve(randomMove);
+        return;
+      }
       const forkMove = checkFork(board, player, isCenterAvailable);
       if (forkMove) {
         resolve(forkMove);
+        return;
+      }
+      if (difficulty === Difficulty.hard) {
+        resolve(randomMove);
         return;
       }
       const blockOpponentForkMove = checkFork(board, player === Player.X ? Player.O : Player.X, isCenterAvailable)
@@ -113,8 +131,10 @@ export const getBotMove = async (board: GameStateType, player: Player, isCenterA
         resolve(blockOpponentForkMove);
         return;
       }
-
-      resolve(getRandomMove(board, isCenterAvailable));
+      if (difficulty === Difficulty.expert) {
+        resolve(randomMove);
+        return;
+      }
     }, delayOfBotMove); 
   });
 }

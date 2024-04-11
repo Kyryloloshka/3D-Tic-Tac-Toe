@@ -1,12 +1,13 @@
 "use client"
-import { Rubik_Mono_One } from "next/font/google";
+import { Rubik, Rubik_Mono_One } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { Provider } from "react-redux";
 import { store } from "@/state/store";
 import { Analytics } from "@vercel/analytics/react"
 
-const rubikMonoOne = Rubik_Mono_One({weight: ["400"], subsets: ["latin", "cyrillic"]});
+export const rubikMonoOne = Rubik_Mono_One({weight: ["400"], subsets: ["latin", "cyrillic"]});
+export const rubik = Rubik({weight: ["400", "300", "600"], subsets: ["latin", "cyrillic"]});
 
 export default function RootLayout({
   children,

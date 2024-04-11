@@ -2,7 +2,7 @@
 import { useTranslations } from "next-intl"
 import { Rubik } from "next/font/google";
 import Link from "next/link"
-const rubik = Rubik({weight: ["400"], subsets: ["latin", "cyrillic"]});
+import { rubik } from "../layout";
 
 const About = () => {
   const t = useTranslations("page.about")
