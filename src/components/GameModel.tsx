@@ -4,10 +4,16 @@ import { useRef } from "react";
 import Cross from "./Cross";
 import Box from "./Box";
 import Circle from "./Circle";
+import { usePathname, useRouter } from "next/navigation";
 
 const GameModel = () => {
   const groupRef = useRef<THREE.Group>(null!)
-  const gameState = useStateSelector((state) => state.game.gameState);
+  const pathname = usePathname();
+  
+  const gameState = pathname.replace(/^\/[a-z]{2}/, '') === "/replay" 
+    ? useStateSelector((state) => state.replay.gameState) 
+    : useStateSelector((state) => state.game.gameState);
+  
   const isXNext = useStateSelector((state) => state.game.isXNext);
   const hoveredIndex = useStateSelector((state) => state.game.hoveredIndex);
   const isCenterAvailable = useStateSelector((state) => state.game.isCenterAvailable);

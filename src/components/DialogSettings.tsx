@@ -18,7 +18,6 @@ import { Separator } from './ui/separator';
 import { useTranslations } from 'next-intl';
 import { useActionCreators, useAppDispatch } from '@/state/hooks';
 import { gameActions } from '@/state/slices/game';
-import { Rubik } from 'next/font/google';
 import * as Slider from '@radix-ui/react-slider';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import { rubik } from '@/app/[locale]/layout';
@@ -76,10 +75,10 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger draggable="false" asChild>
         <img src="/assets/icons/settings.svg" alt="setting" className="h-6 cursor-pointer select-none" />
       </DialogTrigger>
-      <DialogContent className={`sm:max-w-[425px] bg-dark-2 shadow-primary border-primary-500/90`}>
+      <DialogContent className={`sm:max-w-[425px] select-none bg-dark-2 shadow-primary border-primary-500/90`}>
         <form onSubmit={submitSettings}>
           <DialogHeader>
             <DialogTitle className='font-light tracking-wider'>{t("title")}</DialogTitle>

@@ -13,7 +13,6 @@ import { calculateWinner, getBotMove } from '@/lib/gameLogic';
 import { Player } from '@/types';
 import { gameActions } from '@/state/slices/game';
 import { useActionCreators, useStateSelector } from '@/state/hooks';
-import { Rubik } from 'next/font/google';
 
 const ComponentPlayGame = dynamic(() => import('@/components/Model3d'), { ssr: false, loading: () => <Loading/>})
 

@@ -52,6 +52,7 @@ const Header = () => {
   const localeActive = useLocale()
   const locale = useLocale();
   const messages = require(`@/messages/${locale}.json`)
+  
   const toggleIsOpenBurger = () => {
     setIsOpenBurger(prevState => !prevState);
   }
@@ -77,7 +78,7 @@ const Header = () => {
           </svg>
         </label>
       </div>
-      <Link href="/" className="text-primary-500 text-lg font-semibold text-shadow-neon whitespace-nowrap">3D Tic tac toe</Link>
+      <Link draggable="false" href="/" className="text-primary-500 text-lg font-semibold text-shadow-neon whitespace-nowrap">3D Tic tac toe</Link>
       <div className={`${isOpenBurger ? "left-0" : "left-[-100%]"} md:left-0 transition-all absolute pt-16 md:relative min-h-[100dvh] md:min-h-[auto] min-w-[260px] md:min-w-[auto] top-0 bg-dark-2 p-3 md:p-0 z-40`}>
         <ul className={` flex-col items-start flex md:flex-row md:items-center gap-y-2 justify-center gap-x-[calc(5vw_-18px)] flex-wrap z-50 `}>
         {headerLinks.map((link: INavLink) => {
@@ -85,7 +86,7 @@ const Header = () => {
           
           return (
             <li onClick={handleCloseBurgerMenu} className="relative" key={link.label}>
-              <Link className={`link-underline capitalize md:text-[16px] text-xl ${isActive && "text-primary-500 before:left-0 before:w-full"}`} href={link.route}>
+              <Link draggable="false" className={`link-underline capitalize md:text-[16px] text-xl ${isActive && "text-primary-500 before:left-0 before:w-full"}`} href={link.route}>
                 {messages.navigation[link.translateKey]}
               </Link>
             </li>

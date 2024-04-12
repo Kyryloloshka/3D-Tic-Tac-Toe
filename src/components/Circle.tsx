@@ -17,7 +17,7 @@ const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position }) => {
   });
   
   return (
-    <mesh ref={torusRef} position={position} onClick={() => console.log('Circle clicked')}>
+    <mesh ref={torusRef} position={position}>
       <torusGeometry args={[0.35, 0.1, 32, 32]} />
       <meshStandardMaterial color={"#b868c8"} transparent={true} opacity={opacity} />
     </mesh>

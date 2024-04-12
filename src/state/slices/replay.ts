@@ -1,19 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { GameStateType, HistoryStep } from "@/types";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface ReplayState {
-  replayIndex: number;
+  gameState: GameStateType
+  movesHistory: HistoryStep[];
 }
 
 const initialState: ReplayState = {
-  replayIndex: 0,
+  movesHistory: [],
+  gameState: Array(27).fill(null)
 };
 
 const slice = createSlice({
   name: "replay",
   initialState,
   reducers: {
+    loadMovesHistory(state, action: PayloadAction<HistoryStep[]>) {
+      state.movesHistory = action.payload;
+    }
   },
 });
-
 
 export const {reducer: replayReducer, actions: replayActions } = slice;
