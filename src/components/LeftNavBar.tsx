@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/state/types";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import LoaderSpinner from "./LoaderSpinner";
+import LoaderSpinner from "./ui/loader-spinner";
 import { Skeleton } from "./ui/skeleton";
 import { Player } from "@/types";
 import { useActionCreators, useAppDispatch } from "@/state/hooks";

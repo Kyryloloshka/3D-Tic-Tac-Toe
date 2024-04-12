@@ -64,7 +64,7 @@ const PlayGame = () => {
   
   return (
     <div className={`overflow-hidden flex-auto flex flex-col h-full`}>
-      <div className={`${!showRecomendation && "hidden opacity-0"} bg-primary-500 text-center md:hidden md:opacity-0 select-none px-3 text-dark-2 flex gap-3 justify-center items-center text-sm`}>For better experience we recommend to open on the big screen <span onClick={() => setShowRecomendation(false)} className="cross"></span></div>
+      <div className={`${!showRecomendation && "hidden opacity-0"} bg-primary-500 text-center md:hidden md:opacity-0 select-none px-3 text-dark-2 flex gap-3 justify-center items-center`}>For better experience we recommend to open on the big screen <span onClick={() => setShowRecomendation(false)} className="cross"></span></div>
       <div className="flex flex-col md:flex-row h-full flex-auto">
         <LeftNavBar/>
         <ComponentPlayGame/>

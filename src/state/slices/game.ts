@@ -1,5 +1,10 @@
 import { Difficulty, GameStateType, Player } from "@/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
+interface HistoryStep {
+  player: Player;
+  index: number;
+}
 
 interface GameState {
   gameState: GameStateType;
@@ -11,6 +16,7 @@ interface GameState {
   isPlayWithBot: boolean;
   botPlayer: Player;
   botDifficulty: Difficulty;
+  historyMoves: HistoryStep[];
 }
 
 const initialState: GameState = {
@@ -23,38 +29,45 @@ const initialState: GameState = {
   isPlayWithBot: false,
   botPlayer: Player.O,
   botDifficulty: Difficulty.easy,
+  historyMoves: [],
 };
 
 const slice = createSlice({
   name: "game",
   initialState,
   reducers: {
-    setGameState(state, action) {
+    setGameState(state, action: PayloadAction<GameStateType>) {
       state.gameState = action.payload;
     },
-    setIsXNext(state, action) {
+    setIsXNext(state, action: PayloadAction<boolean>) {
       state.isXNext = action.payload;
     },
-    setWinner(state, action) {
+    setWinner(state, action: PayloadAction<Player | null>) {
       state.winner = action.payload;
     },
-    setHoveredIndex(state, action) {
+    setHoveredIndex(state, action: PayloadAction<number | null>) {
       state.hoveredIndex = action.payload;
     },
-    setFirstPlayer(state, action) {
+    setFirstPlayer(state, action: PayloadAction<Player>) {
       state.firstPlayer = action.payload;
     },
-    setIsCenterAvailable(state, action) {
+    setIsCenterAvailable(state, action: PayloadAction<boolean>) {
       state.isCenterAvailable = action.payload;
     },
-    setIsPlayWithBot(state, action) {
+    setIsPlayWithBot(state, action: PayloadAction<boolean>) {
       state.isPlayWithBot = action.payload;
     },
-    setBotPlayer(state, action) {
+    setBotPlayer(state, action: PayloadAction<Player>) {
       state.botPlayer = action.payload;
     },
-    setBotDifficulty(state, action) {
+    setBotDifficulty(state, action: PayloadAction<Difficulty>) {
       state.botDifficulty = action.payload;
+    },
+    addToHistory(state, action: PayloadAction<HistoryStep>) {
+      state.historyMoves.push(action.payload);
+    },
+    clearHistory(state) {
+      state.historyMoves = [];
     },
   }
 })

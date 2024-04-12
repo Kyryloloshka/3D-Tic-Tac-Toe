@@ -1,70 +1,9 @@
 "use client";
-import * as THREE from 'three';
-import React, { useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei'
-import Cross from './Cross';
-import Circle from './Circle';
-import Box from './Box';
-import { useStateSelector } from '@/state/hooks';
-import { Player } from '@/types';
+import GameModel from './GameModel';
 
-const distanceBetweenCubes = 1.3;
-
-const TicTacToeGame = () => {
-  const gameState = useStateSelector((state) => state.game.gameState);
-  const isXNext = useStateSelector((state) => state.game.isXNext);
-  const hoveredIndex = useStateSelector((state) => state.game.hoveredIndex);
-  const isCenterAvailable = useStateSelector((state) => state.game.isCenterAvailable);
-
-  const CubeModel = () => {
-    const groupRef = useRef<THREE.Group>(null!)
-
-    return (
-      <group ref={groupRef}>
-        {Array.from({ length: 3 }, (_, row) =>
-          Array.from({ length: 3 }, (_, col) => 
-            Array.from({length: 3}, (_, z) => {
-              const index = z*3+ Math.abs(row-2)*9 + col
-              const elem = gameState[index]
-              const opacity = elem != null
-                ? 0.85
-                  : index == hoveredIndex || !isCenterAvailable && index == 13
-                    ? 0.4 
-                    : 0.1
-              const position: [number, number, number] = [
-                col * distanceBetweenCubes - distanceBetweenCubes, 
-                row * distanceBetweenCubes - distanceBetweenCubes, 
-                z * distanceBetweenCubes - distanceBetweenCubes
-              ];
-              return (
-                <>
-                  {elem === Player.X
-                    || index === hoveredIndex 
-                    && (isXNext && gameState[hoveredIndex] === null) 
-                  ? <Cross
-                    opacity={opacity}
-                    position={position}
-                  />  
-                  : elem === Player.O || index === hoveredIndex  
-                    ? <Circle
-                      opacity={opacity} 
-                      position={position}/> 
-                    : <Box 
-                      opacity={opacity} 
-                      position={position}
-                      color={index === 13 && !isCenterAvailable ? "#000" : "#555"}
-                      />
-                    }
-                </>
-                  
-              )
-            })
-          )
-        )}
-      </group>
-    );
-  }
+const Model3d = () => {
   return (
     <div className="h-[100%] flex flex-auto items-center my-auto justify-center w-[100%] pb-24" >
       <Canvas 
@@ -94,8 +33,8 @@ const TicTacToeGame = () => {
           decay={0} 
           intensity={Math.PI} 
         />
-        <CubeModel/>
-        <OrbitControls 
+        <GameModel/>
+        <OrbitControls
           enablePan={false}
           enableDamping={true}
           autoRotate={true}
@@ -111,4 +50,4 @@ const TicTacToeGame = () => {
   );
 };
 
-export default TicTacToeGame;
+export default Model3d;

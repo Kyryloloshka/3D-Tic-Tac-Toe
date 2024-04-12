@@ -12,7 +12,7 @@ const Home = () => {
       <p className='text-sm tracking-wider text-center max-w-[550px] pb-3'>
         {t("text")}
       </p>
-      <Link href={"/play-game"}> <Button className='px-12 text-md py-5' variant="neon">{t("button")}</Button> </Link>
+      <Link href={"/play-game"}> <Button className='px-12 text-md' variant="neon">{t("button")}</Button> </Link>
     </div>
     <p className="absolute left-3 bottom-2 text-primary-500 text-shadow-neon">0.1.6</p>
   </div>
