@@ -37,7 +37,6 @@ const LeftNavBar = () => {
 
   const saveMovesHistory = () => {
     const json = JSON.stringify(movesHistory);
-    
     const blob = new Blob([json], { type: "application/json" });
     
     const url = URL.createObjectURL(blob);

@@ -8,6 +8,26 @@ const MainDragArea = (props: PropsWithChildren) => {
   const {toast} = useToast();
   const actions = useActionCreators(replayActions);
   const router = useRouter();
+
+  const validateMovesHistory = (movesHistory: any) => {
+    if (!Array.isArray(movesHistory)) {
+      return false;
+    }
+  
+    for (const moves of movesHistory) {
+      if (!Array.isArray(moves) || moves.length !== 27) {
+        return false;
+      }
+      for (const move of moves) {
+        if (move !== null && move !== "X" && move !== "O") {
+          return false;
+        }
+      }
+    }
+  
+    return movesHistory.length <= 27;
+  };
+
   return (
     <main 
       className={`flex-auto relative flex flex-col min-h-full`}
@@ -29,10 +49,17 @@ const MainDragArea = (props: PropsWithChildren) => {
             const reader = new FileReader();
             reader.onload = (event: any) => {
               const content = event.target.result;
-              actions.loadMovesHistory(JSON.parse(content));
+              if (validateMovesHistory(JSON.parse(content))) {
+                actions.loadMovesHistory(JSON.parse(content));
+                router.push("/replay");
+              } else {
+                toast({
+                  title: "This file is not valid",
+                  description: `Please upload a JSON file with a valid format`,
+                })
+              }
             };
             reader.readAsText(file);
-            router.push("/replay");
           } else {
             toast({
               title: "We cannot process this file",
