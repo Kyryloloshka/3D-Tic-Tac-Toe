@@ -41,6 +41,7 @@
     "react-three-fiber": "^6.0.13",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.163.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

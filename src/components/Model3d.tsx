@@ -1,7 +1,7 @@
 "use client";
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei'
+import { Canvas, useThree } from '@react-three/fiber';
 import GameModel from './GameModel';
+import CameraOrbitController from './CameraOrbitController';
 
 const Model3d = () => {
   return (
@@ -34,15 +34,7 @@ const Model3d = () => {
           intensity={Math.PI} 
         />
         <GameModel/>
-        <OrbitControls
-          enablePan={false}
-          enableDamping={true}
-          autoRotate={true}
-          autoRotateSpeed={0.6}
-          maxZoom={15} 
-          minZoom={5} 
-          maxDistance={15} 
-          minDistance={5}  
+        <CameraOrbitController
         />
       </Canvas>
     </div>

@@ -1,8 +1,6 @@
 import { Difficulty, GameStateType, HistoryStep, Player } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-
-
 interface GameState {
   gameState: GameStateType;
   isXNext: boolean;
