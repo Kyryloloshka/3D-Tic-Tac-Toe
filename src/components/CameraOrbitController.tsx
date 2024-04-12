@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useThree } from 'react-three-fiber';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const CameraOrbitController = () => {
   const { camera, gl } = useThree();
