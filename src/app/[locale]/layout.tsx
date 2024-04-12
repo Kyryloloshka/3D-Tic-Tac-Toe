@@ -18,8 +18,6 @@ export default function RootLayout({
   children: React.ReactNode;
   params: {locale: string};
 }>) {
-  
-
   return (
     <Provider store={store}>
       <html lang={params.locale} >

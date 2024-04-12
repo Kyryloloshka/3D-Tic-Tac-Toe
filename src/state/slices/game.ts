@@ -11,7 +11,7 @@ interface GameState {
   isPlayWithBot: boolean;
   botPlayer: Player;
   botDifficulty: Difficulty;
-  historyMoves: HistoryStep[];
+  historyMoves: GameStateType[];
 }
 
 const initialState: GameState = {
@@ -58,7 +58,7 @@ const slice = createSlice({
     setBotDifficulty(state, action: PayloadAction<Difficulty>) {
       state.botDifficulty = action.payload;
     },
-    addToHistory(state, action: PayloadAction<HistoryStep>) {
+    addToHistory(state, action: PayloadAction<GameStateType>) {
       state.historyMoves.push(action.payload);
     },
     clearHistory(state) {

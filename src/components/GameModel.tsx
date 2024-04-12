@@ -11,7 +11,7 @@ const GameModel = () => {
   const pathname = usePathname();
   
   const gameState = pathname.replace(/^\/[a-z]{2}/, '') === "/replay" 
-    ? useStateSelector((state) => state.replay.gameState) 
+    ? useStateSelector((state) => state.replay.gameHistory[state.replay.currentMoveIndex]) 
     : useStateSelector((state) => state.game.gameState);
   
   const isXNext = useStateSelector((state) => state.game.isXNext);

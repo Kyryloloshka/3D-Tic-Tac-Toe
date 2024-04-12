@@ -55,7 +55,7 @@ const PlayGame = () => {
             board[robotMove as number] = botPlayer;
             actions.setGameState(board);
             actions.setIsXNext(botPlayer !== Player.X);
-            actions.addToHistory({ player: botPlayer, index: robotMove });
+            actions.addToHistory(board);
             const newWinner = calculateWinner(board);
             if (newWinner) actions.setWinner(newWinner);
           })
