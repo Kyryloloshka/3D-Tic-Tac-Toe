@@ -7,8 +7,8 @@ import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import LoaderSpinner from "./ui/loader-spinner";
 import { Skeleton } from "./ui/skeleton";
-import { Player } from "@/types";
-import { useActionCreators, useAppDispatch } from "@/state/hooks";
+import { HistoryStep, Player } from "@/types";
+import { useActionCreators, useAppDispatch, useStateSelector } from "@/state/hooks";
 import { gameActions } from "@/state/slices/game";
 
 const ComponentDialogSettings = dynamic(
@@ -22,17 +22,33 @@ const Component2DBoard = dynamic(
 );
 
 const LeftNavBar = () => {
-  const isXNext = useSelector((state: RootState) => state.game.isXNext);
-  const winner = useSelector((state: RootState) => state.game.winner);
-  const firstPlayer = useSelector((state: RootState) => state.game.firstPlayer);
-  
+  const isXNext = useStateSelector((state) => state.game.isXNext);
+  const winner = useStateSelector((state) => state.game.winner);
+  const firstPlayer = useStateSelector((state) => state.game.firstPlayer);
+  const movesHistory = useStateSelector((state) => state.game.historyMoves);
   const actions = useActionCreators(gameActions);
 
   const restartGame = () => {
     actions.setGameState(Array(27).fill(null));
     actions.setIsXNext(firstPlayer === Player.X);
     actions.setWinner(null)
+    actions.clearHistory();
   }
+
+  const saveMovesHistory = () => {
+    const json = JSON.stringify(movesHistory);
+    
+    const blob = new Blob([json], { type: "application/json" });
+    
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "moves-history.json"; 
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   const t = useTranslations("leftNavBar")
   return (
@@ -51,6 +67,11 @@ const LeftNavBar = () => {
         <Button onClick={() => {
           restartGame()
         }} variant="neon">{t("restart")}</Button>
+        {winner && 
+          <Button onClick={() => {
+            saveMovesHistory()
+          }} variant="neon">Save</Button>
+        }
       </div>
       <div className="flex md:flex-col md:gap-6 gap-5 md:px-6 flex-wrap justify-center">
         {[

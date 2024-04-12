@@ -1,10 +1,7 @@
-import { Difficulty, GameStateType, Player } from "@/types";
+import { Difficulty, GameStateType, HistoryStep, Player } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface HistoryStep {
-  player: Player;
-  index: number;
-}
+
 
 interface GameState {
   gameState: GameStateType;

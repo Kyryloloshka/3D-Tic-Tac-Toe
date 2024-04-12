@@ -26,7 +26,6 @@ const Board2D = ({
   const t = useTranslations("board");
   const actions = useActionCreators(gameActions);
 
-
   const handleClick = (index: number) => {
     if (winner) {
       toast({
@@ -36,6 +35,7 @@ const Board2D = ({
           actions.setGameState(Array(27).fill(null));
           actions.setIsXNext(true);
           actions.setWinner(null);
+          actions.clearHistory();
         }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
       });
       return;
@@ -45,13 +45,15 @@ const Board2D = ({
       return; 
     }
     const newBoard = [...gameState];
-    newBoard[boardOrder * 9 + index] = isXNext ? Player.X : Player.O;
+    const player = isXNext ? Player.X : Player.O;
+    newBoard[boardOrder * 9 + index] = player;
+    actions.addToHistory({player, index: boardOrder * 9 + index});
     
     actions.setGameState(newBoard);
     actions.setIsXNext(!isXNext);
 
     const newWinner = calculateWinner(newBoard);
-    actions.setWinner(newWinner);
+    if (newWinner) actions.setWinner(newWinner);
   };
 
   const handlePointerOver = (index: number) => {

@@ -41,6 +41,7 @@ const PlayGame = () => {
           actions.setGameState(Array(27).fill(null));
           actions.setIsXNext(firstPlayer === Player.X);
           actions.setWinner(null);
+          actions.clearHistory();
         }} altText='Restart game'>{t("restart")}</ToastAction>
       })
     }
@@ -49,16 +50,18 @@ const PlayGame = () => {
   useEffect(() => {
     const makeBotMove = async () => {
       if (isPlayWithBot && isXNext === (botPlayer === Player.X) && !winner) {
-        await getBotMove().then((robotMove) => {
-        const board = [...gameState];
-        board[robotMove as number] = botPlayer;
-        actions.setGameState(board);
-        actions.setIsXNext(botPlayer !== Player.X);
-        const newWinner = calculateWinner(board);
-        actions.setWinner(newWinner);
-      })
-    }}
-  
+        await getBotMove()
+          .then((robotMove) => {
+            const board = [...gameState];
+            board[robotMove as number] = botPlayer;
+            actions.setGameState(board);
+            actions.setIsXNext(botPlayer !== Player.X);
+            actions.addToHistory({ player: botPlayer, index: robotMove });
+            const newWinner = calculateWinner(board);
+            if (newWinner) actions.setWinner(newWinner);
+          })
+      }
+    }
     makeBotMove();
   }, [gameState, winner, botPlayer, isXNext, isPlayWithBot, isCenterAvailable])
   

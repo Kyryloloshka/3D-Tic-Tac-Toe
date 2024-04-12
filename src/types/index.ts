@@ -16,3 +16,8 @@ export enum Difficulty {
 }
 
 export type GameStateType = (Player | null)[];
+
+export interface HistoryStep {
+  player: Player;
+  index: number;
+}
