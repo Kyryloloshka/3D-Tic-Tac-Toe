@@ -1,4 +1,4 @@
-import { Difficulty, GameStateType, HistoryStep, Player } from "@/types";
+import { DifficultyEnum, GameStateType, HistoryStep, Player } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface GameState {
@@ -10,7 +10,7 @@ interface GameState {
   isCenterAvailable: boolean;
   isPlayWithBot: boolean;
   botPlayer: Player;
-  botDifficulty: Difficulty;
+  botDifficulty: DifficultyEnum;
   historyMoves: GameStateType[];
 }
 
@@ -23,7 +23,7 @@ const initialState: GameState = {
   isCenterAvailable: true,
   isPlayWithBot: false,
   botPlayer: Player.O,
-  botDifficulty: Difficulty.easy,
+  botDifficulty: DifficultyEnum.easy,
   historyMoves: [],
 };
 
@@ -55,7 +55,7 @@ const slice = createSlice({
     setBotPlayer(state, action: PayloadAction<Player>) {
       state.botPlayer = action.payload;
     },
-    setBotDifficulty(state, action: PayloadAction<Difficulty>) {
+    setBotDifficulty(state, action: PayloadAction<DifficultyEnum>) {
       state.botDifficulty = action.payload;
     },
     addToHistory(state, action: PayloadAction<GameStateType>) {

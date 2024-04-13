@@ -2,7 +2,7 @@
 import { replayActions, useActionCreators, useStateSelector } from '@/state'
 import React, { useEffect, useState } from 'react'
 import * as Slider from '@radix-ui/react-slider';
-import { Label } from './ui/label';
+import { Label } from '../ui/label';
 
 const TopBarControlsReplay = () => {
   const actions = useActionCreators(replayActions);

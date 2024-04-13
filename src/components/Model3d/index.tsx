@@ -1,7 +1,7 @@
 "use client";
 import { Canvas, useThree } from '@react-three/fiber';
-import GameModel from './GameModel';
-import CameraOrbitController from './CameraOrbitController';
+import GameModel from '../GameModel';
+import CameraOrbitController from '../CameraOrbitController';
 
 const Model3d = () => {
   return (

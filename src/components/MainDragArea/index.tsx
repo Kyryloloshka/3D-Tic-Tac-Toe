@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useState } from 'react'
-import { useToast } from './ui/use-toast';
+import { useToast } from '../ui/use-toast';
 import { replayActions, useActionCreators } from '@/state';
 import { useRouter } from 'next/navigation';
 
@@ -50,6 +50,7 @@ const MainDragArea = (props: PropsWithChildren) => {
             reader.onload = (event: any) => {
               const content = event.target.result;
               if (validateMovesHistory(JSON.parse(content))) {
+                actions.clearHistory();
                 actions.loadMovesHistory(JSON.parse(content));
                 router.push("/replay");
               } else {

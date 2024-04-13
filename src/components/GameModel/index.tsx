@@ -1,9 +1,9 @@
 import { useStateSelector } from "@/state";
 import { Player } from "@/types";
 import { useRef } from "react";
-import Cross from "./Cross";
-import Box from "./Box";
-import Circle from "./Circle";
+import Cross from "../Cross";
+import Box from "../Box";
+import Circle from "../Circle";
 import { usePathname, useRouter } from "next/navigation";
 
 const GameModel = () => {

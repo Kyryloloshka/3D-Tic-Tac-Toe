@@ -1,4 +1,4 @@
-import { Difficulty, GameStateType, Player } from "@/types";
+import { DifficultyEnum, GameStateType, Player } from "@/types";
 import { randInt } from "./utils";
 import { store } from "@/state";
 
@@ -104,7 +104,7 @@ export const getBotMove = async () => {
         resolve(botWins);
         return;
       }
-      if (difficulty === Difficulty.easy) {
+      if (difficulty === DifficultyEnum.easy) {
         resolve(randomMove);
         return;
       }
@@ -113,7 +113,7 @@ export const getBotMove = async () => {
         resolve(blockOpponentWinMove);
         return;
       }
-      if (difficulty === Difficulty.medium) {
+      if (difficulty === DifficultyEnum.medium) {
         resolve(randomMove);
         return;
       }
@@ -122,7 +122,7 @@ export const getBotMove = async () => {
         resolve(forkMove);
         return;
       }
-      if (difficulty === Difficulty.hard) {
+      if (difficulty === DifficultyEnum.hard) {
         resolve(randomMove);
         return;
       }
@@ -131,7 +131,7 @@ export const getBotMove = async () => {
         resolve(blockOpponentForkMove);
         return;
       }
-      if (difficulty === Difficulty.expert) {
+      if (difficulty === DifficultyEnum.expert) {
         resolve(randomMove);
         return;
       }

@@ -1,12 +1,12 @@
 "use client"
 import Link from "next/link";
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/types";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import LoaderSpinner from "./ui/loader-spinner";
-import { Skeleton } from "./ui/skeleton";
+import LoaderSpinner from "../ui/loader-spinner";
+import { Skeleton } from "../ui/skeleton";
 import { HistoryStep, Player } from "@/types";
 import { useActionCreators, useAppDispatch, useStateSelector } from "@/state/hooks";
 import { gameActions } from "@/state/slices/game";

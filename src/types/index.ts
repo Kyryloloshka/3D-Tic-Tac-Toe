@@ -8,7 +8,7 @@ export enum Player {
   O = "O",
 }
 
-export enum Difficulty {
+export enum DifficultyEnum {
   easy,
   medium,
   hard,
