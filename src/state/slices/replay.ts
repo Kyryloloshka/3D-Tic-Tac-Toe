@@ -1,5 +1,6 @@
 import { GameStateType, HistoryStep } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { clear } from "console";
 
 interface ReplayState {
   gameHistory: GameStateType[];
@@ -26,6 +27,9 @@ const slice = createSlice({
       if (state.currentMoveIndex === 0) return;
       state.currentMoveIndex -= 1;
     },
+    clearHistory(state) {
+      state.gameHistory = [Array(27).fill(null)];
+      state.currentMoveIndex = 0;
   },
 });
 
