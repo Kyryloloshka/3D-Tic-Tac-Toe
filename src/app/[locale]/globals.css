@@ -442,3 +442,6 @@ body {
     transform: rotate(-30deg);
   }
 }
+.svg-diabled {
+  filter: brightness(0) saturate(100%) invert(46%) sepia(0%) saturate(0%) hue-rotate(104deg) brightness(90%) contrast(83%);
+}

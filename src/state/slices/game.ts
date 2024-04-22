@@ -61,9 +61,6 @@ const slice = createSlice({
     addToHistory(state, action: PayloadAction<GameStateType>) {
       state.historyMoves.push(action.payload);
     },
-    clearHistory(state) {
-      state.historyMoves = [];
-    },
   }
 })
 

@@ -4,8 +4,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import { Provider } from "react-redux";
 import { store } from "@/state/store";
-import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
 import MainDragArea from "@/components/MainDragArea";
 
 export const rubikMonoOne = Rubik_Mono_One({weight: ["400"], subsets: ["latin", "cyrillic"]});

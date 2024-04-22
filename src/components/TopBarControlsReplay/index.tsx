@@ -10,6 +10,7 @@ const TopBarControlsReplay = () => {
   const gameHistory = useStateSelector((state) => state.replay.gameHistory);
   const [isPlaying, setisPlaying] = useState(false);
   const [speedAutoPlay, setSpeedAutoPlay] = useState(1);
+
   const handlePrevMove = () => {
     actions.prevMove()
   }
@@ -43,11 +44,11 @@ const TopBarControlsReplay = () => {
       <h1 className='flex-auto select-none hidden md:block'>Controls</h1>
       <div className="flex gap-x-12 items-center justify-center flex-wrap">
         <div className="flex gap-3">
-          <div onClick={() => handlePrevMove()} className="cursor-pointer hover:scale-110 transition">
-            <img draggable="false" className='h-12 -rotate-90' src="/assets/icons/arrow.svg" alt="prev" />
-          </div>
-          <div onClick={() => handleNextMove()} className="cursor-pointer hover:scale-110 transition">
-            <img draggable="false" className='h-12 rotate-90' src="/assets/icons/arrow.svg" alt="prev" />
+          <div onClick={() => handlePrevMove()} className={`cursor-pointer ${currentMoveIndex !== 0 && "hover:scale-110"} transition`}>
+            <img draggable="false" className={`h-12 -rotate-90 ${currentMoveIndex === 0 && "svg-diabled"}`} src="/assets/icons/arrow.svg" alt="prev" />
+          </div >
+          <div onClick={() => handleNextMove()} className={`cursor-pointer ${currentMoveIndex !== gameHistory.length - 1 && "hover:scale-110"} transition`}>
+            <img draggable="false" className={`h-12 rotate-90 ${currentMoveIndex === gameHistory.length - 1 && "svg-diabled"}`} src="/assets/icons/arrow.svg" alt="prev" />
           </div>
         </div>
         <div onClick={() => toggleIsPlaying()} className="flex gap-1 items-center cursor-pointer hover:scale-[1.03] transition">
@@ -56,7 +57,7 @@ const TopBarControlsReplay = () => {
         </div>
         <div className="flex flex-col items-center justify-center gap-1 py-4">
           <Label htmlFor='slider' className='select-none'>Auto Play Speed</Label>
-          <Slider.Root id='slider' className="SliderRoot w-24" defaultValue={[50]} max={100} onValueChange={handleSpeedChange} step={1}>
+          <Slider.Root disabled={isPlaying} id='slider' className="SliderRoot w-24" defaultValue={[50]} max={100} onValueChange={handleSpeedChange} step={1}>
             <Slider.Track className="SliderTrack">
               <Slider.Range className="SliderRange" />
             </Slider.Track>
