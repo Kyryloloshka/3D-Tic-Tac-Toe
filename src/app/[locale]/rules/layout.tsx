@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import { NextIntlClientProvider, useLocale, useMessages } from "next-intl";
+
+export const metadata: Metadata = {
+  title: "Rules of game 3D Tic Tac Toe",
+  description: "This page contains the rules of the game 3D Tic Tac Toe.",
+};
 
 export default function RulesLayout({
   children,
