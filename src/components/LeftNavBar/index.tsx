@@ -10,6 +10,7 @@ import { Skeleton } from "../ui/skeleton";
 import { HistoryStep, Player } from "@/types";
 import { useActionCreators, useAppDispatch, useStateSelector } from "@/state/hooks";
 import { gameActions } from "@/state/slices/game";
+import { replayActions } from "@/state";
 
 const ComponentDialogSettings = dynamic(
   () => import('@/components/DialogSettings'),
@@ -27,12 +28,13 @@ const LeftNavBar = () => {
   const firstPlayer = useStateSelector((state) => state.game.firstPlayer);
   const movesHistory = useStateSelector((state) => state.game.historyMoves);
   const actions = useActionCreators(gameActions);
+  const actionsReplay = useActionCreators(replayActions);
 
   const restartGame = () => {
     actions.setGameState(Array(27).fill(null));
     actions.setIsXNext(firstPlayer === Player.X);
     actions.setWinner(null)
-    actions.clearHistory();
+    actionsReplay.clearHistory();
   }
 
   const saveMovesHistory = () => {

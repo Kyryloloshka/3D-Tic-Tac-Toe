@@ -27,8 +27,8 @@ const slice = createSlice({
       state.currentMoveIndex -= 1;
     },
     clearHistory(state) {
-      state.gameHistory = [Array(27).fill(null)];
-      state.currentMoveIndex = 0;
+      state.gameHistory = initialState.gameHistory;
+      state.currentMoveIndex = initialState.currentMoveIndex;
     }
   },
 });

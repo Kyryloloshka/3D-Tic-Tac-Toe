@@ -13,6 +13,7 @@ import { calculateWinner, getBotMove } from '@/lib/gameLogic';
 import { Player } from '@/types';
 import { gameActions } from '@/state/slices/game';
 import { useActionCreators, useStateSelector } from '@/state/hooks';
+import { replayActions } from '@/state';
 
 const ComponentPlayGame = dynamic(() => import('@/components/Model3d'), { ssr: false, loading: () => <Loading/>})
 
@@ -28,7 +29,7 @@ const PlayGame = () => {
   const gameState = useSelector((state: RootState) => state.game.gameState);
   const botPlayer = useSelector((state: RootState) => state.game.botPlayer);
   const actions = useActionCreators(gameActions);
-
+  const actionsReplay = useActionCreators(replayActions);
   const status = winner ? `${t("winner")}: ${winner}` : `${t("nextPlayer")}: ${isXNext ? 'X' : 'O'}`;
   
   useEffect(() => {
@@ -40,7 +41,7 @@ const PlayGame = () => {
           actions.setGameState(Array(27).fill(null));
           actions.setIsXNext(firstPlayer === Player.X);
           actions.setWinner(null);
-          actions.clearHistory();
+          actionsReplay.clearHistory();
         }} altText='Restart game'>{t("restart")}</ToastAction>
       })
     }

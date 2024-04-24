@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { gameActions } from '@/state/slices/game';
 import { GameStateType, Player } from '@/types';
 import { useActionCreators, useStateSelector } from '@/state/hooks';
+import { replayActions } from '@/state';
 
 interface Board2DProps {
   boardOrder: number;
@@ -25,6 +26,7 @@ const Board2D = ({
   const botPlayer = useStateSelector((state) => state.game.botPlayer);
   const t = useTranslations("board");
   const actions = useActionCreators(gameActions);
+  const actionsReplay = useActionCreators(replayActions);
 
   const handleClick = (index: number) => {
     if (winner) {
@@ -35,7 +37,7 @@ const Board2D = ({
           actions.setGameState(Array(27).fill(null));
           actions.setIsXNext(true);
           actions.setWinner(null);
-          actions.clearHistory();
+          actionsReplay.clearHistory();
         }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
       });
       return;
