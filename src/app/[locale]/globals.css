@@ -442,6 +442,27 @@ body {
     transform: rotate(-30deg);
   }
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .svg-diabled {
   filter: brightness(0) saturate(100%) invert(46%) sepia(0%) saturate(0%) hue-rotate(104deg) brightness(90%) contrast(83%);
+}
+
+.group-settings:hover .svg-settings {
+  animation: spin 2s linear infinite;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

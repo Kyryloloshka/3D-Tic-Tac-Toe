@@ -97,8 +97,10 @@ const Header = () => {
       
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <div className="flex gap-5 cursor-pointer">
-            <div className="h-8 w-8 rounded-full bg-primary-500"></div>
+          <div className="flex gap-5 cursor-pointer group group-settings">
+            <div className="h-6 w-6 flex-center rounded-full transition svg-settings">
+              <img src="/assets/icons/settings.svg" alt="settings" />
+            </div>
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-dark-2 p-2 mr-3 md:mr-6">

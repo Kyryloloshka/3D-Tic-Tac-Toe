@@ -103,8 +103,7 @@ export const getBotMove = async () => {
       if (botWins) {
         resolve(botWins);
         return;
-      }
-      if (difficulty === DifficultyEnum.easy) {
+      } else if (difficulty === DifficultyEnum.easy) {
         resolve(randomMove);
         return;
       }
@@ -112,8 +111,7 @@ export const getBotMove = async () => {
       if (blockOpponentWinMove) {
         resolve(blockOpponentWinMove);
         return;
-      }
-      if (difficulty === DifficultyEnum.medium) {
+      } else if (difficulty === DifficultyEnum.medium) {
         resolve(randomMove);
         return;
       }
@@ -121,8 +119,7 @@ export const getBotMove = async () => {
       if (forkMove) {
         resolve(forkMove);
         return;
-      }
-      if (difficulty === DifficultyEnum.hard) {
+      } else if (difficulty === DifficultyEnum.hard) {
         resolve(randomMove);
         return;
       }
@@ -130,8 +127,7 @@ export const getBotMove = async () => {
       if (blockOpponentForkMove) {
         resolve(blockOpponentForkMove);
         return;
-      }
-      if (difficulty === DifficultyEnum.expert) {
+      } if (difficulty === DifficultyEnum.expert) {
         resolve(randomMove);
         return;
       }
