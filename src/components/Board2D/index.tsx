@@ -48,7 +48,7 @@ const Board2D = ({
     }
     const newBoard = [...gameState];
     const player = isXNext ? Player.X : Player.O;
-    newBoard[boardOrder * 9 + index] = Player.X;
+    newBoard[boardOrder * 9 + index] = player;
     actions.addToHistory(newBoard);
     
     actions.setGameState(newBoard);
