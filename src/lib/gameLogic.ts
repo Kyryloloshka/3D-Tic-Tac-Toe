@@ -1,6 +1,7 @@
 import { DifficultyEnum, GameStateType, Player } from "@/types";
 import { randInt } from "./utils";
 import { store } from "@/state";
+import { IsCenterAvailable } from "@/components/DialogSettings/_components";
 
 export const calculateWinner = (squares: GameStateType) => {
   const lines = [
@@ -86,6 +87,169 @@ export const getRandomMove = (board: GameStateType, isCenterAvailable: boolean) 
   const randomIndex = Math.floor(Math.random() * availableMoves.length);
   return availableMoves[randomIndex];
 }
+
+// export const getBotMove = async () => {
+//   const state = store.getState();
+//   const board = state.game.gameState;
+//   const player = state.game.botPlayer;
+//   const isCenterAvailable = state.game.isCenterAvailable;
+//   const difficulty = state.game.botDifficulty;
+
+//   return new Promise((resolve: (value: number) => void) => {
+//     const delayOfBotMove = 1;
+
+//     setTimeout(() => {
+//       resolve(getMove(board, player))
+//       return;
+//     }, delayOfBotMove)
+//   })
+// }
+
+const getMove = (board: GameStateType, player: Player) => {
+  const emptyIndices = getEmptyIndices(board);
+
+  if (emptyIndices.length === 0) throw new Error('No empty indices');
+
+  let index: number;
+  const strength: number = 3;
+  switch (strength) {
+    case 1:
+      index = getRandomInt(emptyIndices);
+      break;
+    case 2:
+      index = getWinningMove(board, player, emptyIndices);
+      if (index === -1) index = getRandomInt(emptyIndices);
+      break;
+    case 3:
+      if (emptyIndices.length === 27 || emptyIndices.length === 26) {
+        index = getRandomMove(board, true);
+        break;
+      }
+      const aiWinningMove = getWinningMove(board, player, emptyIndices);
+      if (aiWinningMove !== -1) {
+        index = aiWinningMove;
+        break;
+      }
+      
+      const opponentWinningMove = getWinningMove(
+        board,
+        player === Player.O ? Player.X : Player.O,
+        emptyIndices,
+      );
+      if (opponentWinningMove !== -1) {
+        index = opponentWinningMove;
+        break;
+      }
+      const minimaxMove = performMinimax(board, Math.min(emptyIndices.length, 6), player);
+      index = minimaxMove[0];
+      console.log(minimaxMove[1]);
+      break;
+    default:
+      throw new Error('Invalid strength');
+  }
+
+  if (!emptyIndices.includes(index)) throw new Error('Invalid index');
+  return index;
+}
+
+function getEmptyIndices(board: GameStateType): number[] {
+  return board.flatMap((value, i) => (value === null ? i : []));
+}
+
+function getRandomInt(array: number[]): number {
+  return array[Math.floor(Math.random() * array.length)] as number;
+}
+
+function getWinningMove(
+  board: GameStateType,
+  player: Player,
+  emptyIndices: number[],
+): number {
+  return (
+    emptyIndices.find(
+      (index) => {
+        return checkWinMove(board, index, player)
+      }
+    ) ?? -1
+  );
+}
+
+const getAllWinningMoves = (board: GameStateType, player: Player) => {
+  const emptyIndices = getEmptyIndices(board);
+  return emptyIndices.filter((index) => checkWinMove(board, index, player));
+}
+
+function evaluateGameState(possibleWinner: Player | null): number {
+
+  if (possibleWinner === Player.O) {
+    console.log("evaluateGameState: O wins");
+    
+    return 1;
+  }
+  if (possibleWinner === Player.X) {
+    console.log("evaluateGameState: X wins");
+    return -1;
+  }
+  return 0;
+}
+
+const performMinimax = (
+  state: GameStateType,
+  depth: number,
+  player: Player,
+): [number, number] => {
+  // best is an array [index, score]
+  let best: [number, number];
+
+  if (player === Player.O) {
+      best = [-1, -Infinity];
+  } else {
+      best = [-1, Infinity];
+  }
+  
+ 
+  const possibleWinner = calculateWinner(state);
+  if (depth <= 0 || possibleWinner) {
+      const score = evaluateGameState(possibleWinner);
+      if (score === 1) {
+        console.log("performMinimax: O wins");
+      }
+        
+      return [-1, score];
+  }
+  const allWinningMovesMe =  getAllWinningMoves(state, player)
+  const allWinningMovesOpponent =  getAllWinningMoves(state, player === Player.X ? Player.O : Player.X)
+  const emptyIndices = allWinningMovesMe.length > 0 
+    ? allWinningMovesMe 
+    : allWinningMovesOpponent.length > 0
+      ? allWinningMovesOpponent
+      : getEmptyIndices(state);
+  
+  emptyIndices.forEach((index) => {
+    const newBoard = [...state];
+    newBoard[index] = player;
+    const score = performMinimax(
+      newBoard,
+      depth - 1,
+      player === Player.O ? Player.X : Player.O,
+    );
+
+    score[0] = index;
+
+    if (player === Player.O) {
+      if (score[1] > best[1]) {
+        best = score;
+      }
+    } else {
+      if (score[1] < best[1]) {
+        best = score;
+      }
+    }
+  });
+
+  return best;
+}
+
 
 export const getBotMove = async () => {
   const state = store.getState();

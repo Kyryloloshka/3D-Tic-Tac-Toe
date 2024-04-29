@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useToast } from '../ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
 import { calculateWinner } from '@/lib/gameLogic';
@@ -82,7 +82,7 @@ const Board2D = ({
 
   const renderSquare = (index: number) => {
     return <>
-      {!isCenterAvailable && index === 4 && boardOrder === 1 ?  <div className='w-[33.33%] bg-primary-500 h-[105%]'></div> :
+      {!isCenterAvailable && index === 4 && boardOrder === 1 ?  <div className='w-[33.33%] top-[-2px] relative bg-primary-500 h-[calc(100%+5px)]'></div> :
         <button
           className='w-[33.33%] h-full flex justify-center items-center overflow-hidden relative'
           onClick={() => handleClick(index)}

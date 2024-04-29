@@ -1,7 +1,8 @@
 "use client";
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import GameModel from '../GameModel';
 import CameraOrbitController from '../CameraOrbitController';
+import Effects from '../BgProvider/Effects';
 
 const Model3d = () => {
   return (
@@ -34,8 +35,8 @@ const Model3d = () => {
           intensity={Math.PI} 
         />
         <GameModel/>
-        <CameraOrbitController
-        />
+        <CameraOrbitController/>
+        
       </Canvas>
     </div>
 
