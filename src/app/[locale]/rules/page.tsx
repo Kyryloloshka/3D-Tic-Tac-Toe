@@ -11,7 +11,7 @@ const Rules = () => {
     <div className={`${rubik.className} overflow-hidden text-light-2 flex-auto flex flex-col min-h-full common-container p-3 md:p-6 gap-5 container-restrictive`}>
       <h1 className="text-3xl font-semibold text-shadow-neon text-primary-500 tracking-wide">{t("rulesTitle")}</h1>
       <p className="leading-6 text-lg tracking-wide pb-3">{t("welcomeMessage")}</p>
-      <h3 className="text-2xl font-semibold text-shadow-neon text-primary-500 tracking-wide">{t("gameInstructionsTitle")}</h3>
+      <h2 className="text-2xl font-semibold text-shadow-neon text-primary-500 tracking-wide">{t("gameInstructionsTitle")}</h2>
       <ol className="flex flex-col gap-3 ">
         <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">{t("makeMoves")} </span>{t("makeMovesValue")}</li>
         <li className="tracking-wide"><span className="font-semibold text-shadow-neon text-primary-500">{t("winTheGame")} </span>{t("winTheGameValue")}</li>
