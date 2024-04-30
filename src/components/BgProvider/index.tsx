@@ -20,6 +20,67 @@ function CameraRig() {
 }
 
 const BgProvider = () => {
+  const positionsCrosses = [
+    [-5, 3, -2],
+    [-1, 3.5, -4],
+    [-5, -1, -6],
+    [3, 4, -8],
+    [-2, -1.2, -9],
+    [2, -4, -10],
+    [3, -0.5, -11],
+    [6, -3.5, -6],
+    [6.3, 2, -5],
+    [5, 3, -2],
+    [9, 3.5, -4],
+    [5, -1, -6],
+    [13, 4, -8],
+    [8, -1.2, -9],
+    [12, -4, -10],
+    [13, -0.5, -11],
+    [16, -3.5, -6],
+    [16.3, 2, -5],
+    [-15, 3, -2],
+    [-11, 3.5, -4],
+    [-15, -1, -6],
+    [-7, 4, -8],
+    [-12, -1.2, -9],
+    [-8, -4, -10],
+    [-7, -0.5, -11],
+    [-4, -3.5, -6],
+    [-16.3, 2, -5],
+  ]
+  const positionsCircles = [
+    [-2.8, 1.5, -7],
+    [5, -2.9, -8],
+    [1, 2.1, -10],
+    [1.2, -4.3, -11],
+    [-6, -5, -11],
+    [4, 3, -3],
+    [-2.2, -2.5, -7],
+    [-4, 3, -5],
+    [6, 0, -7],
+    [-5, -3.1, -3],
+    [-12.8, 1.5, -7],
+    [-5, -2.9, -8],
+    [-9, 2.1, -10],
+    [-8.8, -4.3, -11],
+    [-16, -5, -11],
+    [-6, 3, -3],
+    [-12.2, -2.5, -7],
+    [-14, 3, -5],
+    [-4, 0, -7],
+    [-15, -3.1, -3],
+    [7.2, 1.5, -7],
+    [15, -2.9, -8],
+    [11, 2.1, -10],
+    [11.2, -4.3, -11],
+    [4, -5, -11],
+    [14, 3, -3],
+    [-7.8, -2.5, -7],
+    [6, 3, -5],
+    [16, 0, -7],
+    [5, -3.1, -3],
+  ]
   return (
     <div className='absolute overflow-hidden h-full w-full top-0 left-0 z-10 opacity-50 bg-dark-1'>
     {Effects &&
@@ -42,63 +103,12 @@ const BgProvider = () => {
           </group>
         </Environment>
         <Effects />
-        <Cross depthWrite={true} position={[-5, 3, -2]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-1, 3.5, -4]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-5, -1, -6]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[3, 4, -8]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-2, -1.2, -9]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[2, -4, -10]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[3, -0.5, -11]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[6, -3.5, -6]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[6.3, 2, -5]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[5, 3, -2]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[9, 3.5, -4]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[5, -1, -6]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[13, 4, -8]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[8, -1.2, -9]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[12, -4, -10]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[13, -0.5, -11]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[16, -3.5, -6]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[16.3, 2, -5]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-15, 3, -2]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-11, 3.5, -4]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-15, -1, -6]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-7, 4, -8]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-12, -1.2, -9]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-8, -4, -10]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-7, -0.5, -11]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-4, -3.5, -6]} opacity={1} isRotating={false} />
-        <Cross depthWrite={true} position={[-16.3, 2, -5]} opacity={1} isRotating={false} />
-        <Circle position={[-2.8, 1.5, -7]} opacity={1} isRotating={false} />
-        <Circle position={[5, -2.9, -8]} opacity={1} isRotating={false} />
-        <Circle position={[1, 2.1, -10]} opacity={1} isRotating={false} />
-        <Circle position={[1.2, -4.3, -11]} opacity={1} isRotating={false} />
-        <Circle position={[-6, -5, -11]} opacity={1} isRotating={false} />
-        <Circle position={[4, 3, -3]} opacity={1} isRotating={false} />
-        <Circle position={[-2.2, -2.5, -7]} opacity={1} isRotating={false} />
-        <Circle position={[-4, 3, -5]} opacity={1} isRotating={false} />
-        <Circle position={[6, 0, -7]} opacity={1} isRotating={false} />
-        <Circle position={[-5, -3.1, -3]} opacity={1} isRotating={false} />
-        <Circle position={[-12.8, 1.5, -7]} opacity={1} isRotating={false} />
-        <Circle position={[-5, -2.9, -8]} opacity={1} isRotating={false} />
-        <Circle position={[-9, 2.1, -10]} opacity={1} isRotating={false} />
-        <Circle position={[-8.8, -4.3, -11]} opacity={1} isRotating={false} />
-        <Circle position={[-16, -5, -11]} opacity={1} isRotating={false} />
-        <Circle position={[-6, 3, -3]} opacity={1} isRotating={false} />
-        <Circle position={[-12.2, -2.5, -7]} opacity={1} isRotating={false} />
-        <Circle position={[-14, 3, -5]} opacity={1} isRotating={false} />
-        <Circle position={[-4, 0, -7]} opacity={1} isRotating={false} />
-        <Circle position={[-15, -3.1, -3]} opacity={1} isRotating={false} />
-        <Circle position={[7.2, 1.5, -7]} opacity={1} isRotating={false} />
-        <Circle position={[15, -2.9, -8]} opacity={1} isRotating={false} />
-        <Circle position={[11, 2.1, -10]} opacity={1} isRotating={false} />
-        <Circle position={[11.2, -4.3, -11]} opacity={1} isRotating={false} />
-        <Circle position={[4, -5, -11]} opacity={1} isRotating={false} />
-        <Circle position={[14, 3, -3]} opacity={1} isRotating={false} />
-        <Circle position={[-7.8, -2.5, -7]} opacity={1} isRotating={false} />
-        <Circle position={[6, 3, -5]} opacity={1} isRotating={false} />
-        <Circle position={[16, 0, -7]} opacity={1} isRotating={false} />
-        <Circle position={[5, -3.1, -3]} opacity={1} isRotating={false} />
+        {positionsCrosses.map((position, index) => (
+          <Cross key={index} position={position as [number, number, number]} opacity={1} isRotating={false} />
+        ))}
+        {positionsCircles.map((position, index) => (
+          <Circle key={index} position={position as [number, number, number]} opacity={1} isRotating={false} />
+        ))}
         <CameraRig />
         <BakeShadows />
       </Canvas>

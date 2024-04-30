@@ -7,7 +7,7 @@ import BgProvider from '@/components/BgProvider';
 const Home = () => {
   const t = useTranslations("page.home")
   return <div className='flex justify-center items-center min-h-[100%] flex-auto gap-10 p-5 overflow-x-hidden'>
-    <BgProvider />
+    {/* <BgProvider /> */}
     {/* <div className="absolute pointer-events-none top-1/2 left-1/2 text-[7vw] whitespace-nowrap -z-10 opacity-5 -translate-y-[50%] font-semibold -translate-x-[50%]">3D Tic Tac Toe</div> */}
     <div className="flex z-20 pointer-events-none flex-col gap-5 justify-center items-center flex-auto">
       <h1 className='text-[calc(4vw+20px)] font-semibold text-primary-500 text-shadow-neon text-center'>3D Tic Tac Toe</h1>

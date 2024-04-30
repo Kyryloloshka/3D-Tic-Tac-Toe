@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+Sitemap: https://3d-tic-tac-toe-five.vercel.app/sitemap.xml
