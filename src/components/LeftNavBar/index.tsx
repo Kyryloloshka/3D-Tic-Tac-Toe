@@ -50,7 +50,8 @@ const LeftNavBar = () => {
 
   const t = useTranslations("leftNavBar")
   return (
-    <div className="bg-dark-3 pt-3 pb-6 flex flex-col gap-6">
+    
+    <div className="bg-dark-2 border-b-[2px] md:border-r-[2px] border-dark-3 pt-3 pb-6 flex flex-col gap-6">
       <div className="flex flex-col gap-x-3 relative gap-y-2 px-3 md:px-6 pt-2">
         <div className="flex gap-3 justify-between flex-wrap items-center">
           <h3 className="no-wrap select-none whitespace-nowrap uppercase text-sm text-light-2">{

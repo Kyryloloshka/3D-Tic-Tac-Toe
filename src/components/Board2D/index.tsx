@@ -88,6 +88,7 @@ const Board2D = ({
           onClick={() => handleClick(index)}
           onPointerOver={() => handlePointerOver(index)}
           onPointerOut={handlePointerOut}
+          aria-label="make move"
         >
           {isPlayWithBot ? hoveredIndex === boardOrder * 9 + index 
             && gameState[boardOrder * 9 + index] == null ? (

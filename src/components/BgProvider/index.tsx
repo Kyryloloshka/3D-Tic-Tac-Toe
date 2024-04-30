@@ -4,12 +4,7 @@ import Circle from '../Circle3d';
 import Cross from '../Cross3d';
 import { BakeShadows, Environment, Lightformer } from '@react-three/drei'
 import { easing } from 'maath'
-import dynamic from 'next/dynamic';
-
-const Effects = dynamic(
-  () => import('@/components/BgProvider/Effects'),
-  { ssr: false}
-);
+import Effects from '@/components/BgProvider/Effects'
 
 function CameraRig() {
   useFrame((state, delta) => {
@@ -82,7 +77,7 @@ const BgProvider = () => {
     [5, -3.1, -3],
   ]
   return (
-    <div className='absolute overflow-hidden h-full w-full top-0 left-0 z-10 opacity-50 bg-dark-1'>
+    <div className='absolute overflow-hidden h-full w-full top-0 left-0 z-10 opacity-50'>
     {Effects &&
       <Canvas 
         style={{

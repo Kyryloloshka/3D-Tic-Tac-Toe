@@ -161,7 +161,7 @@ select {
 }
 
 body {
-  background-color: var(--dark-4);
+  background-color: var(--dark-2);
   color: rgb(var(--text-color));
   @apply min-h-[100vh] h-[100dvh];
 }
@@ -209,7 +209,7 @@ body {
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-light-2 dark:bg-dark-4;
+    @apply bg-light-2 dark:bg-dark-2;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -408,7 +408,7 @@ body {
   background-color: var(--dark-5);
 }
 .SliderRoot[data-disabled] .SliderTrack {
-  background-color: var(--dark-4);
+  background-color: var(--dark-2);
 }
 .SliderRoot[data-disabled] .SliderRange {
   background-color: var(--dark-5);
