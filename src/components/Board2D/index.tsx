@@ -34,10 +34,7 @@ const Board2D = ({
         title: t("gameAlreadyOveredTitle"),
         description: t("gameAlreadyOveredDescription"),
         action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#AFFFDF]' onClick={() => {
-          actions.setGameState(Array(27).fill(null));
-          actions.setIsXNext(true);
-          actions.setWinner(null);
-          actionsReplay.clearHistory();
+          actions.restartGame();
         }} altText={t("restartGame")}>{t("restartGame")}</ToastAction>
       });
       return;

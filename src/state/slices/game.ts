@@ -61,6 +61,15 @@ const slice = createSlice({
     addToHistory(state, action: PayloadAction<GameStateType>) {
       state.historyMoves.push(action.payload);
     },
+    clearHistory(state) {
+      state.historyMoves = initialState.historyMoves;
+    },
+    restartGame(state) {
+      state.gameState = initialState.gameState;
+      state.isXNext = state.firstPlayer === Player.X;
+      state.winner = initialState.winner;
+      state.historyMoves = initialState.historyMoves;
+    },
   }
 })
 

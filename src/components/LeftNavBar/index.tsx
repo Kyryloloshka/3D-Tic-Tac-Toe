@@ -7,7 +7,6 @@ import { Skeleton } from "../ui/skeleton";
 import { Player } from "@/types";
 import { useActionCreators, useStateSelector } from "@/state/hooks";
 import { gameActions } from "@/state/slices/game";
-import { replayActions } from "@/state";
 
 const ComponentDialogSettings = dynamic(
   () => import('@/components/DialogSettings'),
@@ -22,16 +21,11 @@ const Component2DBoard = dynamic(
 const LeftNavBar = () => {
   const isXNext = useStateSelector((state) => state.game.isXNext);
   const winner = useStateSelector((state) => state.game.winner);
-  const firstPlayer = useStateSelector((state) => state.game.firstPlayer);
   const movesHistory = useStateSelector((state) => state.game.historyMoves);
   const actions = useActionCreators(gameActions);
-  const actionsReplay = useActionCreators(replayActions);
 
   const restartGame = () => {
-    actions.setGameState(Array(27).fill(null));
-    actions.setIsXNext(firstPlayer === Player.X);
-    actions.setWinner(null)
-    actionsReplay.clearHistory();
+    actions.restartGame();
   }
 
   const saveMovesHistory = () => {

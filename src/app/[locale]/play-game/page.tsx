@@ -18,7 +18,7 @@ import { replayActions } from '@/state';
 const ComponentPlayGame = dynamic(() => import('@/components/Model3d'), { ssr: false, loading: () => <Loading />})
 
 const PlayGame = () => {
-  const [showRecomendation, setShowRecomendation] = useState(true)
+  const [isShowRecomendation, setIsShowRecomendation] = useState(true)
   const { toast } = useToast();
   const t = useTranslations("toast");
   const isXNext = useStateSelector((state) => state.game.isXNext);
@@ -37,37 +37,44 @@ const PlayGame = () => {
       toast({
         title: t("gameOver"),
         description: `${status}`,
-        action: <ToastAction className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#75ebbc]' onClick={() => {
-          actions.setGameState(Array(27).fill(null));
-          actions.setIsXNext(firstPlayer === Player.X);
-          actions.setWinner(null);
-          actionsReplay.clearHistory();
-        }} altText='Restart game'>{t("restart")}</ToastAction>
+        action: <ToastAction 
+          className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#75ebbc]' 
+          onClick={handleRestartGame} 
+          altText='Restart game'
+        >{t("restart")}</ToastAction>
       })
     }
   }, [winner])
 
-  useEffect(() => {
-    const makeBotMove = async () => {
-      if (isPlayWithBot && isXNext === (botPlayer === Player.X) && !winner) {
-        await getBotMove()
-          .then((robotMove) => {
-            const board = [...gameState];
-            board[robotMove as number] = botPlayer;
-            actions.setGameState(board);
-            actions.setIsXNext(botPlayer !== Player.X);
-            actions.addToHistory(board);
-            const newWinner = calculateWinner(board);
-            if (newWinner) actions.setWinner(newWinner);
-          })
-      }
+  const handleRestartGame = () => {
+    actions.setGameState(Array(27).fill(null));
+    actions.setIsXNext(firstPlayer === Player.X);
+    actions.setWinner(null);
+    actionsReplay.clearHistory();
+  }
+
+  const makeBotMove = async () => {
+    if (isPlayWithBot && isXNext === (botPlayer === Player.X) && !winner) {
+      await getBotMove()
+        .then((robotMove) => {
+          const board = [...gameState];
+          board[robotMove as number] = botPlayer;
+          actions.setGameState(board);
+          actions.setIsXNext(botPlayer !== Player.X);
+          actions.addToHistory(board);
+          const newWinner = calculateWinner(board);
+          if (newWinner) actions.setWinner(newWinner);
+        })
     }
+  }
+  
+  useEffect(() => {
     makeBotMove();
   }, [gameState, winner, botPlayer, isXNext, isPlayWithBot, isCenterAvailable])
   
   return (
     <div className={`overflow-hidden flex-auto flex flex-col h-full`}>
-      <div className={`${!showRecomendation && "hidden opacity-0"} bg-primary-500 text-center md:hidden md:opacity-0 select-none px-3 text-dark-2 flex gap-3 justify-center items-center`}>For better experience we recommend to open on the big screen <span onClick={() => setShowRecomendation(false)} className="cross"></span></div>
+      <div className={`${!isShowRecomendation && "hidden opacity-0"} bg-primary-500 text-center md:hidden md:opacity-0 select-none px-3 text-dark-2 flex gap-3 justify-center items-center`}>For better experience we recommend to open on the big screen <span onClick={() => setIsShowRecomendation(false)} className="cross"></span></div>
       <div className="flex flex-col md:flex-row h-full flex-auto">
         <LeftNavBar/>
         <ComponentPlayGame/>

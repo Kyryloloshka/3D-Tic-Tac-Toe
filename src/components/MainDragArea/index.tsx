@@ -1,7 +1,7 @@
 "use client"
 import React, { PropsWithChildren, useState } from 'react'
 import { useToast } from '../ui/use-toast';
-import { replayActions, useActionCreators } from '@/state';
+import { replayActions, useActionCreators, useStateSelector } from '@/state';
 import { useRouter } from 'next/navigation';
 
 const MainDragArea = (props: PropsWithChildren) => {
