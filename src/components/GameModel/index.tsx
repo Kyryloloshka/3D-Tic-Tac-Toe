@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Cross from "../Cross3d";
 import Box from "../Box3d";
 import Circle from "../Circle3d";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const GameModel = () => {
   const groupRef = useRef<THREE.Group>(null!)

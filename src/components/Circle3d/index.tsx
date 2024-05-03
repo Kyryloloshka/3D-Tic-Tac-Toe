@@ -9,28 +9,28 @@ interface CircleProps {
 }
 
 const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position, isRotating=true }) => {
-  const torusRef = useRef<THREE.Mesh>(null!);
+  const modelRef = useRef<THREE.Mesh>(null!);
   if (isRotating) {
     useFrame(({ clock }) => {
-      if (torusRef.current) {
-        torusRef.current.rotation.y = clock.elapsedTime * 0.6;
+      if (modelRef.current) {
+        modelRef.current.rotation.y = clock.elapsedTime * 0.6;
       }
     });
   } else {
     useEffect(() => {
-      if (torusRef.current) {
+      if (modelRef.current) {
         const randomRotationX = Math.random() * Math.PI * 2;
         const randomRotationY = Math.random() * Math.PI * 2;
         const randomRotationZ = Math.random() * Math.PI * 2;
-        torusRef.current.rotation.x = randomRotationX;
-        torusRef.current.rotation.y = randomRotationY;
-        torusRef.current.rotation.z = randomRotationZ;
+        modelRef.current.rotation.x = randomRotationX;
+        modelRef.current.rotation.y = randomRotationY;
+        modelRef.current.rotation.z = randomRotationZ;
       }
-    }, [torusRef])
+    }, [modelRef])
   }
   
   return (
-    <mesh ref={torusRef} position={position}>
+    <mesh ref={modelRef} position={position}>
       <torusGeometry args={[0.35, 0.1, 32, 32]} />
       <meshStandardMaterial color={"#b868c8"} transparent={true} opacity={opacity} />
     </mesh>

@@ -2,22 +2,16 @@
 import { Canvas } from '@react-three/fiber';
 import GameModel from '../GameModel';
 import CameraOrbitController from '../CameraOrbitController';
-import Effects from '../BgProvider/Effects';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
+import { Stars } from '@react-three/drei';
 
 const Model3d = () => {
   return (
-    <div className="h-[100%] flex flex-auto items-center my-auto justify-center w-[100%] pb-24" >
+    <div className="min-h-[100%] relative flex flex-auto items-center justify-center w-[100%]" >
       <Canvas 
-        style={{
-          objectPosition: "center",
-          objectFit: "contain", 
-          aspectRatio: "1/1", 
-          maxWidth: "700px", 
-          minHeight: "100%", 
-          overflow: "visible"
-        }} 
+        className='h-[500px] w-full aspect-square md:aspect-[16/9]'
         camera={{
-          position: [0, 4, 5.25], 
+          position: [0, 5, 7.25], 
           near: 0.3 
         }}
       >
@@ -36,7 +30,10 @@ const Model3d = () => {
         />
         <GameModel/>
         <CameraOrbitController/>
-        
+        <EffectComposer>
+          <Bloom mipmapBlur luminanceThreshold={1} radius={0.7} />
+        </EffectComposer>
+        <Stars saturation={0} count={400} speed={0.5} />
       </Canvas>
     </div>
 

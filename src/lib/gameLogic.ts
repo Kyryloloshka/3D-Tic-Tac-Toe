@@ -1,7 +1,6 @@
 import { DifficultyEnum, GameStateType, Player } from "@/types";
 import { randInt } from "./utils";
 import { store } from "@/state";
-import { IsCenterAvailable } from "@/components/DialogSettings/_components";
 
 export const calculateWinner = (squares: GameStateType) => {
   const lines = [
@@ -105,74 +104,74 @@ export const getRandomMove = (board: GameStateType, isCenterAvailable: boolean) 
 //   })
 // }
 
-const getMove = (board: GameStateType, player: Player) => {
-  const emptyIndices = getEmptyIndices(board);
+// const getMove = (board: GameStateType, player: Player) => {
+//   const emptyIndices = getEmptyIndices(board);
 
-  if (emptyIndices.length === 0) throw new Error('No empty indices');
+//   if (emptyIndices.length === 0) throw new Error('No empty indices');
 
-  let index: number;
-  const strength: number = 3;
-  switch (strength) {
-    case 1:
-      index = getRandomInt(emptyIndices);
-      break;
-    case 2:
-      index = getWinningMove(board, player, emptyIndices);
-      if (index === -1) index = getRandomInt(emptyIndices);
-      break;
-    case 3:
-      if (emptyIndices.length === 27 || emptyIndices.length === 26) {
-        index = getRandomMove(board, true);
-        break;
-      }
-      const aiWinningMove = getWinningMove(board, player, emptyIndices);
-      if (aiWinningMove !== -1) {
-        index = aiWinningMove;
-        break;
-      }
+//   let index: number;
+//   const strength: number = 3;
+//   switch (strength) {
+//     case 1:
+//       index = getRandomInt(emptyIndices);
+//       break;
+//     case 2:
+//       index = getWinningMove(board, player, emptyIndices);
+//       if (index === -1) index = getRandomInt(emptyIndices);
+//       break;
+//     case 3:
+//       if (emptyIndices.length === 27 || emptyIndices.length === 26) {
+//         index = getRandomMove(board, true);
+//         break;
+//       }
+//       const aiWinningMove = getWinningMove(board, player, emptyIndices);
+//       if (aiWinningMove !== -1) {
+//         index = aiWinningMove;
+//         break;
+//       }
       
-      const opponentWinningMove = getWinningMove(
-        board,
-        player === Player.O ? Player.X : Player.O,
-        emptyIndices,
-      );
-      if (opponentWinningMove !== -1) {
-        index = opponentWinningMove;
-        break;
-      }
-      const minimaxMove = performMinimax(board, Math.min(emptyIndices.length, 6), player);
-      index = minimaxMove[0];
-      console.log(minimaxMove[1]);
-      break;
-    default:
-      throw new Error('Invalid strength');
-  }
+//       const opponentWinningMove = getWinningMove(
+//         board,
+//         player === Player.O ? Player.X : Player.O,
+//         emptyIndices,
+//       );
+//       if (opponentWinningMove !== -1) {
+//         index = opponentWinningMove;
+//         break;
+//       }
+//       const minimaxMove = performMinimax(board, Math.min(emptyIndices.length, 6), player);
+//       index = minimaxMove[0];
+//       console.log(minimaxMove[1]);
+//       break;
+//     default:
+//       throw new Error('Invalid strength');
+//   }
 
-  if (!emptyIndices.includes(index)) throw new Error('Invalid index');
-  return index;
-}
+//   if (!emptyIndices.includes(index)) throw new Error('Invalid index');
+//   return index;
+// }
 
 function getEmptyIndices(board: GameStateType): number[] {
   return board.flatMap((value, i) => (value === null ? i : []));
 }
 
-function getRandomInt(array: number[]): number {
-  return array[Math.floor(Math.random() * array.length)] as number;
-}
+// function getRandomInt(array: number[]): number {
+//   return array[Math.floor(Math.random() * array.length)] as number;
+// }
 
-function getWinningMove(
-  board: GameStateType,
-  player: Player,
-  emptyIndices: number[],
-): number {
-  return (
-    emptyIndices.find(
-      (index) => {
-        return checkWinMove(board, index, player)
-      }
-    ) ?? -1
-  );
-}
+// function getWinningMove(
+//   board: GameStateType,
+//   player: Player,
+//   emptyIndices: number[],
+// ): number {
+//   return (
+//     emptyIndices.find(
+//       (index) => {
+//         return checkWinMove(board, index, player)
+//       }
+//     ) ?? -1
+//   );
+// }
 
 const getAllWinningMoves = (board: GameStateType, player: Player) => {
   const emptyIndices = getEmptyIndices(board);

@@ -1,12 +1,10 @@
-import React, { useCallback } from 'react'
 import { useToast } from '../ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
 import { calculateWinner } from '@/lib/gameLogic';
 import { useTranslations } from 'next-intl';
 import { gameActions } from '@/state/slices/game';
-import { GameStateType, Player } from '@/types';
+import { Player } from '@/types';
 import { useActionCreators, useStateSelector } from '@/state/hooks';
-import { replayActions } from '@/state';
 
 interface Board2DProps {
   boardOrder: number;
@@ -26,7 +24,6 @@ const Board2D = ({
   const botPlayer = useStateSelector((state) => state.game.botPlayer);
   const t = useTranslations("board");
   const actions = useActionCreators(gameActions);
-  const actionsReplay = useActionCreators(replayActions);
 
   const handleClick = (index: number) => {
     if (winner) {
@@ -111,7 +108,7 @@ const Board2D = ({
   }
 
   return (
-    <div className="relative min-h-[140px] min-w-[140px] h-[20vw] max-h-[180px] max-w-[180px] w-[20vw]">
+    <div className="relative min-h-[140px] min-w-[140px] h-[20vw] max-h-[180px] aspect-square md:max-w-max w-[20vw]">
       <div className="h-[4px] shadow-neon-primary rounded-full w-full bg-primary-500 absolute left-0 top-[33.33%] -translate-y-[2px]"></div>  
       <div className="h-[4px] shadow-neon-primary rounded-full w-full bg-primary-500 absolute left-0 top-[66.66%] -translate-y-[2px]"></div>  
       <div className="w-[4px] shadow-neon-primary rounded-full h-full bg-primary-500 absolute top-0 left-[33.33%] -translate-x-[2px]"></div>  

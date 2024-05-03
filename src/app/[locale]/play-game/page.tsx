@@ -67,7 +67,7 @@ const PlayGame = () => {
         })
     }
   }
-  
+
   useEffect(() => {
     makeBotMove();
   }, [gameState, winner, botPlayer, isXNext, isPlayWithBot, isCenterAvailable])

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from 'react-three-fiber';
 import * as THREE from 'three';
-import Effects from '../BgProvider/Effects';
 
 interface CircleProps {
   opacity?: number;
@@ -39,7 +38,6 @@ const Cross = ({opacity, position, isRotating = true, depthWrite=false}: CircleP
         <boxGeometry args={[1, 0.2, 0.2]} />
         <meshStandardMaterial color={'#58b8a8'} transparent={true} opacity={opacity} depthWrite={depthWrite} />
       </mesh>
-
       {/* Diagonal Arm 2 */}
       <mesh position={[0, 0, -0.0]} rotation={[0, 0, -Math.PI / 4]}>
         <boxGeometry args={[1, 0.2, 0.2]} />
