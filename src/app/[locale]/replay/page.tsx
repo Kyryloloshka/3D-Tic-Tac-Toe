@@ -4,7 +4,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='flex flex-col min-h-full flex-auto'>
+    <div className='flex relative flex-col min-h-full flex-auto'>
       <TopBarControlsReplay/>
       <Model3d/>
     </div>

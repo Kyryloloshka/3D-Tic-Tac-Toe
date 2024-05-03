@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useFrame } from 'react-three-fiber';
 import * as THREE from 'three';
+import Effects from '../BgProvider/Effects';
 
 interface CircleProps {
   opacity?: number;
@@ -10,6 +11,13 @@ interface CircleProps {
 }
 
 const Cross = ({opacity, position, isRotating = true, depthWrite=false}: CircleProps) => {
+  const glowRed = new THREE.MeshBasicMaterial({
+    color: new THREE.Color(0.2, 0.9, 0.7),
+    side: THREE.DoubleSide,
+    transparent: true, 
+    opacity: opacity, 
+    depthWrite: depthWrite
+  })
   const groupRef = useRef<THREE.Group>(null!);
   if (isRotating) {
     useFrame(({ clock }) => {
@@ -30,18 +38,19 @@ const Cross = ({opacity, position, isRotating = true, depthWrite=false}: CircleP
       }
     }, [groupRef])
   }
-
+  console.log(glowRed);
+  
+  
   return (
     <group ref={groupRef} position={position}>
       {/* Diagonal Arm 1 */}
-      <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
+      <mesh material={glowRed} position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
         <boxGeometry args={[1, 0.2, 0.2]} />
-        <meshStandardMaterial color={'#58b8a8'} transparent={true} opacity={opacity} depthWrite={depthWrite} />
       </mesh>
+
       {/* Diagonal Arm 2 */}
-      <mesh position={[0, 0, -0.0]} rotation={[0, 0, -Math.PI / 4]}>
+      <mesh material={glowRed} position={[0, 0, 0]} rotation={[0, 0, -Math.PI / 4]}>
         <boxGeometry args={[1, 0.2, 0.2]} />
-        <meshStandardMaterial color={'#58b8a8'} transparent={true} opacity={opacity} depthWrite={depthWrite} />
       </mesh>
     </group>
   );

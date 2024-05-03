@@ -1,9 +1,13 @@
 import { useRef, useState } from "react";
 import { ThreeElements } from "react-three-fiber";
+import * as THREE from "three";
+
 type ExtendedMeshProps = ThreeElements['mesh'] & {
   color?: string;
   opacity?: number;
 };
+
+
 
 const Box = (props: ExtendedMeshProps) => {
   const meshRef = useRef<THREE.Mesh>(null!);

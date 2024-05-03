@@ -48,6 +48,7 @@
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.163.0",
+    "three-stdlib": "^2.29.11",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

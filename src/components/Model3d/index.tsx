@@ -7,9 +7,9 @@ import { Stars } from '@react-three/drei';
 
 const Model3d = () => {
   return (
-    <div className="min-h-[100%] relative flex flex-auto items-center justify-center w-[100%]" >
+    <div className="min-h-[100%] relative flex flex-auto items-center justify-center w-[100%] md:h-[calc(100dvh-70px)]" >
       <Canvas 
-        className='h-[500px] w-full aspect-square md:aspect-[16/9]'
+        className='h-[500px] w-full aspect-square md:aspect-auto'
         camera={{
           position: [0, 5, 7.25], 
           near: 0.3 
@@ -30,8 +30,8 @@ const Model3d = () => {
         />
         <GameModel/>
         <CameraOrbitController/>
-        <EffectComposer>
-          <Bloom mipmapBlur luminanceThreshold={1} radius={0.7} />
+        <EffectComposer >
+          <Bloom luminanceThreshold={0} mipmapBlur opacity={1.5} radius={0.3} />
         </EffectComposer>
         <Stars saturation={0} count={400} speed={0.5} />
       </Canvas>

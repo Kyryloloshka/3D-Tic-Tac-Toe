@@ -19,7 +19,7 @@ const GameModel = () => {
   const isCenterAvailable = useStateSelector((state) => state.game.isCenterAvailable);
   
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} dispose={null}>
       {Array.from({ length: 3 }, (_, row) =>
         Array.from({ length: 3 }, (_, col) => 
           Array.from({length: 3}, (_, z) => {

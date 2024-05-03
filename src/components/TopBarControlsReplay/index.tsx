@@ -40,7 +40,7 @@ const TopBarControlsReplay = () => {
   }
 
   return (
-    <div className="border-b-[2px] border-dark-3 flex justify-center items-center gap-6 md:px-6 px-3">
+    <div className="border-b-[2px] absolute w-full bg-dark-2 border-dark-3 flex justify-center items-center gap-6 md:px-6 px-3">
       <h1 className='flex-auto select-none hidden md:block'>Controls</h1>
       <div className="flex select-none gap-x-6 items-center justify-center flex-wrap relative h-full">
         <div className="flex gap-3 px-3">
