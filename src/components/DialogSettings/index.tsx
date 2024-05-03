@@ -68,7 +68,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
               <Separator className="col-span-5 w-full bg-dark-5" />
               <BotPlaysAs t={t} setSelectedBotPlayer={setSelectedBotPlayer} selectedIsPlayWithBot={selectedIsPlayWithBot} selectedBotPlayer={selectedBotPlayer} />
               <Separator className="col-span-5 w-full bg-dark-5" />
-              <Difficulty setSelectedDifficulty={setSelectedDifficulty} selectedIsPlayWithBot={selectedIsPlayWithBot} selectedDifficulty={selectedDifficulty}  />
+              <Difficulty t={t} setSelectedDifficulty={setSelectedDifficulty} selectedIsPlayWithBot={selectedIsPlayWithBot} selectedDifficulty={selectedDifficulty}  />
             </div>
           </div>
           <DialogFooter>

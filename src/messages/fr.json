@@ -4,7 +4,7 @@
     "play": "Jouer",
     "rules": "Règles",
     "about": "À propos",
-    "replays": "Replays",
+    "replays": "Rejouer",
     "language": "Langue"
   },
   "page": {
@@ -51,6 +51,11 @@
       "feature4Description": "Tout en adoptant les règles classiques du Tic-Tac-Toe, notre design moderne et notre environnement 3D offrent une expérience rafraîchissante et captivante.",
       "enjoyMessage": "Que vous soyez un joueur expérimenté de Tic-Tac-Toe ou nouveau dans le jeu, le 3D Tic Tac Toe promet une expérience divertissante et stimulante pour les joueurs de tous âges. Plongez dans le monde de la stratégie tridimensionnelle et amusez-vous à jouer au Tic-Tac-Toe comme jamais auparavant !",
       "playGameLink": "Jouer au jeu"
+    },
+    "replays": {
+      "title": "Contrôles",
+      "autoplay": "Lecture automatique",
+      "autoplaySpeed": "Vitesse de lecture automatique"
     }
   },
   "toast": {
@@ -58,7 +63,8 @@
     "winner": "Gagnant",
     "nextPlayer": "Joueur suivant",
     "restart": "Redémarrer",
-    "bot": "Bot"
+    "bot": "Bot",
+    "experience": "Pour une meilleure expérience, nous recommandons d'ouvrir sur un grand écran"
   },
   "leftNavBar": {
     "turn": "Tour",
@@ -68,7 +74,8 @@
     "withBot": "Jouer avec un Bot",
     "topLayer": "Couche supérieure",
     "middleLayer": "Couche intermédiaire",
-    "bottomLayer": "Couche inférieure"
+    "bottomLayer": "Couche inférieure",
+    "save": "Enregistrer"
   },
   "board": {
     "gameAlreadyOveredTitle": "Jeu déjà terminé",
@@ -81,6 +88,13 @@
     "centerAvailable": "Centre disponible",
     "gameWithBot": "Jeu avec bot",
     "botPlaysAs": "Le bot joue comme",
-    "saveAndRestart": "Enregistrer et redémarrer"
+    "saveAndRestart": "Enregistrer et redémarrer",
+    "difficulty": "Difficulté"
+  },
+  "loading": {
+  "loading": "Chargement"
+  },
+  "dragFile": {
+  "dragFile": "Glissez votre fichier ici"
   }
 }

@@ -4,7 +4,7 @@
     "play": "プレイ",
     "rules": "ルール",
     "about": "約",
-    "replays": "Replays",
+    "replays": "リプレイ",
     "language": "言語"
   },
   "page": {
@@ -51,6 +51,11 @@
       "feature4Description": "Tic-Tac-Toeのクラシックなルールを採用しながらも、私たちのモダンなデザインと3Dの設定は、新鮮で魅力的な体験を提供します。",
       "enjoyMessage": "経験豊富なTic-Tac-Toeプレイヤーであっても、初心者であっても、3D Tic Tac Toeはすべての年齢のプレイヤーに楽しく、挑戦的な体験を約束します。立体的な戦略の世界に飛び込んで、今までにないTic-Tac-Toeを楽しんでください！",
       "playGameLink": "ゲームをプレイ"
+    },
+    "replays": {
+      "title": "コントロール",
+      "autoplay": "自動再生",
+      "autoplaySpeed": "自動再生速度"
     }
   },
   "toast": {
@@ -58,7 +63,8 @@
     "winner": "勝者",
     "nextPlayer": "次のプレイヤー",
     "restart": "再起動",
-    "bot": "ボット"
+    "bot": "ボット",
+    "experience": "より良い体験のために、大画面で開くことをお勧めします"
   },
   "leftNavBar": {
     "turn": "ターン",
@@ -68,7 +74,8 @@
     "withBot": "ボットと再生",
     "topLayer": "上位レベル",
     "middleLayer": "中間レベル",
-    "bottomLayer": "下層"
+    "bottomLayer": "下層",
+    "save": "保存"
   },
   "board": {
     "gameAlreadyOveredTitle": "ゲームはすでに終了しました",
@@ -81,6 +88,13 @@
     "centerAvailable": "中心が利用可能",
     "gameWithBot": "ボットとのゲーム",
     "botPlaysAs": "ボットのプレイヤー",
-    "saveAndRestart": "保存して再起動"
+    "saveAndRestart": "保存して再起動",
+    "difficulty": "難易度"
+  },
+  "loading": {
+    "loading": "読み込み中"
+  },
+  "dragFile": {
+    "dragFile": "ここにファイルをドラッグしてください"
   }
 }

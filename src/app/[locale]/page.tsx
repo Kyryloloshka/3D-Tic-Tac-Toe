@@ -18,7 +18,7 @@ const Home = () => {
       </p>
       <Link href={"/play-game"}> <Button className='px-12 text-md pointer-events-auto' variant="neon">{t("button")}</Button> </Link>
     </div>
-    <p className="absolute z-20 left-3 bottom-2 text-primary-500 text-shadow-neon">0.1.6</p>
+    <p className="absolute z-20 left-3 bottom-2 text-primary-500 text-shadow-neon">0.2.0</p>
   </div>
 };
 export default Home

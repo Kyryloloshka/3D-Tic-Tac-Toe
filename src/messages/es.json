@@ -4,7 +4,7 @@
     "play": "Jugar",
     "rules": "Reglas",
     "about": "Acerca de",
-    "replays": "Replays",
+    "replays": "Reproducciones",
     "language": "Idioma"
   },
   "page": {
@@ -51,6 +51,11 @@
       "feature4Description": "Mientras abrazamos las reglas clásicas del Tic-Tac-Toe, nuestro diseño moderno y entorno en 3D ofrecen una experiencia refrescante y atractiva.",
       "enjoyMessage": "Ya seas un jugador experimentado de Tic-Tac-Toe o nuevo en el juego, 3D Tic Tac Toe promete una experiencia entretenida y desafiante para jugadores de todas las edades. ¡Sumérgete en el mundo de la estrategia tridimensional y diviértete jugando Tic-Tac-Toe como nunca antes!",
       "playGameLink": "Jugar Juego"
+    },
+    "replays": {
+      "title": "Controles",
+      "autoplay": "Reproducción automática",
+      "autoplaySpeed": "Velocidad de reproducción automática"
     }
   },
   "toast": {
@@ -58,7 +63,8 @@
     "winner": "Ganador",
     "nextPlayer": "Siguiente Jugador",
     "restart": "Reiniciar",
-    "bot": "Bot"
+    "bot": "Bot",
+    "experience": "Para una mejor experiencia, recomendamos abrir en una pantalla grande"
   },
   "leftNavBar": {
     "turn": "Turno",
@@ -68,7 +74,8 @@
     "withBot": "Jugar con Bot",
     "topLayer": "Capa Superior",
     "middleLayer": "Capa Intermedia",
-    "bottomLayer": "Capa Inferior"
+    "bottomLayer": "Capa Inferior",
+    "save": "Guardar"
   },
   "board": {
     "gameAlreadyOveredTitle": "Juego ya Finalizado",
@@ -79,8 +86,15 @@
     "title": "Configuración del juego",
     "firstMoveFor": "Primer movimiento para",
     "centerAvailable": "Centro disponible",
-    "gameWithBot": "Juego con bot",
-    "botPlaysAs": "El bot juega como",
-    "saveAndRestart": "Guardar y reiniciar"
+    "gameWithBot": "Juego con Bot",
+    "botPlaysAs": "El Bot juega como",
+    "saveAndRestart": "Guardar y reiniciar",
+    "difficulty": "Dificultad"
+  },
+  "loading": {
+    "loading": "Cargando"
+  },
+  "dragFile": {
+    "dragFile": "Arrastra tu archivo aquí"
   }
 }

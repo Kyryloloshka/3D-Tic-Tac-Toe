@@ -38,8 +38,6 @@ const Cross = ({opacity, position, isRotating = true, depthWrite=false}: CircleP
       }
     }, [groupRef])
   }
-  console.log(glowRed);
-  
   
   return (
     <group ref={groupRef} position={position}>

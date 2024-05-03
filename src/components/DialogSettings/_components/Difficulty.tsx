@@ -5,6 +5,7 @@ import { DifficultyEnum } from "@/types";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../ui/tooltip";
 
 export function Difficulty({
+  t,
   selectedIsPlayWithBot,
   selectedDifficulty,
   setSelectedDifficulty
@@ -18,7 +19,7 @@ export function Difficulty({
   
   return <>
     <Label htmlFor="botDifficulty" className="col-span-2">
-      Difficulty
+      {t("difficulty")}
     </Label>
     <Slider.Root onMouseEnter={() => setOpenTipSlider(true)} onMouseLeave={() => setOpenTipSlider(false)} disabled={!selectedIsPlayWithBot} className="SliderRoot col-span-3" defaultValue={[selectedDifficulty * 100 / 3]} onValueChange={handleDifficultyChange} max={100} step={100 / 3}>
       <Slider.Track className="SliderTrack">

@@ -61,6 +61,7 @@ const Header = () => {
   const isLargeScreen = useMediaQuery({ minWidth: 1024 });
   const isMediumScreen = useMediaQuery({ minWidth: 768 });
   const [logoText, setLogoText] = useState("3D Tic tac toe");
+  
   useEffect(() => {
     if (isMediumScreen && !isLargeScreen) {
       setLogoText("3D");

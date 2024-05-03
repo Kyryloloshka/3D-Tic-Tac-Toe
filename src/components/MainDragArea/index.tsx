@@ -3,9 +3,12 @@ import React, { PropsWithChildren, useState } from 'react'
 import { useToast } from '../ui/use-toast';
 import { replayActions, useActionCreators } from '@/state';
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
 const MainDragArea = (props: PropsWithChildren) => {
   const [isDragZone, setIsDropZone] = useState<boolean>(false);
+  const locale = useLocale();
+  const messages = require(`@/messages/${locale}.json`)
   const {toast} = useToast();
   const actions = useActionCreators(replayActions);
   const router = useRouter();
@@ -74,7 +77,7 @@ const MainDragArea = (props: PropsWithChildren) => {
       {props.children}
       <div className={`absolute gap-3 p-5 bg-dark-1/30 top-0 left-0 w-full h-full transition pointer-events-none z-100 flex justify-center items-center opacity-0 ${isDragZone && "opacity-100"}`}>
         <img src="/assets/icons/file.svg" className="h-[calc(2vw+60px)] file-drag" alt="file" />
-        <h2 className="text-2xl text-center text-shadow-neon text-primary-500">Drag your file here</h2>
+        <h2 className="text-2xl text-center text-shadow-neon text-primary-500">{messages.dragFile.dragFile}</h2>
       </div>
     </main>
   )

@@ -63,7 +63,7 @@ const LeftNavBar = () => {
         {winner && 
           <Button onClick={() => {
             saveMovesHistory()
-          }} variant="neon">Save</Button>
+          }} variant="neon">{t("save")}</Button>
         }
       </div>
       <div className="flex md:flex-col md:gap-6 gap-5 md:px-6 flex-wrap justify-center">

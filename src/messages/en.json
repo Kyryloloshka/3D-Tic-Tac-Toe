@@ -51,6 +51,11 @@
       "feature4Description": "While we embrace the classic rules of Tic-Tac-Toe, our modern design and 3D setting offer a refreshing and engaging experience.",
       "enjoyMessage": "Whether you're a seasoned Tic-Tac-Toe player or new to the game, 3D Tic Tac Toe promises an entertaining and challenging experience for players of all ages. Dive into the world of three-dimensional strategy and have fun playing Tic-Tac-Toe like never before!",
       "playGameLink": "Play Game"
+    },
+    "replays": {
+      "title": "Controls",
+      "autoplay": "Auto Play",
+      "autoplaySpeed": "Auto Play Speed"
     }
   },
   "toast": {
@@ -58,7 +63,8 @@
     "winner": "Winner",
     "nextPlayer": "Next Player",
     "restart": "Restart",
-    "bot": "Bot"
+    "bot": "Bot",
+    "experience": "For better experience we recommend to open on the big screen"
   },
   "leftNavBar": {
     "turn": "Turn",
@@ -68,7 +74,8 @@
     "withBot": "Play with Bot",
     "topLayer": "Top layer",
     "middleLayer": "Middle layer",
-    "bottomLayer": "Bottom layer"
+    "bottomLayer": "Bottom layer",
+    "save": "Save"
   },
   "board": {
     "gameAlreadyOveredTitle": "Game Already Overed",
@@ -81,6 +88,13 @@
     "centerAvailable": "Center Available",
     "gameWithBot": "Game with Bot",
     "botPlaysAs": "The Bot Plays as",
-    "saveAndRestart": "Save and restart"
+    "saveAndRestart": "Save and restart",
+    "difficulty": "Difficulty"
+  },
+  "loading": {
+    "loading": "Loading"
+  },
+  "dragFile": {
+    "dragFile": "Drag your file here"
   }
 }
