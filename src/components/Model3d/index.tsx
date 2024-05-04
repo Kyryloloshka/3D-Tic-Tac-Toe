@@ -9,7 +9,7 @@ const Model3d = () => {
   return (
     <div className="min-h-[100%] relative flex flex-auto items-center justify-center w-[100%] md:h-[calc(100dvh-70px)]" >
       <Canvas 
-        className='h-[500px] w-full aspect-square md:aspect-auto'
+        className='h-[500px] w-full aspect-square md:aspect-auto' 
         camera={{
           position: [0, 5, 7.25], 
           near: 0.3 
@@ -26,7 +26,7 @@ const Model3d = () => {
         <pointLight 
           position={[-10, -10, -10]} 
           decay={0} 
-          intensity={Math.PI} 
+          intensity={Math.PI / 2} 
         />
         <GameModel/>
         <CameraOrbitController/>

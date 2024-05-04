@@ -12,7 +12,7 @@ interface CircleProps {
 
 const Cross = ({opacity, position, isRotating = true, depthWrite=false}: CircleProps) => {
   const glowRed = new THREE.MeshBasicMaterial({
-    color: new THREE.Color(0.2, 0.9, 0.7),
+    color: new THREE.Color(0.3, 1, 0.8),
     side: THREE.DoubleSide,
     transparent: true, 
     opacity: opacity, 
