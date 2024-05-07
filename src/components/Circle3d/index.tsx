@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { useFrame } from "react-three-fiber";
-import * as THREE from "three";
 
 interface CircleProps {
   color?: string;
@@ -9,14 +8,7 @@ interface CircleProps {
   isRotating?: boolean;
 }
 
-
 const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position, isRotating=true }) => {
-  const glowPink = new THREE.MeshBasicMaterial({ 
-    color: new THREE.Color(2, 0.4, 1), 
-    toneMapped: false,
-    transparent: true, 
-    opacity: opacity,
-  })
   const modelRef = useRef<THREE.Mesh>(null!);
   if (isRotating) {
     useFrame(({ clock }) => {
@@ -38,8 +30,9 @@ const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position, isRotating=tru
   }
   
   return (
-    <mesh ref={modelRef} material={glowPink} position={position}>
+    <mesh ref={modelRef} position={position}>
       <torusGeometry args={[0.35, 0.1, 32, 32]} />
+      <meshStandardMaterial color={"#b868c8"} transparent={true} opacity={opacity} />
     </mesh>
   );
 };

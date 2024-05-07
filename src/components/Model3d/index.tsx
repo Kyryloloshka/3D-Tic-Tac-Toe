@@ -2,7 +2,6 @@
 import { Canvas } from '@react-three/fiber';
 import GameModel from '../GameModel';
 import CameraOrbitController from '../CameraOrbitController';
-import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { Stars } from '@react-three/drei';
 
 const Model3d = () => {
@@ -30,9 +29,6 @@ const Model3d = () => {
         />
         <GameModel/>
         <CameraOrbitController/>
-        <EffectComposer >
-          <Bloom luminanceThreshold={0} mipmapBlur opacity={1.5} radius={0.3} />
-        </EffectComposer>
         <Stars saturation={0} count={400} speed={0.5} />
       </Canvas>
     </div>
