@@ -30,7 +30,7 @@ const GameModel = () => {
               ? 0.85
                 : index == hoveredIndex || !isCenterAvailable && index == 13
                   ? 0.4 
-                  : 0.1
+                  : 0.2
             const position: [number, number, number] = [
               col * distanceBetweenCubes - distanceBetweenCubes, 
               row * distanceBetweenCubes - distanceBetweenCubes, 
