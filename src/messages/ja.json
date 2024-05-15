@@ -55,7 +55,9 @@
     "replays": {
       "title": "コントロール",
       "autoplay": "自動再生",
-      "autoplaySpeed": "自動再生速度"
+      "autoplaySpeed": "自動再生速度",
+      "noData": "再生するデータがありません",
+      "noDataDesc": "再生するにはここにファイルをドラッグしてください"
     }
   },
   "toast": {

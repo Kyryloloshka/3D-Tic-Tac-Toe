@@ -55,7 +55,9 @@
     "replays": {
       "title": "Contrôles",
       "autoplay": "Lecture automatique",
-      "autoplaySpeed": "Vitesse de lecture automatique"
+      "autoplaySpeed": "Vitesse de lecture automatique",
+      "noData": "Pas de données à lire",
+      "noDataDesc": "Glissez un fichier ici pour le lire"
     }
   },
   "toast": {

@@ -25,7 +25,7 @@ const Model3d = () => {
         <pointLight 
           position={[-10, -10, -10]} 
           decay={0} 
-          intensity={Math.PI / 2} 
+          intensity={Math.PI} 
         />
         <GameModel/>
         <CameraOrbitController/>

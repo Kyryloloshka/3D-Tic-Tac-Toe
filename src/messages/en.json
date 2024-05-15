@@ -55,7 +55,9 @@
     "replays": {
       "title": "Controls",
       "autoplay": "Auto Play",
-      "autoplaySpeed": "Auto Play Speed"
+      "autoplaySpeed": "Auto Play Speed",
+      "noData": "No data to play",
+      "noDataDesc": "Drag a file here to play"
     }
   },
   "toast": {

@@ -55,7 +55,9 @@
     "replays": {
       "title": "Steuerungen",
       "autoplay": "Automatische Wiedergabe",
-      "autoplaySpeed": "Automatische Wiedergabegeschwindigkeit"
+      "autoplaySpeed": "Automatische Wiedergabegeschwindigkeit",
+      "noData": "Keine Daten zum Abspielen",
+      "noDataDesc": "Ziehen Sie eine Datei hierher, um sie abzuspielen"
     }
   },
   "toast": {

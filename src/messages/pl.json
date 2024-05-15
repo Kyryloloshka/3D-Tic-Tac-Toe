@@ -55,7 +55,9 @@
     "replays": {
       "title": "Sterowanie",
       "autoplay": "Automatyczne odtwarzanie",
-      "autoplaySpeed": "Prędkość automatycznego odtwarzania"
+      "autoplaySpeed": "Prędkość automatycznego odtwarzania",
+      "noData": "Brak danych do odtworzenia",
+      "noDataDesc": "Przeciągnij tutaj plik, aby go odtworzyć"
     }
   },
   "toast": {

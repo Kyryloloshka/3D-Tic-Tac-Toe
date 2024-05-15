@@ -55,7 +55,9 @@
     "replays": {
       "title": "Controlos",
       "autoplay": "Reprodução automática",
-      "autoplaySpeed": "Velocidade de reprodução automática"
+      "autoplaySpeed": "Velocidade de reprodução automática",
+      "noData": "Sem dados para reproduzir",
+      "noDataDesc": "Arraste um arquivo aqui para reproduzir"
     }
   },
   "toast": {
