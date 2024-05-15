@@ -85,7 +85,7 @@ const Header = () => {
   };
 
   return (
-    <header className="z-[500] fade-in top-0 sticky min-h-[60px] shadow-primary bg-dark-2 gap-3 flex justify-between items-center px-3 md:px-6 py-2 md:py-3">
+    <header className="z-[500] fade-in top-0 sticky min-h-[40px] md:min-h-[54px] shadow-primary bg-dark-2 gap-3 flex justify-between items-center px-3 md:px-6 py-1 md:py-3">
       <div className="md:hidden z-[502] ml-[-8px]">
         <label className="hamburger" >
           <input type="checkbox" onClick={() => toggleIsOpenBurgerMenu()}/>

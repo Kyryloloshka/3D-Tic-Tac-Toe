@@ -56,7 +56,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
       <DialogContent className={`sm:max-w-[425px] select-none bg-dark-2 shadow-primary border-primary-500/90`}>
         <form onSubmit={submitSettings}>
           <DialogHeader>
-            <DialogTitle className='font-light tracking-wider'>{t("title")}</DialogTitle>
+            <DialogTitle className='font-light text-sm md:text-md tracking-wider pr-3'>{t("title")}</DialogTitle>
           </DialogHeader>
           <div className={`${rubik.className} grid gap-4 py-4`}>
             <div className="grid grid-cols-5 items-center gap-2">
