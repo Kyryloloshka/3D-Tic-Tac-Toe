@@ -17,6 +17,7 @@ import { useActionCreators, useStateSelector } from '@/state/hooks';
 import { gameActions } from '@/state/slices/game';
 import { rubik } from '@/app/[locale]/layout';
 import { BotPlaysAs, Difficulty, FirstMoveFor, IsCenterAvailable, IsPlayWithBot } from './_components';
+import DisplayGame from './_components/DisplayGame';
 
 const DialogSettings = ({restartGame}: {restartGame: Function}) => {
   const firstPlayer = useStateSelector((state) => state.game.firstPlayer);
@@ -24,6 +25,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
   const isPlayWithBot = useStateSelector((state) => state.game.isPlayWithBot);
   const botPlayer = useStateSelector((state) => state.game.botPlayer);
   const botDifficulty = useStateSelector((state) => state.game.botDifficulty);
+  const displayGameAs = useStateSelector((state) => state.game.displayGameAs);
 
   const [open, setOpen] = useState(false);
   const [selectedFirstPlayer, setSelectedFirstPlayer] = useState<Player>(firstPlayer);
@@ -31,6 +33,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
   const [selectedIsPlayWithBot, setSelectedIsPlayWithBot] = useState(isPlayWithBot);
   const [selectedBotPlayer, setSelectedBotPlayer] = useState(botPlayer);
   const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyEnum>(botDifficulty);
+  const [selectedDisplayGameAs, setSelectedDisplayGameAs] = useState(displayGameAs);
 
   const t = useTranslations("settings");
 
@@ -45,6 +48,7 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
     actions.setIsPlayWithBot(selectedIsPlayWithBot);
     actions.setBotPlayer(selectedBotPlayer);
     actions.setBotDifficulty(selectedDifficulty);
+    actions.setDisplayGameAs(selectedDisplayGameAs);
     setOpen(false)
   }
 
@@ -63,6 +67,8 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
               <FirstMoveFor t={t} selectedFirstPlayer={selectedFirstPlayer} setSelectedFirstPlayer={setSelectedFirstPlayer}/>
               <Separator className="col-span-5 w-full bg-dark-5" />
               <IsCenterAvailable t={t} selectedIsCenterAvailable={selectedIsCenterAvailable} setSelectedIsCenterAvailable={setSelectedIsCenterAvailable}  />
+              <Separator className="col-span-5 w-full bg-dark-5" />
+              <DisplayGame t={t} displayGameAs={selectedDisplayGameAs} setDisplayGameAs={setSelectedDisplayGameAs}/>
               <Separator className="col-span-5 w-full bg-dark-5" />
               <IsPlayWithBot t={t} selectedIsPlayWithBot={selectedIsPlayWithBot} setSelectedIsPlayWithBot={setSelectedIsPlayWithBot}/>
               <Separator className="col-span-5 w-full bg-dark-5" />

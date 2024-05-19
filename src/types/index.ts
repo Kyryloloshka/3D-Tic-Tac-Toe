@@ -21,3 +21,8 @@ export interface HistoryStep {
   player: Player;
   index: number;
 }
+
+export enum GameDisplay {
+  Cubes = "Cubes",
+  Planes = "Planes",
+}

@@ -1,10 +1,12 @@
 import { useStateSelector } from "@/state";
-import { Player } from "@/types";
+import { GameDisplay, Player } from "@/types";
 import React, { useRef } from "react";
 import Cross from "../Cross3d";
 import Box from "../Box3d";
 import Circle from "../Circle3d";
 import { usePathname } from "next/navigation";
+import * as THREE from "three";
+import PlanesGameBoard from "./PlanesGameBoard";
 
 const GameModel = () => {
   const groupRef = useRef<THREE.Group>(null!)
@@ -17,20 +19,22 @@ const GameModel = () => {
   const isXNext = useStateSelector((state) => state.game.isXNext);
   const hoveredIndex = useStateSelector((state) => state.game.hoveredIndex);
   const isCenterAvailable = useStateSelector((state) => state.game.isCenterAvailable);
-  
+  const displayGameAs = useStateSelector((state) => state.game.displayGameAs);
+  const distanceBetweenCubes = 1.3;
+
   return (
     <group ref={groupRef} dispose={null}>
+      {displayGameAs === GameDisplay.Planes && <PlanesGameBoard distanceBetweenCubes={distanceBetweenCubes} />}
       {Array.from({ length: 3 }, (_, row) =>
         Array.from({ length: 3 }, (_, col) =>
           Array.from({ length: 3 }, (_, z) => {
             const index = z * 3 + Math.abs(row - 2) * 9 + col;
             const elem = gameState[index];
-            const distanceBetweenCubes = 1.3;
             const opacity = elem != null
               ? 0.85
               : index == hoveredIndex || !isCenterAvailable && index == 13
                 ? 0.4
-                : 0.1;
+                : 0.15;
             const position: [number, number, number] = [
               col * distanceBetweenCubes - distanceBetweenCubes,
               row * distanceBetweenCubes - distanceBetweenCubes,
@@ -44,18 +48,20 @@ const GameModel = () => {
                       opacity={opacity}
                       position={position}
                     />
-                  : elem === Player.O || index === hoveredIndex
+                  : (elem === Player.O || index === hoveredIndex && !isXNext && gameState[hoveredIndex] === null) 
                     ? <Circle
-                        key={`circle-${row}-${col}-${z}`}
-                        opacity={opacity}
-                        position={position}
-                      />
-                    : <Box
+                      key={`circle-${row}-${col}-${z}`}
+                      opacity={opacity}
+                      position={position}
+                    /> 
+                    : (displayGameAs === GameDisplay.Cubes) 
+                      ? <Box
                         key={`box-${row}-${col}-${z}`}
                         opacity={opacity}
                         position={position}
                         color={index === 13 && !isCenterAvailable ? "#000" : "#555"}
-                      />
+                      /> 
+                      : null
                 }
               </React.Fragment>
             );
