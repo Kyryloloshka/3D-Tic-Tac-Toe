@@ -261,7 +261,6 @@ export const getBotMove = async () => {
       const randomMove = getRandomMove(board, isCenterAvailable);
       const botWins = checkWinPlayer(board, player, isCenterAvailable)
       if (botWins !== null) {
-        console.log("Bot wins");
         resolve(botWins);
         return;
       } else if (difficulty === DifficultyEnum.easy) {
@@ -270,7 +269,6 @@ export const getBotMove = async () => {
       }
       const blockOpponentWinMove = checkWinPlayer(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
       if (blockOpponentWinMove !== null) {
-        console.log("Block opponent win");
         resolve(blockOpponentWinMove);
         return;
       } else if (difficulty === DifficultyEnum.medium) {
@@ -279,7 +277,6 @@ export const getBotMove = async () => {
       }
       const forkMove = checkFork(board, player, isCenterAvailable);
       if (forkMove !== null) {
-        console.log("Fork move");
         resolve(forkMove);
         return;
       } else if (difficulty === DifficultyEnum.hard) {
@@ -288,7 +285,6 @@ export const getBotMove = async () => {
       }
       const blockOpponentForkMove = checkFork(board, player === Player.X ? Player.O : Player.X, isCenterAvailable)
       if (blockOpponentForkMove !== null) {
-        console.log("Block opponent fork move");
         resolve(blockOpponentForkMove);
         return;
       } if (difficulty === DifficultyEnum.expert) {
@@ -303,7 +299,6 @@ const checkWinPlayer = (board: GameStateType, player: Player, isCenterAvailable:
   for (let i = 0; i < board.length; i++) {
     if (board[i] === null && (isCenterAvailable || i != 13)) {
       const winMove = checkWinMove(board, i, player);
-      console.log(winMove, i);
       if (winMove !== null) {
         return winMove;
       }
