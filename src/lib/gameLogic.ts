@@ -260,7 +260,8 @@ export const getBotMove = async () => {
     setTimeout(() => {
       const randomMove = getRandomMove(board, isCenterAvailable);
       const botWins = checkWinPlayer(board, player, isCenterAvailable)
-      if (botWins) {
+      if (botWins !== null) {
+        console.log("Bot wins");
         resolve(botWins);
         return;
       } else if (difficulty === DifficultyEnum.easy) {
@@ -268,7 +269,8 @@ export const getBotMove = async () => {
         return;
       }
       const blockOpponentWinMove = checkWinPlayer(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
-      if (blockOpponentWinMove) {
+      if (blockOpponentWinMove !== null) {
+        console.log("Block opponent win");
         resolve(blockOpponentWinMove);
         return;
       } else if (difficulty === DifficultyEnum.medium) {
@@ -276,7 +278,8 @@ export const getBotMove = async () => {
         return;
       }
       const forkMove = checkFork(board, player, isCenterAvailable);
-      if (forkMove) {
+      if (forkMove !== null) {
+        console.log("Fork move");
         resolve(forkMove);
         return;
       } else if (difficulty === DifficultyEnum.hard) {
@@ -284,7 +287,8 @@ export const getBotMove = async () => {
         return;
       }
       const blockOpponentForkMove = checkFork(board, player === Player.X ? Player.O : Player.X, isCenterAvailable)
-      if (blockOpponentForkMove) {
+      if (blockOpponentForkMove !== null) {
+        console.log("Block opponent fork move");
         resolve(blockOpponentForkMove);
         return;
       } if (difficulty === DifficultyEnum.expert) {
@@ -298,12 +302,14 @@ export const getBotMove = async () => {
 const checkWinPlayer = (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
   for (let i = 0; i < board.length; i++) {
     if (board[i] === null && (isCenterAvailable || i != 13)) {
-      const botWinMove = checkWinMove(board, i, player);
-      if (botWinMove) {
-        return botWinMove;
+      const winMove = checkWinMove(board, i, player);
+      console.log(winMove, i);
+      if (winMove !== null) {
+        return winMove;
       }
     }
   }
+  return null
 }
 
 const checkWinMove = (board: GameStateType, move: number, player: Player) => {
