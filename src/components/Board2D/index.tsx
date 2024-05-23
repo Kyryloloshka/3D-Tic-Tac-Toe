@@ -108,7 +108,7 @@ const Board2D = ({
   }
 
   return (
-    <div className="relative min-h-[140px] min-w-[140px] h-[20vw] max-h-[180px] aspect-square md:max-w-max w-[20vw]">
+    <div className="relative min-h-[140px] min-w-[140px] md:h-[calc((100vh-350px)/3)] max-h-[180px] aspect-square md:max-w-max ">
       <div className="h-[4px] shadow-neon-primary rounded-full w-full bg-primary-500 absolute left-0 top-[33.33%] -translate-y-[2px]"></div>  
       <div className="h-[4px] shadow-neon-primary rounded-full w-full bg-primary-500 absolute left-0 top-[66.66%] -translate-y-[2px]"></div>  
       <div className="w-[4px] shadow-neon-primary rounded-full h-full bg-primary-500 absolute top-0 left-[33.33%] -translate-x-[2px]"></div>  
