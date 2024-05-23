@@ -13,7 +13,6 @@ import { calculateWinner, getBotMove } from '@/lib/gameLogic';
 import { Player } from '@/types';
 import { gameActions } from '@/state/slices/game';
 import { useActionCreators, useStateSelector } from '@/state/hooks';
-import { replayActions } from '@/state';
 
 const ComponentPlayGame = dynamic(() => import('@/components/Model3d'), { ssr: false, loading: () => <Loading />})
 
@@ -23,13 +22,11 @@ const PlayGame = () => {
   const t = useTranslations("toast");
   const isXNext = useStateSelector((state) => state.game.isXNext);
   const winner = useSelector((state: RootState) => state.game.winner);
-  const firstPlayer = useSelector((state: RootState) => state.game.firstPlayer);
   const isCenterAvailable = useSelector((state: RootState) => state.game.isCenterAvailable);
   const isPlayWithBot = useSelector((state: RootState) => state.game.isPlayWithBot);
   const gameState = useSelector((state: RootState) => state.game.gameState);
   const botPlayer = useSelector((state: RootState) => state.game.botPlayer);
   const actions = useActionCreators(gameActions);
-  const actionsReplay = useActionCreators(replayActions);
   const status = winner ? `${t("winner")}: ${winner}` : `${t("nextPlayer")}: ${isXNext ? 'X' : 'O'}`;
   
   useEffect(() => {
@@ -39,19 +36,14 @@ const PlayGame = () => {
         description: `${status}`,
         action: <ToastAction 
           className='px-3 py-1 rounded-md border border-input shadow-sm hover:shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] transition hover:border-[#AFFFDF] hover:text-[#75ebbc]' 
-          onClick={handleRestartGame} 
+          onClick={
+            actions.restartGame
+          } 
           altText='Restart game'
         >{t("restart")}</ToastAction>
       })
     }
   }, [winner])
-
-  const handleRestartGame = () => {
-    actions.setGameState(Array(27).fill(null));
-    actions.setIsXNext(firstPlayer === Player.X);
-    actions.setWinner(null);
-    actionsReplay.clearHistory();
-  }
 
   const makeBotMove = async () => {
     if (isPlayWithBot && isXNext === (botPlayer === Player.X) && !winner) {
