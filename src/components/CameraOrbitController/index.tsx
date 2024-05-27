@@ -13,7 +13,7 @@ const CameraOrbitController = () => {
     if (!ctrl) return;
     ctrl.enablePan = false;
     ctrl.enableDamping = true;
-    ctrl.autoRotate = true;
+    // ctrl.autoRotate = true;
     ctrl.autoRotateSpeed = rotationSpeed; 
     ctrl.maxZoom = 15;
     ctrl.minZoom = 5;

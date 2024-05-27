@@ -87,34 +87,54 @@ export const getRandomMove = (board: GameStateType, isCenterAvailable: boolean) 
   return availableMoves[randomIndex];
 }
 
-// export const getBotMove = async () => {
-//   const state = store.getState();
-//   const board = state.game.gameState;
-//   const player = state.game.botPlayer;
-//   const isCenterAvailable = state.game.isCenterAvailable;
-//   const difficulty = state.game.botDifficulty;
+export const getBotMove = async () => {
+  const state = store.getState();
+  const board = state.game.gameState;
+  const player = state.game.botPlayer;
+  // const isCenterAvailable = state.game.isCenterAvailable;
+  const difficulty = state.game.botDifficulty;
 
-//   const delayOfBotMove = 500;
+  const delayOfBotMove = 500;
 
-//   const move = await getMove(board, player)
+  const move = await new Promise<number>((resolve) => {
+    setTimeout(() => {
+      resolve(getMove(board, player, difficulty));
+    }, delayOfBotMove);
+  });
 
-//   return move;
-// };
+  return move;
+};
 
-const getMove = async (board: GameStateType, player: Player) => {
+const getMove = (board: GameStateType, player: Player, difficulty: DifficultyEnum) => {
   const emptyIndices = getEmptyIndices(board);
 
   if (emptyIndices.length === 0) throw new Error('No empty indices');
 
   let index: number;
-  const strength: number = 3;
+  let strength: number;
+  switch (difficulty) {
+    case DifficultyEnum.easy:
+      strength = 1
+      break;
+    case DifficultyEnum.medium:
+      strength = 2
+      break;  
+    case DifficultyEnum.hard:
+    case DifficultyEnum.expert:
+      strength = 3
+      break;
+    default:
+      strength = 1
+      break;
+  }
+  console.log(strength);
   switch (strength) {
     case 1:
-      index = getRandomInt(emptyIndices);
+      index = getRandomMove(board, true);
       break;
     case 2:
       index = getWinningMove(board, player, emptyIndices);
-      if (index === -1) index = getRandomInt(emptyIndices);
+      if (index === -1) index = getRandomMove(board, true);
       break;
     case 3:
       if (emptyIndices.length === 27 || emptyIndices.length === 26) {
@@ -136,14 +156,15 @@ const getMove = async (board: GameStateType, player: Player) => {
         index = opponentWinningMove;
         break;
       }
-      const minimaxMove = await performMinimax(board, Math.min(emptyIndices.length, 6), player);
+      const depth = difficulty === DifficultyEnum.hard ? 4 : 6;
+      const minimaxMove = performMinimax(board, Math.min(emptyIndices.length, depth), player);
       index = minimaxMove[0];
       console.log(minimaxMove[1]);
       break;
     default:
       throw new Error('Invalid strength');
   }
-  
+
   if (!emptyIndices.includes(index)) throw new Error('Invalid index');
   return index;
 }
@@ -152,9 +173,9 @@ function getEmptyIndices(board: GameStateType): number[] {
   return board.flatMap((value, i) => (value === null ? i : []));
 }
 
-function getRandomInt(array: number[]): number {
-  return array[Math.floor(Math.random() * array.length)] as number;
-}
+// function getRandomInt(array: number[]): number {
+//   return array[Math.floor(Math.random() * array.length)] as number;
+// }
 
 function getWinningMove(
   board: GameStateType,
@@ -189,11 +210,11 @@ function evaluateGameState(possibleWinner: Player | null): number {
   return 0;
 }
 
-const performMinimax = async (
+const performMinimax = (
   state: GameStateType,
   depth: number,
   player: Player,
-): Promise<[number, number]> => {
+): [number, number] => {
   // best is an array [index, score]
   let best: [number, number];
 
@@ -221,17 +242,17 @@ const performMinimax = async (
       ? allWinningMovesOpponent
       : getEmptyIndices(state);
   
-  for (const index of emptyIndices) {
+  emptyIndices.forEach((index) => {
     const newBoard = [...state];
     newBoard[index] = player;
-    const score = await performMinimax(
+    const score = performMinimax(
       newBoard,
       depth - 1,
       player === Player.O ? Player.X : Player.O,
     );
-  
+
     score[0] = index;
-  
+
     if (player === Player.O) {
       if (score[1] > best[1]) {
         best = score;
@@ -241,71 +262,70 @@ const performMinimax = async (
         best = score;
       }
     }
-  }
+  });
 
   return best;
 }
 
 
-export const getBotMove = async () => {
-  const state = store.getState();
-  const board = state.game.gameState;
-  const player = state.game.botPlayer;
-  const isCenterAvailable = state.game.isCenterAvailable;
-  const difficulty = state.game.botDifficulty;
+// export const getBotMove = async () => {
+//   const state = store.getState();
+//   const board = state.game.gameState;
+//   const player = state.game.botPlayer;
+//   const isCenterAvailable = state.game.isCenterAvailable;
+//   const difficulty = state.game.botDifficulty;
 
-  return new Promise((resolve: (value: number) => void) => {
-    const delayOfBotMove = 1000;
+//   return new Promise((resolve: (value: number) => void) => {
+//     const delayOfBotMove = 1000;
 
-    setTimeout(() => {
-      const randomMove = getRandomMove(board, isCenterAvailable);
-      const botWins = checkWinPlayer(board, player, isCenterAvailable)
-      if (botWins !== null) {
-        resolve(botWins);
-        return;
-      } else if (difficulty === DifficultyEnum.easy) {
-        resolve(randomMove);
-        return;
-      }
-      const blockOpponentWinMove = checkWinPlayer(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
-      if (blockOpponentWinMove !== null) {
-        resolve(blockOpponentWinMove);
-        return;
-      } else if (difficulty === DifficultyEnum.medium) {
-        resolve(randomMove);
-        return;
-      }
-      const forkMove = checkFork(board, player, isCenterAvailable);
-      if (forkMove !== null) {
-        resolve(forkMove);
-        return;
-      } else if (difficulty === DifficultyEnum.hard) {
-        resolve(randomMove);
-        return;
-      }
-      const blockOpponentForkMove = checkFork(board, player === Player.X ? Player.O : Player.X, isCenterAvailable)
-      if (blockOpponentForkMove !== null) {
-        resolve(blockOpponentForkMove);
-        return;
-      } if (difficulty === DifficultyEnum.expert) {
-        resolve(randomMove);
-        return;
-      }
-    }, delayOfBotMove); 
-  });
-}
+//     setTimeout(() => {
+//       const randomMove = getRandomMove(board, isCenterAvailable);
+//       const botWins = checkWinPlayer(board, player, isCenterAvailable)
+//       if (botWins) {
+//         resolve(botWins);
+//         return;
+//       } else if (difficulty === DifficultyEnum.easy) {
+//         resolve(randomMove);
+//         return;
+//       }
+//       const blockOpponentWinMove = checkWinPlayer(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
+//       if (blockOpponentWinMove) {
+//         resolve(blockOpponentWinMove);
+//         return;
+//       } else if (difficulty === DifficultyEnum.medium) {
+//         resolve(randomMove);
+//         return;
+//       }
+//       const forkMove = checkFork(board, player, isCenterAvailable);
+//       if (forkMove) {
+//         resolve(forkMove);
+//         return;
+//       } else if (difficulty === DifficultyEnum.hard) {
+//         resolve(randomMove);
+//         return;
+//       }
+//       const blockOpponentForkMove = checkFork(board, player === Player.X ? Player.O : Player.X, isCenterAvailable)
+//       if (blockOpponentForkMove) {
+//         resolve(blockOpponentForkMove);
+//         return;
+//       } if (difficulty === DifficultyEnum.expert) {
+//         resolve(randomMove);
+//         return;
+//       }
+//     }, delayOfBotMove); 
+//   });
+// }
 
-const checkWinPlayer = (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
-  for (let i = 0; i < board.length; i++) {
-    if (board[i] === null && (isCenterAvailable || i != 13)) {
-      const winMove = checkWinMove(board, i, player);
-      if (winMove !== null) {
-        return winMove;
-      }
-    }
-  }
-  return null
-}
+// const checkWinPlayer = (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
+//   for (let i = 0; i < board.length; i++) {
+//     if (board[i] === null && (isCenterAvailable || i != 13)) {
+//       const botWinMove = checkWinMove(board, i, player);
+//       if (botWinMove) {
+//         return botWinMove;
+//       }
+//     }
+//   }
+// }
 
 const checkWinMove = (board: GameStateType, move: number, player: Player) => {
   const newBoard = [...board];
@@ -314,26 +334,26 @@ const checkWinMove = (board: GameStateType, move: number, player: Player) => {
   return winner === player ? move : null;
 };
 
-const checkFork = (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
-  const forkMoves = [];
-  for (let i = 0; i < board.length; i++) {
-    if (board[i] === null && (isCenterAvailable || i != 13)) {
-      const newBoard = [...board];
-      newBoard[i] = player;
-      let winCases = 0
-      for (let j = 0; j < newBoard.length; j++) {
-        if (newBoard[j] == null && (isCenterAvailable || j != 13)) {
-          if (checkWinMove(newBoard, j, player)) {
-            winCases++
-          }
-        }
-      }
-      if (winCases >= 2) {
-        forkMoves.push(i);
-      }
-    }
-  }
-  // console.log(forkMoves);
+// const checkFork = (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
+//   const forkMoves = [];
+//   for (let i = 0; i < board.length; i++) {
+//     if (board[i] === null && (isCenterAvailable || i != 13)) {
+//       const newBoard = [...board];
+//       newBoard[i] = player;
+//       let winCases = 0
+//       for (let j = 0; j < newBoard.length; j++) {
+//         if (newBoard[j] == null && (isCenterAvailable || j != 13)) {
+//           if (checkWinMove(newBoard, j, player)) {
+//             winCases++
+//           }
+//         }
+//       }
+//       if (winCases >= 2) {
+//         forkMoves.push(i);
+//       }
+//     }
+//   }
+//   // console.log(forkMoves);
 
-  return forkMoves.length >=1 ? forkMoves[randInt(0, forkMoves.length-1)] : null;
-}
+//   return forkMoves.length >=1 ? forkMoves[randInt(0, forkMoves.length-1)] : null;
+// }
