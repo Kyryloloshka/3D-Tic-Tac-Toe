@@ -12,7 +12,7 @@ const GameModel = () => {
   const groupRef = useRef<THREE.Group>(null!)
   const pathname = usePathname();
   
-  const gameState = pathname.replace(/^\/[a-z]{2}/, '') === "/replay" 
+  const gameState = pathname?.replace(/^\/[a-z]{2}/, '') === "/replay" 
     ? useStateSelector((state) => state.replay.gameHistory[state.replay.currentMoveIndex]) 
     : useStateSelector((state) => state.game.gameState);
   

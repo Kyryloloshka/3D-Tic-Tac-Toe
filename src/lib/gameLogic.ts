@@ -1,6 +1,4 @@
 import { DifficultyEnum, GameStateType, Player } from "@/types";
-import { randInt } from "./utils";
-import { store } from "@/state";
 
 export const calculateWinner = (squares: GameStateType) => {
   const lines = [
@@ -87,13 +85,11 @@ export const getRandomMove = (board: GameStateType, isCenterAvailable: boolean) 
   return availableMoves[randomIndex];
 }
 
-export const getBotMove = async () => {
-  const state = store.getState();
-  const board = state.game.gameState;
-  const player = state.game.botPlayer;
-  // const isCenterAvailable = state.game.isCenterAvailable;
-  const difficulty = state.game.botDifficulty;
-
+export const getBotMove = async ({board, player, difficulty}: {
+  board: GameStateType;
+  player: Player;
+  difficulty: DifficultyEnum;
+}) => {
   const delayOfBotMove = 500;
 
   const move = await new Promise<number>((resolve) => {

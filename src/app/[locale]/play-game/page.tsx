@@ -13,6 +13,7 @@ import { calculateWinner, getBotMove } from '@/lib/gameLogic';
 import { Player } from '@/types';
 import { gameActions } from '@/state/slices/game';
 import { useActionCreators, useStateSelector } from '@/state/hooks';
+import { fetchBotMove } from '@/lib/api';
 
 const ComponentPlayGame = dynamic(() => import('@/components/Model3d'), { ssr: false, loading: () => <Loading />})
 
@@ -27,6 +28,7 @@ const PlayGame = () => {
   const gameState = useSelector((state: RootState) => state.game.gameState);
   const botPlayer = useSelector((state: RootState) => state.game.botPlayer);
   const actions = useActionCreators(gameActions);
+  const difficulty = useSelector((state: RootState) => state.game.botDifficulty);
   const status = winner ? `${t("winner")}: ${winner}` : `${t("nextPlayer")}: ${isXNext ? 'X' : 'O'}`;
   
   useEffect(() => {
@@ -47,8 +49,14 @@ const PlayGame = () => {
 
   const makeBotMove = async () => {
     if (isPlayWithBot && isXNext === (botPlayer === Player.X) && !winner) {
-      await getBotMove()
-        .then((robotMove) => {
+      try {
+        const robotMove = await fetchBotMove(
+          gameState,
+          botPlayer,
+          difficulty
+        );
+        console.log('robotMove:', robotMove);
+        if (robotMove !== -1) {
           const board = [...gameState];
           board[robotMove as number] = botPlayer;
           actions.setGameState(board);
@@ -56,7 +64,10 @@ const PlayGame = () => {
           actions.addToHistory(board);
           const newWinner = calculateWinner(board);
           if (newWinner) actions.setWinner(newWinner);
-        })
+        }
+      } catch (error) {
+        console.error('Error making bot move:', error);
+      }
     }
   }
 
