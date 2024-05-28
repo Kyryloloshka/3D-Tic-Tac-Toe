@@ -68,8 +68,8 @@ const DialogSettings = ({restartGame}: {restartGame: Function}) => {
             <div className="grid grid-cols-5 items-center gap-2">
               <FirstMoveFor t={t} selectedFirstPlayer={selectedFirstPlayer} setSelectedFirstPlayer={setSelectedFirstPlayer}/>
               <Separator className="col-span-5 w-full bg-dark-5" />
-              <IsCenterAvailable t={t} selectedIsCenterAvailable={selectedIsCenterAvailable} setSelectedIsCenterAvailable={setSelectedIsCenterAvailable}  />
-              <Separator className="col-span-5 w-full bg-dark-5" />
+              {/* <IsCenterAvailable t={t} selectedIsCenterAvailable={selectedIsCenterAvailable} setSelectedIsCenterAvailable={setSelectedIsCenterAvailable}  />
+              <Separator className="col-span-5 w-full bg-dark-5" /> */}
               <DisplayGame t={t} displayGameAs={selectedDisplayGameAs} setDisplayGameAs={setSelectedDisplayGameAs}/>
               <Separator className="col-span-5 w-full bg-dark-5" />
               <IsPlayWithBot t={t} selectedIsPlayWithBot={selectedIsPlayWithBot} setSelectedIsPlayWithBot={setSelectedIsPlayWithBot}/>

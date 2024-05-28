@@ -173,10 +173,6 @@ function getEmptyIndices(board: GameStateType): number[] {
   return board.flatMap((value, i) => (value === null ? i : []));
 }
 
-// function getRandomInt(array: number[]): number {
-//   return array[Math.floor(Math.random() * array.length)] as number;
-// }
-
 function getWinningMove(
   board: GameStateType,
   player: Player,
@@ -196,16 +192,15 @@ const getAllWinningMoves = (board: GameStateType, player: Player) => {
   return emptyIndices.filter((index) => checkWinMove(board, index, player));
 }
 
-function evaluateGameState(possibleWinner: Player | null): number {
+function evaluateGameState(possibleWinner: Player | null, depth: number): number {
 
   if (possibleWinner === Player.O) {
     // console.log("evaluateGameState: O wins");
-    
-    return 1;
+    return depth+1;
   }
   if (possibleWinner === Player.X) {
     // console.log("evaluateGameState: X wins");
-    return -1;
+    return -depth-1;
   }
   return 0;
 }
@@ -227,7 +222,7 @@ const performMinimax = (
  
   const possibleWinner = calculateWinner(state);
   if (depth <= 0 || possibleWinner) {
-      const score = evaluateGameState(possibleWinner);
+      const score = evaluateGameState(possibleWinner, depth);
       if (score === 1) {
         // console.log("performMinimax: O wins");
       }
@@ -268,92 +263,9 @@ const performMinimax = (
 }
 
 
-// export const getBotMove = async () => {
-//   const state = store.getState();
-//   const board = state.game.gameState;
-//   const player = state.game.botPlayer;
-//   const isCenterAvailable = state.game.isCenterAvailable;
-//   const difficulty = state.game.botDifficulty;
-
-//   return new Promise((resolve: (value: number) => void) => {
-//     const delayOfBotMove = 1000;
-
-//     setTimeout(() => {
-//       const randomMove = getRandomMove(board, isCenterAvailable);
-//       const botWins = checkWinPlayer(board, player, isCenterAvailable)
-//       if (botWins) {
-//         resolve(botWins);
-//         return;
-//       } else if (difficulty === DifficultyEnum.easy) {
-//         resolve(randomMove);
-//         return;
-//       }
-//       const blockOpponentWinMove = checkWinPlayer(board, player === Player.X ? Player.O : Player.X, isCenterAvailable);
-//       if (blockOpponentWinMove) {
-//         resolve(blockOpponentWinMove);
-//         return;
-//       } else if (difficulty === DifficultyEnum.medium) {
-//         resolve(randomMove);
-//         return;
-//       }
-//       const forkMove = checkFork(board, player, isCenterAvailable);
-//       if (forkMove) {
-//         resolve(forkMove);
-//         return;
-//       } else if (difficulty === DifficultyEnum.hard) {
-//         resolve(randomMove);
-//         return;
-//       }
-//       const blockOpponentForkMove = checkFork(board, player === Player.X ? Player.O : Player.X, isCenterAvailable)
-//       if (blockOpponentForkMove) {
-//         resolve(blockOpponentForkMove);
-//         return;
-//       } if (difficulty === DifficultyEnum.expert) {
-//         resolve(randomMove);
-//         return;
-//       }
-//     }, delayOfBotMove); 
-//   });
-// }
-
-// const checkWinPlayer = (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
-//   for (let i = 0; i < board.length; i++) {
-//     if (board[i] === null && (isCenterAvailable || i != 13)) {
-//       const botWinMove = checkWinMove(board, i, player);
-//       if (botWinMove) {
-//         return botWinMove;
-//       }
-//     }
-//   }
-// }
-
 const checkWinMove = (board: GameStateType, move: number, player: Player) => {
   const newBoard = [...board];
   newBoard[move] = player; 
   const winner = calculateWinner(newBoard);
   return winner === player ? move : null;
 };
-
-// const checkFork = (board: GameStateType, player: Player, isCenterAvailable: boolean) => {
-//   const forkMoves = [];
-//   for (let i = 0; i < board.length; i++) {
-//     if (board[i] === null && (isCenterAvailable || i != 13)) {
-//       const newBoard = [...board];
-//       newBoard[i] = player;
-//       let winCases = 0
-//       for (let j = 0; j < newBoard.length; j++) {
-//         if (newBoard[j] == null && (isCenterAvailable || j != 13)) {
-//           if (checkWinMove(newBoard, j, player)) {
-//             winCases++
-//           }
-//         }
-//       }
-//       if (winCases >= 2) {
-//         forkMoves.push(i);
-//       }
-//     }
-//   }
-//   // console.log(forkMoves);
-
-//   return forkMoves.length >=1 ? forkMoves[randInt(0, forkMoves.length-1)] : null;
-// }
