@@ -57,7 +57,7 @@ const Header = () => {
   const pathname = usePathname();
   const localeActive = useLocale()
   const locale = useLocale();
-  // const messages = require(`@/messages/${locale}.json`)
+  const messages = require(`@/messages/${locale}.json`)
   const isLargeScreen = useMediaQuery({ minWidth: 1024 });
   const isMediumScreen = useMediaQuery({ minWidth: 768 });
   const [logoText, setLogoText] = useState("3D Tic tac toe");
@@ -103,7 +103,7 @@ const Header = () => {
           return (
             <li onClick={handleCloseBurgerMenu} className="relative" key={link.label}>
               <Link draggable="false" className={`link-underline capitalize md:text-[16px] text-xl ${isActive && "text-primary-500 before:left-0 before:w-full"}`} href={link.route}>
-                {/* {messages.navigation[link.translateKey]} */}
+                {messages.navigation[link.translateKey]}
               </Link>
             </li>
           )
@@ -120,7 +120,7 @@ const Header = () => {
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-dark-2 p-2 mr-3 md:mr-6 z-[501] flex flex-col gap-1">
-          {/* <DropdownMenuItem>{messages.navigation.language}</DropdownMenuItem> */}
+          <DropdownMenuItem>{messages.navigation.language}</DropdownMenuItem>
           <DropdownMenuGroup>
             <Select defaultValue={localeActive} onValueChange={handleLanguageChange}>
               <SelectTrigger className="w-[180px]">

@@ -123,7 +123,6 @@ const getMove = (board: GameStateType, player: Player, difficulty: DifficultyEnu
       strength = 1
       break;
   }
-  console.log(strength);
   switch (strength) {
     case 1:
       index = getRandomMove(board, true);
@@ -155,7 +154,7 @@ const getMove = (board: GameStateType, player: Player, difficulty: DifficultyEnu
       const depth = difficulty === DifficultyEnum.hard ? 4 : 6;
       const minimaxMove = performMinimax(board, Math.min(emptyIndices.length, depth), player);
       index = minimaxMove[0];
-      console.log(minimaxMove[1]);
+      // console.log(minimaxMove[1]);
       break;
     default:
       throw new Error('Invalid strength');

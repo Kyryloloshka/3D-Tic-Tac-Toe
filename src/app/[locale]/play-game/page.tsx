@@ -55,7 +55,6 @@ const PlayGame = () => {
           botPlayer,
           difficulty
         );
-        console.log('robotMove:', robotMove);
         if (robotMove !== -1) {
           const board = [...gameState];
           board[robotMove as number] = botPlayer;
