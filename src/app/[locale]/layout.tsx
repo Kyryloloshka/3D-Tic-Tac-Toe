@@ -5,8 +5,14 @@ import MainDragArea from "@/components/MainDragArea";
 import StoreProvider from "@/components/StoreProvider";
 import { NextIntlClientProvider, useLocale, useMessages } from "next-intl";
 
-export const rubikMonoOne = Rubik_Mono_One({ weight: ["400"], subsets: ["latin", "cyrillic"] });
-export const rubik = Rubik({ weight: ["400", "300", "600"], subsets: ["latin", "cyrillic"] });
+export const rubikMonoOne = Rubik_Mono_One({
+  weight: ["400"],
+  subsets: ["latin", "cyrillic"],
+});
+export const rubik = Rubik({
+  weight: ["400", "300", "600"],
+  subsets: ["latin", "cyrillic"],
+});
 
 export default function RootLayout({
   children,
@@ -20,13 +26,14 @@ export default function RootLayout({
 
   return (
     <html lang={params.locale}>
-      <body className={`${rubikMonoOne.className} h-[100dvh] common-container flex flex-col relative`} suppressHydrationWarning={true}>
+      <body
+        className={`${rubikMonoOne.className} h-[100dvh] common-container flex flex-col relative`}
+        suppressHydrationWarning={true}
+      >
         <StoreProvider>
           <NextIntlClientProvider messages={messages} locale={locale}>
             <Header />
-            <MainDragArea>
-              {children}
-            </MainDragArea>
+            <MainDragArea>{children}</MainDragArea>
           </NextIntlClientProvider>
         </StoreProvider>
       </body>

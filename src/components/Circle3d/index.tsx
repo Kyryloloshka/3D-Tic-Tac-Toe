@@ -8,7 +8,11 @@ interface CircleProps {
   isRotating?: boolean;
 }
 
-const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position, isRotating=true }) => {
+const Circle: React.FC<CircleProps> = ({
+  opacity = 0.4,
+  position,
+  isRotating = true,
+}) => {
   const modelRef = useRef<THREE.Mesh>(null!);
   if (isRotating) {
     useFrame(({ clock }) => {
@@ -26,13 +30,17 @@ const Circle: React.FC<CircleProps> = ({ opacity = 0.4, position, isRotating=tru
         modelRef.current.rotation.y = randomRotationY;
         modelRef.current.rotation.z = randomRotationZ;
       }
-    }, [modelRef])
+    }, [modelRef]);
   }
-  
+
   return (
     <mesh ref={modelRef} position={position}>
       <torusGeometry args={[0.35, 0.1, 32, 32]} />
-      <meshStandardMaterial color={"#b868c8"} transparent={true} opacity={opacity} />
+      <meshStandardMaterial
+        color={"#b868c8"}
+        transparent={true}
+        opacity={opacity}
+      />
     </mesh>
   );
 };

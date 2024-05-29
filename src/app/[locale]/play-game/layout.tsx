@@ -10,5 +10,5 @@ export default function PlayGameLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children
+  return children;
 }

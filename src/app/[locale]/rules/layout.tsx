@@ -10,5 +10,5 @@ export default function RulesLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children
+  return children;
 }

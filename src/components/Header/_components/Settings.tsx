@@ -1,7 +1,7 @@
-"use client"
-import { useRouter } from "next/navigation"
-import { useTransition } from "react"
-import { usePathname } from "@/navigation"
+"use client";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { usePathname } from "@/navigation";
 import {
   Select,
   SelectContent,
@@ -9,15 +9,15 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { useLocale, useTranslations } from 'next-intl'
+} from "@/components/ui/dropdown-menu";
+import { useLocale, useTranslations } from "next-intl";
 
 const languages = [
   { label: "English", value: "en" },
@@ -31,15 +31,15 @@ const languages = [
 ];
 
 const Settings = () => {
-  const localeActive = useLocale()
+  const localeActive = useLocale();
   const t = useTranslations("navigation");
   const [isPending, startTransition] = useTransition();
-  const router = useRouter()
+  const router = useRouter();
   const pathname = usePathname();
   const handleLanguageChange = (value: string) => {
     startTransition(() => {
-      router.replace(`/${value}/${pathname}`)
-    })
+      router.replace(`/${value}/${pathname}`);
+    });
   };
   return (
     <DropdownMenu>
@@ -53,11 +53,14 @@ const Settings = () => {
       <DropdownMenuContent className="bg-dark-2 p-2 mr-3 md:mr-6 z-[501] flex flex-col gap-1">
         <DropdownMenuItem>{t("language")}</DropdownMenuItem>
         <DropdownMenuGroup>
-          <Select defaultValue={localeActive} onValueChange={handleLanguageChange}>
+          <Select
+            defaultValue={localeActive}
+            onValueChange={handleLanguageChange}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a language" />
             </SelectTrigger>
-            <SelectContent  className="bg-dark-2 z-[502]">
+            <SelectContent className="bg-dark-2 z-[502]">
               <SelectGroup>
                 {languages.map((language) => (
                   <SelectItem key={language.value} value={language.value}>
@@ -70,7 +73,7 @@ const Settings = () => {
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
 
-export default Settings
+export default Settings;

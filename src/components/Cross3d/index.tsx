@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { useFrame } from 'react-three-fiber';
-import * as THREE from 'three';
+import React, { useEffect, useRef } from "react";
+import { useFrame } from "react-three-fiber";
+import * as THREE from "three";
 
 interface CircleProps {
   opacity?: number;
@@ -9,7 +9,12 @@ interface CircleProps {
   depthWrite?: boolean;
 }
 
-const Cross = ({opacity, position, isRotating = true, depthWrite=false}: CircleProps) => {
+const Cross = ({
+  opacity,
+  position,
+  isRotating = true,
+  depthWrite = false,
+}: CircleProps) => {
   const groupRef = useRef<THREE.Group>(null!);
   if (isRotating) {
     useFrame(({ clock }) => {
@@ -23,26 +28,35 @@ const Cross = ({opacity, position, isRotating = true, depthWrite=false}: CircleP
         const randomRotationX = Math.random() * Math.PI * 2;
         const randomRotationY = Math.random() * Math.PI * 2;
         const randomRotationZ = Math.random() * Math.PI * 2;
-        
+
         groupRef.current.rotation.x = randomRotationX;
         groupRef.current.rotation.y = randomRotationY;
         groupRef.current.rotation.z = randomRotationZ;
       }
-    }, [groupRef])
+    }, [groupRef]);
   }
 
-  
   return (
     <group ref={groupRef} position={position}>
       {/* Diagonal Arm 1 */}
       <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
         <boxGeometry args={[1, 0.2, 0.2]} />
-        <meshStandardMaterial color={'#58b8a8'} transparent={true} opacity={opacity} depthWrite={depthWrite} />
+        <meshStandardMaterial
+          color={"#58b8a8"}
+          transparent={true}
+          opacity={opacity}
+          depthWrite={depthWrite}
+        />
       </mesh>
       {/* Diagonal Arm 2 */}
       <mesh position={[0, 0, -0.0]} rotation={[0, 0, -Math.PI / 4]}>
         <boxGeometry args={[1, 0.2, 0.2]} />
-        <meshStandardMaterial color={'#58b8a8'} transparent={true} opacity={opacity} depthWrite={depthWrite} />
+        <meshStandardMaterial
+          color={"#58b8a8"}
+          transparent={true}
+          opacity={opacity}
+          depthWrite={depthWrite}
+        />
       </mesh>
     </group>
   );
