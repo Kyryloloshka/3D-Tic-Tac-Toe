@@ -1,6 +1,10 @@
 import { DifficultyEnum, GameStateType, Player } from "@/types";
 
-export const fetchBotMove = async (board: GameStateType, player: Player, difficulty: DifficultyEnum): Promise<number> => {
+export const fetchBotMove = async (
+  board: GameStateType, 
+  player: Player, 
+  difficulty: DifficultyEnum
+): Promise<number> => {
   try {
     const response = await fetch('/api/botMove', {
       method: 'POST',
@@ -21,3 +25,4 @@ export const fetchBotMove = async (board: GameStateType, player: Player, difficu
     return -1;
   }
 };
+

@@ -16,10 +16,9 @@ import { useTranslations } from 'next-intl';
 import { useActionCreators, useStateSelector } from '@/state/hooks';
 import { gameActions } from '@/state/slices/game';
 import { rubik } from '@/app/[locale]/layout';
-import { BotPlaysAs, Difficulty, FirstMoveFor, IsCenterAvailable, IsPlayWithBot } from './_components';
-import DisplayGame from './_components/DisplayGame';
+import { BotPlaysAs, Difficulty, FirstMoveFor, IsCenterAvailable, IsPlayWithBot, DisplayGame } from './_components';
 
-const DialogSettings = ({restartGame}: {restartGame: Function}) => {
+const DialogSettings = ({restartGame}: {restartGame: (firstPlayer: Player) => void}) => {
   const firstPlayer = useStateSelector((state) => state.game.firstPlayer);
   const isCenterAvailable = useStateSelector((state) => state.game.isCenterAvailable);
   const isPlayWithBot = useStateSelector((state) => state.game.isPlayWithBot);

@@ -11,6 +11,7 @@ export function FirstMoveFor({
   const handlePlayerChange = (param: any) => {
     setSelectedFirstPlayer(param)
   };
+  
   return <>
     <Label htmlFor="playFor" className=" col-span-4">
       {t("firstMoveFor")}

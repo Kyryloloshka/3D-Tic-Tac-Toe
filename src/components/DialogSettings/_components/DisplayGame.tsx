@@ -3,22 +3,23 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { GameDisplay } from '@/types'
 import React from 'react'
 
-const DisplayGame = ({
+export const DisplayGame = ({
   t,
   displayGameAs,
   setDisplayGameAs
 }: {
-  t: Function,
+  t: (value: string) => string,
   displayGameAs: GameDisplay,
-  setDisplayGameAs: Function
+  setDisplayGameAs: (value: GameDisplay) => void
 }) => {
   const handleDisplayGameAs = (param: any) => {
     setDisplayGameAs(param)
   };
+
   return (
     <>
       <Label htmlFor="playFor" className=" col-span-4">
-        {t("firstMoveFor")}
+        {t("displayGameAs")}
       </Label>
       <RadioGroup className="col-span-1" defaultValue={displayGameAs} onValueChange={handleDisplayGameAs}>
         <div className="flex items-center space-x-2">
@@ -33,5 +34,3 @@ const DisplayGame = ({
     </>
   )
 }
-
-export default DisplayGame

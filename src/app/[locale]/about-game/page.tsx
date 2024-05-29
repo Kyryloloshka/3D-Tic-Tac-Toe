@@ -1,6 +1,5 @@
 "use client"
 import { useTranslations } from "next-intl"
-import { Rubik } from "next/font/google";
 import Link from "next/link"
 import { rubik } from "../layout";
 

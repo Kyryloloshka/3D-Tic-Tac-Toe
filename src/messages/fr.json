@@ -91,7 +91,8 @@
     "gameWithBot": "Jeu avec bot",
     "botPlaysAs": "Le bot joue comme",
     "saveAndRestart": "Enregistrer et redémarrer",
-    "difficulty": "Difficulté"
+    "difficulty": "Difficulté",
+    "displayGameAs": "Montrer le terrain de jeu comme"
   },
   "loading": {
   "loading": "Chargement"

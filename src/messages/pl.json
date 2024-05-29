@@ -91,7 +91,8 @@
     "gameWithBot": "Gra z botem",
     "botPlaysAs": "Bot gra jako",
     "saveAndRestart": "Zapisz i zrestartuj",
-    "difficulty": "Poziom trudności"
+    "difficulty": "Poziom trudności",
+    "displayGameAs": "Pokaż pole gry jako"
   },
   "loading": {
     "loading": "Ładowanie"

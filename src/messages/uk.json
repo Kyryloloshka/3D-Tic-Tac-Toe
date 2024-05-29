@@ -91,7 +91,8 @@
     "gameWithBot": "Гра з ботом",
     "botPlaysAs": "Бот грає як",
     "saveAndRestart": "Зберегти та перезапустити",
-    "difficulty": "Складність"
+    "difficulty": "Складність",
+    "displayGameAs": "Показувати ігрове поле як"
   },
   "loading": {
     "loading": "Завантаження"

@@ -119,9 +119,6 @@ const getMove = (board: GameStateType, player: Player, difficulty: DifficultyEnu
     case DifficultyEnum.expert:
       strength = 3
       break;
-    default:
-      strength = 1
-      break;
   }
   switch (strength) {
     case 1:

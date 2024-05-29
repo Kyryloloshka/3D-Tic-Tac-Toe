@@ -5,7 +5,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     try {
       const { board, player, difficulty } = req.body;
-      if (!board || !player || !difficulty) {
+      if (!board || !player || difficulty === undefined) {
         return res.status(400).json({ error: 'Missing parameters' });
       }
 
