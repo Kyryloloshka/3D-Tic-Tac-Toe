@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 
 import {
@@ -25,11 +26,7 @@ import {
   DisplayGame,
 } from "./_components";
 
-const DialogSettings = ({
-  restartGame,
-}: {
-  restartGame: (firstPlayer: Player) => void;
-}) => {
+const DialogSettings = () => {
   const firstPlayer = useStateSelector((state) => state.game.firstPlayer);
   const isCenterAvailable = useStateSelector(
     (state) => state.game.isCenterAvailable
@@ -58,7 +55,7 @@ const DialogSettings = ({
 
   const submitSettings = (e: any) => {
     e.preventDefault();
-    restartGame(selectedFirstPlayer);
+    actions.restartGame(selectedFirstPlayer);
     actions.setFirstPlayer(selectedFirstPlayer);
     actions.setIsXNext(selectedFirstPlayer === Player.X);
     actions.setIsCenterAvailable(selectedIsCenterAvailable);

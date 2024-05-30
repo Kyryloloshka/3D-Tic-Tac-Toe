@@ -1,3 +1,4 @@
+"use client";
 import { useToast } from "../ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import { calculateWinner } from "@/lib/gameLogic";
