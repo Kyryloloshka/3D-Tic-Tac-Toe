@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Loading from "../loading";
 import Recomendation from "@/components/Recomendation";
 import BotMoveHandler from "@/components/BotMoveHandler";
+import WinToastHandler from "@/components/WinToastHandler";
 
 const ComponentPlayGame = dynamic(() => import("@/components/Model3d"), {
   ssr: false,
@@ -21,6 +22,7 @@ const PlayGame = () => {
       </div>
       <Toaster />
       <BotMoveHandler />
+      <WinToastHandler />
     </div>
   );
 };
