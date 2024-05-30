@@ -1,5 +1,6 @@
 import { Rubik, Rubik_Mono_One } from "next/font/google";
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/react';
 import Header from "@/components/Header";
 import MainDragArea from "@/components/MainDragArea";
 import StoreProvider from "@/components/StoreProvider";
@@ -36,6 +37,7 @@ export default function RootLayout({
             <MainDragArea>{children}</MainDragArea>
           </NextIntlClientProvider>
         </StoreProvider>
+        <Analytics />
       </body>
     </html>
   );
