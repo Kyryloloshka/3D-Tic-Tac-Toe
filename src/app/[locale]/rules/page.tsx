@@ -1,8 +1,6 @@
-"use client";
 import { useTranslations } from "next-intl";
-import { Rubik } from "next/font/google";
-import Link from "next/link";
 import { rubik } from "../layout";
+import CustomLink from "@/components/CustomLink";
 
 const Rules = () => {
   const t = useTranslations("page.rules");
@@ -60,12 +58,7 @@ const Rules = () => {
       </ol>
       <p className="leading-6 text-lg tracking-wide pt-8 pb-24 ">
         {t("enjoyMessage")}{" "}
-        <Link
-          href="/play-game"
-          className={`link-underline transition capitalize relative text-primary-500 whitespace-nowrap`}
-        >
-          {t("playGameLink")}
-        </Link>
+        <CustomLink label={t("playGameLink")} href="/play-game" />
       </p>
     </div>
   );

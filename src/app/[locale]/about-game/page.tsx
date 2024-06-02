@@ -1,7 +1,6 @@
-"use client";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import { rubik } from "../layout";
+import CustomLink from "@/components/CustomLink";
 
 const About = () => {
   const t = useTranslations("page.about");
@@ -53,12 +52,7 @@ const About = () => {
       </ol>
       <p className="leading-6 text-lg tracking-wide pt-8 pb-24">
         {t("enjoyMessage")}{" "}
-        <Link
-          href="/play-game"
-          className={`link-underline capitalize relative text-primary-500  whitespace-nowrap`}
-        >
-          {t("playGameLink")}
-        </Link>
+        <CustomLink label={t("playGameLink")} href="/play-game" />
       </p>
     </div>
   );
