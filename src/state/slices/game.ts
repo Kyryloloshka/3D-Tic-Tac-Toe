@@ -1,6 +1,5 @@
-import { DifficultyEnum, GameDisplay, GameStateType, HistoryStep, Player } from "@/types";
+import { DifficultyEnum, GameDisplay, GameStateType, Player } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { set } from "nprogress";
 
 interface GameState {
   gameState: GameStateType;

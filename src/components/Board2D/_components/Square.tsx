@@ -60,7 +60,7 @@ const Square = ({index, boardOrder}: {index: number, boardOrder: number}) => {
     actions.setGameState(newBoard);
     actions.setIsXNext(!isXNext);
 
-    const newWinner = calculateWinner(newBoard);
+    const {winner: newWinner} = calculateWinner(newBoard);
     if (newWinner) actions.setWinner(newWinner);
   };
 

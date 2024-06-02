@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";

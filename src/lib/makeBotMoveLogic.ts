@@ -25,7 +25,7 @@ export const makeBotMove = async (
         actions.setGameState(board);
         actions.setIsXNext(botPlayer !== Player.X);
         actions.addToHistory(board);
-        const newWinner = calculateWinner(board);
+        const {winner: newWinner} = calculateWinner(board);
         if (newWinner) actions.setWinner(newWinner);
       }
     } catch (error) {

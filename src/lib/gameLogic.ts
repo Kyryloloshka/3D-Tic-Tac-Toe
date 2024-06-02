@@ -23,35 +23,34 @@ export const calculateWinner = (squares: GameStateType) => {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[j * 9 + a] && squares[j * 9 + a] === squares[j * 9 + b] && squares[j * 9 + a] === squares[j * 9 + c]) {
-        return squares[j * 9 + a];
+        return { winner: squares[j * 9 + a], line: [j * 9 + a, j * 9 + b, j * 9 + c] };
       }
     }
   }
 
   for (let i = 0; i < diagonals.length; i++) {
-    const [a, b, c] = diagonals[i]
+    const [a, b, c] = diagonals[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return { winner: squares[a], line: [a, b, c] };
     }
   }
 
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b+9] && squares[a] === squares[c+18]) {
-      return squares[a];
-    } else
-    if (squares[a+18] && squares[a+18] === squares[b+9] && squares[a+18] === squares[c]) {
-      return squares[a+18];
+    if (squares[a] && squares[a] === squares[b + 9] && squares[a] === squares[c + 18]) {
+      return { winner: squares[a], line: [a, b + 9, c + 18] };
+    } else if (squares[a + 18] && squares[a + 18] === squares[b + 9] && squares[a + 18] === squares[c]) {
+      return { winner: squares[a + 18], line: [a + 18, b + 9, c] };
     }
   }
 
   for (let i = 0; i < 9; i++) {
-    if (squares[i] && squares[i] == squares[i+9] && squares[i] == squares[i+18] ) {
-      return squares[i];
+    if (squares[i] && squares[i] === squares[i + 9] && squares[i] === squares[i + 18]) {
+      return { winner: squares[i], line: [i, i + 9, i + 18] };
     }
   }
 
-  return null;
+  return { winner: null, line: null };
 };
 
 export const getRandomMove = (board: GameStateType, isCenterAvailable: boolean) => {
@@ -212,7 +211,7 @@ const performMinimax = (
   }
   
  
-  const possibleWinner = calculateWinner(state);
+  const {winner: possibleWinner} = calculateWinner(state);
   if (depth <= 0 || possibleWinner) {
       const score = evaluateGameState(possibleWinner, depth);
       if (score === 1) {
@@ -258,6 +257,6 @@ const performMinimax = (
 const checkWinMove = (board: GameStateType, move: number, player: Player) => {
   const newBoard = [...board];
   newBoard[move] = player; 
-  const winner = calculateWinner(newBoard);
+  const {winner} = calculateWinner(newBoard);
   return winner === player ? move : null;
 };

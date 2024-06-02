@@ -1,3 +1,4 @@
+"use client";
 import { useStateSelector } from "@/state";
 import { GameDisplay, Player } from "@/types";
 import React, { useRef } from "react";

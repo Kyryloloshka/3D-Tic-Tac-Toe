@@ -15,6 +15,7 @@ const Cross = ({
   isRotating = true,
   depthWrite = false,
 }: CircleProps) => {
+  const color = "#58b8a8";
   const groupRef = useRef<THREE.Group>(null!);
   if (isRotating) {
     useFrame(({ clock }) => {
@@ -42,7 +43,7 @@ const Cross = ({
       <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
         <boxGeometry args={[1, 0.2, 0.2]} />
         <meshStandardMaterial
-          color={"#58b8a8"}
+          color={color}
           transparent={true}
           opacity={opacity}
           depthWrite={depthWrite}
@@ -52,7 +53,7 @@ const Cross = ({
       <mesh position={[0, 0, -0.0]} rotation={[0, 0, -Math.PI / 4]}>
         <boxGeometry args={[1, 0.2, 0.2]} />
         <meshStandardMaterial
-          color={"#58b8a8"}
+          color={color}
           transparent={true}
           opacity={opacity}
           depthWrite={depthWrite}
