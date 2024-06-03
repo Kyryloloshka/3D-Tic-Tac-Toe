@@ -12,6 +12,7 @@ const PrevButton = ({ isPlaying }: { isPlaying: boolean }) => {
       className={`cursor-pointer ${
         currentMoveIndex !== 0 && "hover:scale-110"
       } transition`}
+			disabled={isPlaying}
     >
       <img
         draggable="false"

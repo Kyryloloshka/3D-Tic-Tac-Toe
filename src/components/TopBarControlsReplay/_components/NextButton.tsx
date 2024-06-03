@@ -13,6 +13,7 @@ const NextButton = ({ isPlaying }: { isPlaying: boolean }) => {
       className={`cursor-pointer ${
         currentMoveIndex !== gameHistory.length - 1 && "hover:scale-110"
       } transition`}
+			disabled={isPlaying}
     >
       <img
         draggable="false"
