@@ -7,7 +7,7 @@ interface CircleProps {
   position: [number, number, number];
   isRotating?: boolean;
   depthWrite?: boolean;
-  isWinnerIndex: boolean | undefined;
+  isWinnerIndex?: boolean | undefined;
 }
 
 const Cross = ({
@@ -44,7 +44,7 @@ const Cross = ({
       if (groupRef.current && isWinnerIndex) {
         let animFrameId: number;
         const animScale = () => {
-          setScale((prevScale) => Math.min(prevScale + 0.01, 1.2));
+          setScale((prevScale) => Math.min(prevScale + 0.01, 1.1));
           animFrameId = requestAnimationFrame(animScale);
         };
         animScale();
