@@ -1,4 +1,3 @@
-import RestartButton from "@/components/LeftNavBar/_components/RestartButton";
 import SimpleTicTacToeGame from "@/components/SimpleTicTacToeBoard";
 import WinnerMessage from "@/components/SimpleTicTacToeBoard/_components/WinnerMessage";
 import React from "react";

@@ -770,10 +770,10 @@ canvas {
   margin: 0;
   background-color: #c8102e;
   border-radius: 50%;
-  animation: drip 3s cubic-bezier(1,0,.91,.19) infinite ;
-    -webkit-animation: drip 3s cubic-bezier(1,0,.91,.19) infinite;
-    -moz-animation: drip 3s cubic-bezier(1,0,.91,.19) infinite;
-    -o-animation: drip 3s cubic-bezier(1,0,.91,.19) infinite;
+  animation: drip 2s cubic-bezier(1,0,.91,.19) infinite ;
+    -webkit-animation: drip 2s cubic-bezier(1,0,.91,.19) infinite;
+    -moz-animation: drip 2s cubic-bezier(1,0,.91,.19) infinite;
+    -o-animation: drip 2s cubic-bezier(1,0,.91,.19) infinite;
 }
 .blooddrop:before {
   content: "";

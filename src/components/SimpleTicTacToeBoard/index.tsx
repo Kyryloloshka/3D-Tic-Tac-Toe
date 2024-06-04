@@ -1,8 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RestartButton from "./_components/RestartButton";
 import Square from "./_components/Square";
 import Title from "./_components/Title";
+import { useStateSelector } from "@/state";
+import { calculateWinner } from "@/lib/gameLogic";
+import {
+  calculateWinnerSimpleTicTacToe,
+  checkSubarrayExists,
+} from "@/lib/simpleGameLogic";
 
 const SimpleTicTacToeGame = () => {
   const [isPassphraseCorrect, setIsPassphraseCorrect] = useState(false);
@@ -10,6 +16,9 @@ const SimpleTicTacToeGame = () => {
   const [classes, setClasses] = useState("");
   const [textError, setTextError] = useState("");
   const [isTitleError, setIsTitleError] = useState(false);
+  const gameState = useStateSelector((state) => state.simpleGame.gameState);
+  const { lines } = calculateWinnerSimpleTicTacToe(gameState);
+
   return (
     <div className="flex flex-col items-center gap-6">
       {!isPassphraseCorrect ? (
@@ -69,6 +78,62 @@ const SimpleTicTacToeGame = () => {
                 ))}
               </div>
             </div>
+            <div
+              className={`w-[4px] transition-all pointer-events-none shadow-neon-error rounded-full bg-[#dd0000] absolute top-0 left-[16.666%] -translate-x-[3px] ${
+                lines.length >= 1 && checkSubarrayExists(lines, [0, 3, 6])
+                  ? "h-full opacity-100"
+                  : "h-0 opacity-0"
+              }`}
+            ></div>
+            <div
+              className={`w-[4px] transition-all pointer-events-none shadow-neon-error rounded-full  bg-[#dd0000] absolute top-0 left-[50%] -translate-x-[3px] ${
+                lines.length >= 1 && checkSubarrayExists(lines, [1, 4, 7])
+                  ? "h-full opacity-100"
+                  : "h-0 opacity-0"
+              }`}
+            ></div>
+            <div
+              className={`w-[4px] pointer-events-none shadow-neon-error rounded-full transition-all bg-[#dd0000] absolute top-0 left-[83.333%] -translate-x-[0px] ${
+                lines.length >= 1 && checkSubarrayExists(lines, [2, 5, 8])
+                  ? "h-full opacity-100"
+                  : "h-0 opacity-0"
+              }`}
+            ></div>
+            <div
+              className={`h-[4px] transition-all pointer-events-none shadow-neon-error rounded-full bg-[#dd0000] absolute left-0 top-[16.666%] -translate-y-[3px] ${
+                lines.length >= 1 && checkSubarrayExists(lines, [0, 1, 2])
+                  ? "w-full opacity-100"
+                  : "w-0 opacity-0"
+              }`}
+            ></div>
+            <div
+              className={`h-[4px] transition-all pointer-events-none shadow-neon-error rounded-full bg-[#dd0000] absolute left-0 top-[50%] -translate-y-[3px] ${
+                lines.length >= 1 && checkSubarrayExists(lines, [3, 4, 5])
+                  ? "w-full opacity-100"
+                  : "w-0 opacity-0"
+              }`}
+            ></div>
+            <div
+              className={`h-[4px] pointer-events-none shadow-neon-error rounded-full transition-all bg-[#dd0000] absolute left-0 top-[83.333%] -translate-y-[2px] ${
+                lines.length >= 1 && checkSubarrayExists(lines, [6, 7, 8])
+                  ? "w-full opacity-100"
+                  : "w-0 opacity-0"
+              }`}
+            ></div>
+            <div
+              className={`h-[4px] pointer-events-none rotate-45 shadow-neon-error origin-left rounded-full bg-[#dd0000] transition-all absolute left-[3.833%] top-[3.533%] -translate-y-[2px] ${
+                lines.length >= 1 && checkSubarrayExists(lines, [0, 4, 8])
+                  ? "w-[calc(100%*1.3)] opacity-100"
+                  : "w-0 opacity-0"
+              }`}
+            ></div>
+            <div
+              className={`h-[4px] transition-all -rotate-45 origin-left  shadow-neon-error rounded-full  bg-[#dd0000] pointer-events-none absolute left-[3.833%] top-[96.566%] -translate-y-[2px] ${
+                lines.length >= 1 && checkSubarrayExists(lines, [2, 4, 6])
+                  ? "w-[calc(100%*1.3)] opacity-100"
+                  : "w-0 opacity-0"
+              }`}
+            ></div>
           </div>
           <RestartButton />
         </>

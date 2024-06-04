@@ -23,6 +23,7 @@ const slice = createSlice({
     restartGame(state) {
       state.gameState = initialState.gameState;
       state.winner = initialState.winner;
+      state.isXNext = initialState.isXNext;
     },
     setIsXNext(state, action: PayloadAction<boolean>) {
       state.isXNext = action.payload;

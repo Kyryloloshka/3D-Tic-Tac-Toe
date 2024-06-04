@@ -5,12 +5,13 @@ import { useActionCreators, useStateSelector } from "@/state/hooks";
 import Cross from "./Cross";
 import Circle from "./Circle";
 import { simpleGameActions } from "@/state";
+import { useState } from "react";
 
 const Square = ({ index }: { index: number }) => {
   const gameState = useStateSelector((state) => state.simpleGame.gameState);
   const isXNext = useStateSelector((state) => state.simpleGame.isXNext);
   const winner = useStateSelector((state) => state.simpleGame.winner);
-
+  const [isHovered, setIsHovered] = useState(false);
   const actions = useActionCreators(simpleGameActions);
   const handleClick = (index: number) => {
     if (winner) {
@@ -35,13 +36,19 @@ const Square = ({ index }: { index: number }) => {
         className="w-[33.33%] h-full flex justify-center items-center overflow-hidden relative"
         onClick={() => handleClick(index)}
         aria-label="make move"
+        onMouseOver={() => (winner ? null : setIsHovered(true))}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <span className="pointer-events-none text-primary-500 text-4xl font-semibold text-shadow-neon select-none">
-          {gameState[index] == "X"
-            ? Cross()
-            : gameState[index] == "O"
-            ? Circle()
-            : null}
+          {gameState[index] == Player.X ? (
+            <Cross />
+          ) : gameState[index] == Player.O ? (
+            <Circle />
+          ) : isHovered && isXNext ? (
+            <Cross opacity={"0.5"} />
+          ) : isHovered && !isXNext ? (
+            <Circle opacity={"0.5"} />
+          ) : null}
         </span>
       </button>
     </>
