@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { gameReducer, headerReducer, replayReducer } from './slices';
+import { gameReducer, headerReducer, replayReducer, simpleGameReducer } from './slices';
 
 
 export const store = configureStore({
@@ -7,5 +7,6 @@ export const store = configureStore({
     game: gameReducer,
     replay: replayReducer,
     header: headerReducer,
+    simpleGame: simpleGameReducer,
   },
 });

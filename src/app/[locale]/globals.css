@@ -199,6 +199,9 @@ body {
   .text-shadow-neon {
     text-shadow:  0px 0px 20px var(--shadow-primary-neon);
   }
+  .text-shadow-error {
+    text-shadow:  0px 0px 20px #ff00006f;
+  }
   .neon-grid {
     display: grid;
     grid-template-columns: repeat(3, 100px);
@@ -511,4 +514,326 @@ canvas {
 
 .inner-shadow-primary {
   box-shadow: inset 0 0 10px 1px #000;
+}
+
+.glitch {
+  position: relative;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  letter-spacing: 5px;
+  z-index: 1;
+  animation: shift-complex 2s ease-in-out infinite alternate;
+}
+
+.glitch-red {
+  animation: shift 2s ease-in-out infinite alternate;
+}
+
+.glitch:before,
+.glitch:after {
+  display: block;
+  content: attr(data-glitch);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+.glitch:before {
+  animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  color: #d132f9;
+  z-index: -1;
+}
+
+.glitch-red:before {
+  color: red;
+}
+
+.glitch:after {
+  animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+  color: #00ffd5;
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-2px, 1px);
+  }
+
+  40% {
+    transform: translate(-1px, -2px);
+  }
+
+  60% {
+    transform: translate(3px, 1px);
+  }
+
+  80% {
+    transform: translate(2px, -1px);
+  }
+
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes shift {
+  0%, 40%, 44%, 58%, 61%, 65%, 69%, 73%, 100% {
+    transform: skewX(0deg);
+  }
+
+  41% {
+    transform: skewX(3deg);
+  }
+
+  42% {
+    transform: skewX(-3deg);
+  }
+
+  59% {
+    transform: skewX(15deg) skewY(4deg);
+  }
+
+  60% {
+    transform: skewX(-13deg) skewY(-13deg);
+  }
+
+  63% {
+    transform: skewX(6deg) skewY(-5deg);
+  }
+
+  70% {
+    transform: skewX(-10deg) skewY(-5deg);
+  }
+
+  71% {
+    transform: skewX(5deg) skewY(-2deg);
+  }
+}
+
+@keyframes shift-complex {
+  0%, 20%, 22%, 29%, 30.5%, 32.5%, 34.5%, 36.5%, 88%, 91%, 98%, 100% {
+    transform: skewX(0deg);
+  }
+
+  20.5% {
+    transform: skewX(5deg);
+  }
+
+  21% {
+    transform: skewX(-5deg);
+  }
+
+  29.5% {
+    transform: skewX(20deg) skewY(5deg);
+  }
+
+  30% {
+    transform: skewX(-20deg) skewY(-5deg);
+  }
+
+  31.5% {
+    transform: skewX(5deg) skewY(-2deg);
+  }
+
+  35% {
+    transform: skewX(-25deg) skewY(-10deg);
+  }
+
+  35.5% {
+    transform: skewX(5deg) skewY(-5deg);
+  }
+
+  88.5% {
+    transform: skewX(5deg) skewY(-5deg);
+  }
+
+  89% {
+    transform: scaleX(2);
+  }
+
+}
+
+.glitch-button,.glitch-button::after {
+  padding: 10px 50px;
+  border-radius: 5px;
+  font-size: 18px;
+  color: white;
+  background-color: transparent;
+  position: relative;
+}
+
+.glitch-button::after {
+  --move1: inset(50% 50% 50% 50%);
+  --move2: inset(31% 0 40% 0);
+  --move3: inset(39% 0 15% 0);
+  --move4: inset(45% 0 40% 0);
+  --move5: inset(45% 0 6% 0);
+  --move6: inset(14% 0 61% 0);
+  clip-path: var(--move1);
+  content: 'GLITCH';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+}
+
+.glitch-button:hover::after {
+  animation: glitch_4011 1s;
+  text-shadow: 10 10px 10px black;
+  animation-timing-function: steps(2, end);
+  text-shadow: -3px -3px 0px #00ffd5, 3px 3px 0px #d132f9;
+  background-color: transparent;
+  border: 3px solid #00ffd5;
+}
+
+.glitch-button:hover {
+  text-shadow: -1px -1px 0px #00ffd5, 1px 1px 0px #d132f9;
+}
+
+.glitch-button:hover {
+  background-color: transparent;
+  border: 1px solid #00ffd5;
+  box-shadow: 0px 10px 10px -10px #00ffd5;
+}
+
+@keyframes glitch_4011 {
+  0% {
+    clip-path: var(--move1);
+    transform: translate(0px,-10px);
+  }
+
+  10% {
+    clip-path: var(--move2);
+    transform: translate(-10px,10px);
+  }
+
+  20% {
+    clip-path: var(--move3);
+    transform: translate(10px,0px);
+  }
+
+  30% {
+    clip-path: var(--move4);
+    transform: translate(-10px,10px);
+  }
+
+  40% {
+    clip-path: var(--move5);
+    transform: translate(10px,-10px);
+  }
+
+  50% {
+    clip-path: var(--move6);
+    transform: translate(-10px,10px);
+  }
+
+  60% {
+    clip-path: var(--move1);
+    transform: translate(10px,-10px);
+  }
+
+  70% {
+    clip-path: var(--move3);
+    transform: translate(-10px,10px);
+  }
+
+  80% {
+    clip-path: var(--move2);
+    transform: translate(10px,-10px);
+  }
+
+  90% {
+    clip-path: var(--move4);
+    transform: translate(-10px,10px);
+  }
+
+  100% {
+    clip-path: var(--move1);
+    transform: translate(0);
+  }
+}
+
+.blooddrop {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  top: 0px;
+  margin: 0;
+  background-color: #c8102e;
+  border-radius: 50%;
+  animation: drip 3s cubic-bezier(1,0,.91,.19) infinite ;
+    -webkit-animation: drip 3s cubic-bezier(1,0,.91,.19) infinite;
+    -moz-animation: drip 3s cubic-bezier(1,0,.91,.19) infinite;
+    -o-animation: drip 3s cubic-bezier(1,0,.91,.19) infinite;
+}
+.blooddrop:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 13px solid #c8102e;
+  top: -11px;
+  left: 0px;
+}
+.blooddrop {
+  position: absolute;
+  left: 5px;
+  top: 15px;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+}
+
+@keyframes drip {
+  0% { top: 15px; }
+  100% { top: 100vh; }
+}
+
+.input-primary {
+  background-color: var(--dark-3);
+  max-width: 250px;
+  height: 40px;
+  padding: 10px;
+  
+  /* text-align: center; */
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.input-primary::placeholder {
+  color: #57575c;
+}
+
+.input-primary:focus {
+  color: #bcd5cd;
+  background-color: var(--dark-4);
+  outline-color: var(--primary-color);
+  box-shadow: 0 0 15px var(--primary-color);
+  transition: .1s;
+  transition-property: box-shadow;
+}
+
+.shadow-neon-error {
+  box-shadow: 0 0 10px 0px #ff0000;
+}
+
+.shadow-neon-error:focus {
+  outline-color: #ff0000;
+  border: red;
+  box-shadow: 0 0 10px 0px #ff0000;
+}
+
+.error-title {
+  color: #ba0c0c;
 }

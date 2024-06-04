@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface ReplayState {
+interface HeaderState {
   isBurgerMenuOpen: boolean;
 }
 
-const initialState: ReplayState = {
+const initialState: HeaderState = {
   isBurgerMenuOpen: false,
 };
 
