@@ -9,6 +9,7 @@ import {
   calculateWinnerSimpleTicTacToe,
   checkSubarrayExists,
 } from "@/lib/simpleGameLogic";
+import { useTranslations } from "next-intl";
 
 const SimpleTicTacToeGame = () => {
   const [isPassphraseCorrect, setIsPassphraseCorrect] = useState(false);
@@ -18,12 +19,12 @@ const SimpleTicTacToeGame = () => {
   const [isTitleError, setIsTitleError] = useState(false);
   const gameState = useStateSelector((state) => state.simpleGame.gameState);
   const { lines } = calculateWinnerSimpleTicTacToe(gameState);
-
+	const t = useTranslations("page.secret")
   return (
     <div className="flex flex-col items-center gap-6">
       {!isPassphraseCorrect ? (
         <div className="flex flex-col items-center gap-6">
-          <Title label={"Enter Passphrase"} isError={isTitleError} />
+          <Title label={t("enterPassphrase")} isError={isTitleError} />
           <input
             value={enteredPassphrase}
             onChange={(event) => {
@@ -32,7 +33,7 @@ const SimpleTicTacToeGame = () => {
               setTextError("");
               setIsTitleError(false);
             }}
-            placeholder="Enter passphrase"
+            placeholder={t("enterPassphrase")}
             className={`input-primary ${classes}`}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
@@ -46,7 +47,7 @@ const SimpleTicTacToeGame = () => {
                   setIsTitleError(true);
                   setEnteredPassphrase("");
                   setClasses("shadow-neon-error");
-                  setTextError("Incorrect passphrase. Try again.");
+                  setTextError(t("errorPassphrase"));
                 }
               }
             }}

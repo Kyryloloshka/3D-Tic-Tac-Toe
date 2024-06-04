@@ -1,17 +1,19 @@
 "use client";
 import { useStateSelector } from "@/state";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react"; // Import useEffect for side effects
 
 const WinnerMessage = () => {
   const winner = useStateSelector((state) => state.simpleGame.winner);
-  const [isVisible, setIsVisible] = useState(winner ? true : false); // Track visibility state
+  const [isVisible, setIsVisible] = useState(winner ? true : false);
+	const t = useTranslations("page.secret")
   const [dataGlitch, setDataGlitch] = useState(
-    `Player ${winner} is the winner`
+    `${t("player")} ${winner} ${t("winner")}`
   );
 
   useEffect(() => {
     if (winner) {
-      setDataGlitch(`Player ${winner} is the winner`);
+      setDataGlitch(`${t("player")} ${winner} ${t("winner")}`);
     }
   }, [winner]);
 
@@ -44,12 +46,12 @@ const WinnerMessage = () => {
           data-glitch={dataGlitch}
           className="glitch glitch-red max-w-[100vw] text-center leading-10 whitespace-normal"
         >
-          Player{" "}
+          {t("player")}{" "}
           <span className="text-[#c8102e] relative">
             {winner}
             <span className="blooddrop"></span>
           </span>{" "}
-          is the winner
+          {t("winner")}
         </div>
       </div>
     </h2>

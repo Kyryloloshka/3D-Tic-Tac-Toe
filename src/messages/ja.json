@@ -50,7 +50,9 @@
       "feature4Title": "クラシックなルール、モダンなデザイン：",
       "feature4Description": "Tic-Tac-Toeのクラシックなルールを採用しながらも、私たちのモダンなデザインと3Dの設定は、新鮮で魅力的な体験を提供します。",
       "enjoyMessage": "経験豊富なTic-Tac-Toeプレイヤーであっても、初心者であっても、3D Tic Tac Toeはすべての年齢のプレイヤーに楽しく、挑戦的な体験を約束します。立体的な戦略の世界に飛び込んで、今までにないTic-Tac-Toeを楽しんでください！",
-      "playGameLink": "ゲームをプレイ"
+      "playGameLink": "ゲームをプレイ",
+			"secretText": "But if you are already a pro in this game and you know the password, you can go to a completely different level",
+			"secretLink": "Secret Mode"
     },
     "replays": {
       "title": "コントロール",
@@ -58,7 +60,14 @@
       "autoplaySpeed": "自動再生速度",
       "noData": "再生するデータがありません",
       "noDataDesc": "再生するにはここにファイルをドラッグしてください"
-    }
+    },
+		"secret": {
+			"enterPassphrase": "Enter Passphrase",
+			"errorPassphrase": "Incorrect passphrase. Try again.",
+			"player": "Player",
+			"winner": "is the winner",
+			"restart": "Restart"
+		}
   },
   "toast": {
     "gameOver": "ゲームオーバー！",

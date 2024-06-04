@@ -50,10 +50,14 @@ const About = () => {
           {t("feature4Description")}
         </li>
       </ol>
-      <p className="leading-6 text-lg tracking-wide pt-8 pb-24">
+      <p className="eading-6 text-lg tracking-wide pt-8">
         {t("enjoyMessage")}{" "}
         <CustomLink label={t("playGameLink")} href="/play-game" />
       </p>
+			<p className="eading-6 text-lg tracking-wide pb-24">
+				{t("secretText")}{" "}
+				<CustomLink label={t("secretLink")} href="/secret-game-mode"/>
+			</p>
     </div>
   );
 };
