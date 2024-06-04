@@ -8,6 +8,7 @@ import Circle from "../Circle3d";
 import { usePathname } from "next/navigation";
 import * as THREE from "three";
 import PlanesGameBoard from "./PlanesGameBoard";
+import { calculateWinner } from "@/lib/gameLogic";
 
 const GameModel = () => {
   const groupRef = useRef<THREE.Group>(null!);
@@ -28,6 +29,8 @@ const GameModel = () => {
   const displayGameAs = useStateSelector((state) => state.game.displayGameAs);
   const distanceBetweenCubes = 1.3;
 
+  const { winner, line } = calculateWinner(gameState);
+
   return (
     <group ref={groupRef} dispose={null}>
       {displayGameAs === GameDisplay.Planes && (
@@ -38,6 +41,9 @@ const GameModel = () => {
           Array.from({ length: 3 }, (_, z) => {
             const index = z * 3 + Math.abs(row - 2) * 9 + col;
             const elem = gameState[index];
+
+            const isWinnerIndex = line?.includes(index);
+
             const opacity =
               elem != null
                 ? 0.85
@@ -59,6 +65,7 @@ const GameModel = () => {
                     key={`cross-${row}-${col}-${z}`}
                     opacity={opacity}
                     position={position}
+                    isWinnerIndex={isWinnerIndex}
                   />
                 ) : elem === Player.O ||
                   (index === hoveredIndex &&
@@ -68,6 +75,7 @@ const GameModel = () => {
                     key={`circle-${row}-${col}-${z}`}
                     opacity={opacity}
                     position={position}
+                    isWinnerIndex={isWinnerIndex}
                   />
                 ) : displayGameAs === GameDisplay.Cubes ? (
                   <Box
