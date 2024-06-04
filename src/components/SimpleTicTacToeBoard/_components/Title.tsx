@@ -5,7 +5,7 @@ const Title = ({ label, isError }: { label: string; isError?: boolean }) => {
     <div className="title-effect-wrapper">
       <div
         data-glitch={label}
-        className={`glitch text-shadow-neon text-center mx-6 ${
+        className={`glitch select-none text-shadow-neon text-center mx-6 ${
           isError && "error-title text-shadow-error"
         }`}
       >

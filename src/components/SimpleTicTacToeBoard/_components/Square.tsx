@@ -16,7 +16,9 @@ const Square = ({ index }: { index: number }) => {
     if (winner) {
       return;
     }
-
+    if (gameState[index]) {
+      return;
+    }
     const newBoard = [...gameState];
     const player = isXNext ? Player.X : Player.O;
     newBoard[index] = player;
