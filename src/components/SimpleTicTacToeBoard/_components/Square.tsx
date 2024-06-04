@@ -45,9 +45,9 @@ const Square = ({ index }: { index: number }) => {
           ) : gameState[index] == Player.O ? (
             <Circle />
           ) : isHovered && isXNext ? (
-            <Cross opacity={"0.5"} />
+            <Cross isHovered={isHovered} />
           ) : isHovered && !isXNext ? (
-            <Circle opacity={"0.5"} />
+            <Circle isHovered={isHovered} />
           ) : null}
         </span>
       </button>

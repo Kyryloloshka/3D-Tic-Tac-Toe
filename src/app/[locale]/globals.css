@@ -557,6 +557,11 @@ canvas {
   z-index: -2;
 }
 
+.glitch-block {
+  animation: shift-block 2s ease-in-out infinite alternate;
+}
+
+
 @keyframes glitch {
   0% {
     transform: translate(0);
@@ -658,6 +663,27 @@ canvas {
     transform: scaleX(2);
   }
 
+}
+
+@keyframes shift-block {
+  0%, 20%, 22%, 29%, 30.5%, 32.5%, 34.5%, 36.5%, 88%, 91%, 98%, 100% {
+    transform: skewX(0deg) rotate(45deg);
+  }
+
+  20.5% {
+    transform: skewX(5deg) rotate(45deg);
+  }
+
+  21% {
+    transform: skewX(-5deg) rotate(45deg);
+  }
+  35% {
+    transform: skewX(-25deg) skewY(-10deg) rotate(45deg);
+  }
+
+  35.5% {
+    transform: skewX(5deg) skewY(-5deg) rotate(45deg);
+  }
 }
 
 .glitch-button,.glitch-button::after {
