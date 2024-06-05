@@ -1,16 +1,18 @@
-import { GameStateType, Player } from "@/types";
+import { GameStateType, Player, Tie } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface SimpleGameState {
   gameState: GameStateType;
   isXNext: boolean;
-  winner: Player | null;
+  winner: Player | Tie | null;
+  isPassphraseCorrect: boolean;
 }
 
 const initialState: SimpleGameState = {
   gameState: Array(9).fill(null),
   isXNext: true,
   winner: null,
+  isPassphraseCorrect: false,
 };
 
 const slice = createSlice({
@@ -28,9 +30,12 @@ const slice = createSlice({
     setIsXNext(state, action: PayloadAction<boolean>) {
       state.isXNext = action.payload;
     },
-    setWinner(state, action: PayloadAction<Player | null>) {
+    setWinner(state, action: PayloadAction<Player | Tie | null>) {
       state.winner = action.payload;
     },
+    setIsPassphraseCorrect(state, action: PayloadAction<boolean>) {
+      state.isPassphraseCorrect = action.payload;
+    }
   },
 });
 

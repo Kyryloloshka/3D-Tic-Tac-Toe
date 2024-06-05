@@ -63,9 +63,11 @@
     },
 		"secret": {
 			"enterPassphrase": "Enter Passphrase",
+      "placeholder": "Passphrase",
 			"errorPassphrase": "Incorrect passphrase. Try again.",
 			"player": "Player",
 			"winner": "is the winner",
+      "tie": "Draw... Ha-ha-ha, I'll kill you!",
 			"restart": "Restart"
 		}
   },

@@ -26,3 +26,5 @@ export enum GameDisplay {
   Cubes = "Cubes",
   Planes = "Planes",
 }
+
+export type Tie = "tie";

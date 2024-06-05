@@ -863,3 +863,27 @@ canvas {
 .error-title {
   color: #ba0c0c;
 }
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.fadeIn {
+  animation: fadeIn 0s forwards;
+}
+
+.fadeOut {
+  animation: fadeOut 3s forwards;
+}
+
+.fade-in-with-delay {
+  opacity: 0;
+  animation: fadeIn 3s forwards;
+  animation-delay: 1.5s;
+}

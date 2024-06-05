@@ -6,6 +6,7 @@ import Cross from "./Cross";
 import Circle from "./Circle";
 import { simpleGameActions } from "@/state";
 import { useState } from "react";
+import { calculateWinnerSimpleTicTacToe } from "@/lib/simpleGameLogic";
 
 const Square = ({ index }: { index: number }) => {
   const gameState = useStateSelector((state) => state.simpleGame.gameState);
@@ -26,8 +27,9 @@ const Square = ({ index }: { index: number }) => {
     actions.setGameState(newBoard);
     actions.setIsXNext(!isXNext);
 
-    const { winner: newWinner } = calculateWinner(newBoard);
+    const { winner: newWinner } = calculateWinnerSimpleTicTacToe(newBoard);
     if (newWinner) actions.setWinner(newWinner);
+    else if (!newBoard.includes(null)) actions.setWinner("tie");
   };
 
   return (

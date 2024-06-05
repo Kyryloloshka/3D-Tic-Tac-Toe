@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import RestartButton from "./_components/RestartButton";
 import Square from "./_components/Square";
 import Title from "./_components/Title";
-import { useStateSelector } from "@/state";
+import {
+  simpleGameActions,
+  useActionCreators,
+  useStateSelector,
+} from "@/state";
 import { calculateWinner } from "@/lib/gameLogic";
 import {
   calculateWinnerSimpleTicTacToe,
@@ -12,14 +16,17 @@ import {
 import { useTranslations } from "next-intl";
 
 const SimpleTicTacToeGame = () => {
-  const [isPassphraseCorrect, setIsPassphraseCorrect] = useState(false);
+  const isPassphraseCorrect = useStateSelector(
+    (state) => state.simpleGame.isPassphraseCorrect
+  );
+  const actions = useActionCreators(simpleGameActions);
   const [enteredPassphrase, setEnteredPassphrase] = useState("");
   const [classes, setClasses] = useState("");
   const [textError, setTextError] = useState("");
   const [isTitleError, setIsTitleError] = useState(false);
   const gameState = useStateSelector((state) => state.simpleGame.gameState);
   const { lines } = calculateWinnerSimpleTicTacToe(gameState);
-	const t = useTranslations("page.secret")
+  const t = useTranslations("page.secret");
   return (
     <div className="flex flex-col items-center gap-6">
       {!isPassphraseCorrect ? (
@@ -33,17 +40,17 @@ const SimpleTicTacToeGame = () => {
               setTextError("");
               setIsTitleError(false);
             }}
-            placeholder={t("enterPassphrase")}
-            className={`input-primary ${classes}`}
+            placeholder={t("placeholder")}
+            className={`input-primary text-sm ${classes}`}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
                 if (
                   enteredPassphrase.toLowerCase() ===
                   process.env.NEXT_PUBLIC_PASSPHRASE?.toLowerCase()
                 ) {
-                  setIsPassphraseCorrect(true);
+                  actions.setIsPassphraseCorrect(true);
                 } else {
-                  setIsPassphraseCorrect(false);
+                  actions.setIsPassphraseCorrect(false);
                   setIsTitleError(true);
                   setEnteredPassphrase("");
                   setClasses("shadow-neon-error");
@@ -129,7 +136,7 @@ const SimpleTicTacToeGame = () => {
               }`}
             ></div>
             <div
-              className={`h-[4px] transition-all -rotate-45 origin-left  shadow-neon-error rounded-full  bg-[#dd0000] pointer-events-none absolute left-[3.833%] top-[96.566%] -translate-y-[2px] ${
+              className={`h-[4px] transition-all -rotate-45 origin-left  shadow-neon-error rounded-full  bg-[#dd0000] pointer-events-none absolute left-[3.833%] top-[96.566%] -translate-y-[4px] ${
                 lines.length >= 1 && checkSubarrayExists(lines, [2, 4, 6])
                   ? "w-[calc(100%*1.3)] opacity-100"
                   : "w-0 opacity-0"

@@ -51,8 +51,8 @@
       "feature4Description": "Mientras abrazamos las reglas clásicas del Tic-Tac-Toe, nuestro diseño moderno y entorno en 3D ofrecen una experiencia refrescante y atractiva.",
       "enjoyMessage": "Ya seas un jugador experimentado de Tic-Tac-Toe o nuevo en el juego, 3D Tic Tac Toe promete una experiencia entretenida y desafiante para jugadores de todas las edades. ¡Sumérgete en el mundo de la estrategia tridimensional y diviértete jugando Tic-Tac-Toe como nunca antes!",
       "playGameLink": "Jugar Juego",
-			"secretText": "But if you are already a pro in this game and you know the password, you can go to a completely different level",
-			"secretLink": "Secret Mode"
+			"secretText": "Pero si ya eres un profesional en este juego y conoces la contraseña, puedes acceder a un nivel completamente diferente",
+	    "secretLink": "Modo Secreto"
     },
     "replays": {
       "title": "Controles",
@@ -62,11 +62,13 @@
       "noDataDesc": "Arrastra un archivo aquí para reproducir"
     },
 		"secret": {
-			"enterPassphrase": "Enter Passphrase",
-			"errorPassphrase": "Incorrect passphrase. Try again.",
-			"player": "Player",
-			"winner": "is the winner",
-			"restart": "Restart"
+			"enterPassphrase": "Introducir frase de paso",
+      "placeholder": "Frase de paso",
+      "errorPassphrase": "Frase de paso incorrecta. Inténtalo de nuevo.",
+      "player": "Jugador",
+      "winner": "es el ganador",
+      "tie": "Empate... Ja-ja-ja, ¡te voy a matar!",
+      "restart": "Reiniciar"
 		}
   },
   "toast": {
