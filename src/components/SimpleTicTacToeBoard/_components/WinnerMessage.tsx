@@ -2,6 +2,7 @@
 import { useStateSelector } from "@/state";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react"; // Import useEffect for side effects
+import Image from "next/image";
 
 const WinnerMessage = () => {
   const winner = useStateSelector((state) => state.simpleGame.winner);
@@ -11,8 +12,6 @@ const WinnerMessage = () => {
   const [dataGlitch, setDataGlitch] = useState(
     `${t("player")} ${winner} ${t("winner")}`
   );
-
-  
 
   useEffect(() => {
     console.log(isVisible, winner, lastWinner);
@@ -58,9 +57,11 @@ const WinnerMessage = () => {
                 isVisible ? "fadeIn" : " transition-opacity fadeOut"
               }`}
             >
-              <img
+              <Image
                 className="object-center h-full w-full object-cover brightness-50"
                 src="/assets/images/screamer.jpg"
+                alt="Screamer Image"
+                layout="fill"
               />
             </div>
           )}
