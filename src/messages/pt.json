@@ -5,7 +5,9 @@
     "rules": "Regras",
     "about": "Sobre",
     "replays": "Reprises",
-    "language": "Idioma"
+    "language": "Idioma",
+    "links": "Links",
+    "instalation": "Instalação"
   },
   "page": {
     "home": {
@@ -51,8 +53,8 @@
       "feature4Description": "Enquanto abraçamos as regras clássicas do Tic-Tac-Toe, nosso design moderno e configuração em 3D oferecem uma experiência refrescante e envolvente.",
       "enjoyMessage": "Seja você um jogador experiente de Tic-Tac-Toe ou novo no jogo, o 3D Tic Tac Toe promete uma experiência divertida e desafiadora para jogadores de todas as idades. Mergulhe no mundo da estratégia tridimensional e divirta-se jogando Tic-Tac-Toe como nunca antes!",
       "playGameLink": "Jogar Jogo",
-			"secretText": "Mas se você já é um profissional neste jogo e conhece a senha, você pode ir para um nível completamente diferente",
-	    "secretLink": "Modo Secreto"
+      "secretText": "Mas se você já é um profissional neste jogo e conhece a senha, você pode ir para um nível completamente diferente",
+      "secretLink": "Modo Secreto"
     },
     "replays": {
       "title": "Controlos",
@@ -61,15 +63,32 @@
       "noData": "Sem dados para reproduzir",
       "noDataDesc": "Arraste um arquivo aqui para reproduzir"
     },
-		"secret": {
-			"enterPassphrase": "Digite a senha",
+    "secret": {
+      "enterPassphrase": "Digite a senha",
       "placeholder": "Frase-passe",
       "errorPassphrase": "Senha incorreta. Tente novamente.",
       "player": "Jogador",
       "winner": "é o vencedor",
       "tie": "Empate... Ha-ha-ha, vou te matar!",
       "restart": "Reiniciar"
-		}
+    },
+    "install": {
+      "title": "Instalar versão para desktop do jogo",
+      "description": "Links de download gratuitos deste jogo de Jogo da Velha 3D",
+      "msi": "Link de download MSI",
+      "exe": "Link de download EXE",
+      "missMacOS": "Infelizmente, não temos uma versão para MacOS disponível no momento.",
+      "missLinux": "Infelizmente, não temos uma versão para Linux disponível no momento.",
+      "systemRequirements": "Requisitos do sistema",
+      "minimum": "Mínimo:",
+      "minimumInfo": "SO: Windows 7, Processador: Intel Core i3, RAM: 4GB, Gráficos: NVIDIA GeForce GTX 660",
+      "recommend": "Recomendado:",
+      "recommendInfo": "SO: Windows 10, Processador: Intel Core i5, RAM: 8GB, Gráficos: NVIDIA GeForce GTX 970",
+      "instructionsTitle": "Instruções de instalação",
+      "instruct1": "Baixe o arquivo de configuração do jogo no link abaixo.",
+      "instruct2": "Execute o arquivo de configuração e siga as instruções na tela.",
+      "instruct3": "Após a conclusão da instalação, inicie o jogo a partir do atalho na área de trabalho."
+    }
   },
   "toast": {
     "gameOver": "Fim de Jogo!",

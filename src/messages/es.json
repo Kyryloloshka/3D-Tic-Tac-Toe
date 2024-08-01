@@ -5,7 +5,9 @@
     "rules": "Reglas",
     "about": "Acerca de",
     "replays": "Reproducciones",
-    "language": "Idioma"
+    "language": "Idioma",
+    "links": "Enlaces",
+    "instalation": "Instalación"
   },
   "page": {
     "home": {
@@ -51,8 +53,8 @@
       "feature4Description": "Mientras abrazamos las reglas clásicas del Tic-Tac-Toe, nuestro diseño moderno y entorno en 3D ofrecen una experiencia refrescante y atractiva.",
       "enjoyMessage": "Ya seas un jugador experimentado de Tic-Tac-Toe o nuevo en el juego, 3D Tic Tac Toe promete una experiencia entretenida y desafiante para jugadores de todas las edades. ¡Sumérgete en el mundo de la estrategia tridimensional y diviértete jugando Tic-Tac-Toe como nunca antes!",
       "playGameLink": "Jugar Juego",
-			"secretText": "Pero si ya eres un profesional en este juego y conoces la contraseña, puedes acceder a un nivel completamente diferente",
-	    "secretLink": "Modo Secreto"
+      "secretText": "Pero si ya eres un profesional en este juego y conoces la contraseña, puedes acceder a un nivel completamente diferente",
+      "secretLink": "Modo Secreto"
     },
     "replays": {
       "title": "Controles",
@@ -61,15 +63,32 @@
       "noData": "No hay datos para reproducir",
       "noDataDesc": "Arrastra un archivo aquí para reproducir"
     },
-		"secret": {
-			"enterPassphrase": "Introducir frase de paso",
+    "secret": {
+      "enterPassphrase": "Introducir frase de paso",
       "placeholder": "Frase de paso",
       "errorPassphrase": "Frase de paso incorrecta. Inténtalo de nuevo.",
       "player": "Jugador",
       "winner": "es el ganador",
       "tie": "Empate... Ja-ja-ja, ¡te voy a matar!",
       "restart": "Reiniciar"
-		}
+    },
+    "install": {
+      "title": "Instalar versión de escritorio del juego",
+      "description": "Enlaces de descarga gratuitos de este juego de 3D Tic Tac Toe",
+      "msi": "Enlace de descarga MSI",
+      "exe": "Enlace de descarga EXE",
+      "missMacOS": "Desafortunadamente, no tenemos una versión de MacOS disponible en este momento.",
+      "missLinux": "Desafortunadamente, no tenemos una versión de Linux disponible en este momento.",
+      "systemRequirements": "Requisitos del sistema",
+      "minimum": "Mínimo:",
+      "minimumInfo": "OS: Windows 7, Procesador: Intel Core i3, RAM: 4GB, Gráficos: NVIDIA GeForce GTX 660",
+      "recommend": "Recomendado:",
+      "recommendInfo": "OS: Windows 10, Procesador: Intel Core i5, RAM: 8GB, Gráficos: NVIDIA GeForce GTX 970",
+      "instructionsTitle": "Instrucciones de instalación",
+      "instruct1": "Descargue el archivo de instalación del juego desde el enlace de abajo.",
+      "instruct2": "Ejecute el archivo de instalación y siga las instrucciones en pantalla.",
+      "instruct3": "Una vez completada la instalación, inicie el juego desde el acceso directo en el escritorio."
+    }
   },
   "toast": {
     "gameOver": "¡Fin del Juego!",

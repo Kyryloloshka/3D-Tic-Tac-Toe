@@ -5,7 +5,9 @@
     "rules": "Regeln",
     "about": "Über uns",
     "replays": "Wiedergaben",
-    "language": "Sprache"
+    "language": "Sprache",
+    "links": "Links",
+    "instalation": "Installation"
   },
   "page": {
     "home": {
@@ -34,7 +36,7 @@
       "enjoyExperienceValue": "Nutzen Sie Dreh- und Zoomfunktionen, um den dreidimensionalen Aspekt des Spiels zu genießen.",
       "enjoyMessage": "Das Spielen von 3D Tic Tac Toe ist fesselnd und faszinierend! Genießen Sie das Spiel und besiegen Sie Ihren Gegner. Viel Glück!",
       "playGameLink": "Spiel spielen"
-    }, 
+    },
     "about": {
       "aboutTitle": "Über uns",
       "aboutMessage": "Bei 3D Tic Tac Toe glauben wir daran, Nostalgie mit Innovation zu verbinden. Unser Ziel ist es, den Spielern eine frische Perspektive auf ein zeitloses Spiel zu bieten und Spannung und Strategie in jeden Zug zu bringen.",
@@ -51,8 +53,8 @@
       "feature4Description": "Während wir die klassischen Regeln von Tic-Tac-Toe begrüßen, bieten unser modernes Design und die 3D-Umgebung ein erfrischendes und fesselndes Spielerlebnis.",
       "enjoyMessage": "Ob Sie ein erfahrener Tic-Tac-Toe-Spieler sind oder neu im Spiel, 3D Tic Tac Toe verspricht ein unterhaltsames und herausforderndes Spielerlebnis für Spieler jeden Alters. Tauchen Sie ein in die Welt der dreidimensionalen Strategie und haben Sie Spaß beim Spielen von Tic-Tac-Toe wie nie zuvor!",
       "playGameLink": "Spiel spielen",
-			"secretText": "Aber wenn Sie bereits ein Profi in diesem Spiel sind und das Passwort kennen, können Sie eine völlig andere Ebene erreichen",
-	    "secretLink": "Geheimer Modus"
+      "secretText": "Aber wenn Sie bereits ein Profi in diesem Spiel sind und das Passwort kennen, können Sie eine völlig andere Ebene erreichen",
+      "secretLink": "Geheimer Modus"
     },
     "replays": {
       "title": "Steuerungen",
@@ -61,7 +63,7 @@
       "noData": "Keine Daten zum Abspielen",
       "noDataDesc": "Ziehen Sie eine Datei hierher, um sie abzuspielen"
     },
-		"secret": {
+    "secret": {
       "enterPassphrase": "Passwort eingeben",
       "placeholder": "Passwort",
       "errorPassphrase": "Falsches Passwort. Versuchen Sie es erneut.",
@@ -69,6 +71,23 @@
       "winner": "ist der Gewinner",
       "tie": "Unentschieden... Ha-ha-ha, ich werde dich töten!",
       "restart": "Neustart"
+    },
+    "install": {
+      "title": "Installieren Sie die Desktop-Version des Spiels",
+      "description": "Kostenlose Download-Links für dieses 3D-Tic-Tac-Toe-Spiel",
+      "msi": "MSI-Download-Link",
+      "exe": "EXE-Download-Link",
+      "missMacOS": "Leider haben wir derzeit keine MacOS-Version verfügbar.",
+      "missLinux": "Leider haben wir derzeit keine Linux-Version verfügbar.",
+      "systemRequirements": "Systemanforderungen",
+      "minimum": "Minimum:",
+      "minimumInfo": "Betriebssystem: Windows 7, Prozessor: Intel Core i3, RAM: 4GB, Grafik: NVIDIA GeForce GTX 660",
+      "recommend": "Empfohlen:",
+      "recommendInfo": "Betriebssystem: Windows 10, Prozessor: Intel Core i5, RAM: 8GB, Grafik: NVIDIA GeForce GTX 970",
+      "instructionsTitle": "Installationsanleitung",
+      "instruct1": "Laden Sie die Setup-Datei des Spiels über den untenstehenden Link herunter.",
+      "instruct2": "Führen Sie die Setup-Datei aus und folgen Sie den Anweisungen auf dem Bildschirm.",
+      "instruct3": "Nach Abschluss der Installation starten Sie das Spiel über die Desktop-Verknüpfung."
     }
   },
   "toast": {

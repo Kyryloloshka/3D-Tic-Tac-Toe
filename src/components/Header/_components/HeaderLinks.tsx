@@ -27,11 +27,6 @@ const headerLinks = [
     label: "About",
     translateKey: "about",
   },
-  {
-    route: "/replay",
-    label: "See Replays",
-    translateKey: "replays",
-  },
 ];
 
 const HeaderLinks = () => {

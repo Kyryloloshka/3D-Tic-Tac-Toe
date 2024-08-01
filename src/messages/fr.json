@@ -5,7 +5,9 @@
     "rules": "Règles",
     "about": "À propos",
     "replays": "Rejouer",
-    "language": "Langue"
+    "language": "Langue",
+    "links": "Liens",
+    "instalation": "Installation"
   },
   "page": {
     "home": {
@@ -34,7 +36,7 @@
       "enjoyExperienceValue": "Utilisez les fonctionnalités de rotation et de zoom pour profiter de l'aspect tridimensionnel du jeu.",
       "enjoyMessage": "Jouer au 3D Tic Tac Toe est captivant et intrigant ! Profitez du jeu et battez votre adversaire. Bonne chance !",
       "playGameLink": "Jouer au jeu"
-    }, 
+    },
     "about": {
       "aboutTitle": "À propos",
       "aboutMessage": "Chez 3D Tic Tac Toe, nous croyons en l'alliance de la nostalgie et de l'innovation. Notre vision est d'offrir aux joueurs une nouvelle perspective sur un jeu intemporel, apportant excitation et stratégie à chaque coup.",
@@ -51,8 +53,8 @@
       "feature4Description": "Tout en adoptant les règles classiques du Tic-Tac-Toe, notre design moderne et notre environnement 3D offrent une expérience rafraîchissante et captivante.",
       "enjoyMessage": "Que vous soyez un joueur expérimenté de Tic-Tac-Toe ou nouveau dans le jeu, le 3D Tic Tac Toe promet une expérience divertissante et stimulante pour les joueurs de tous âges. Plongez dans le monde de la stratégie tridimensionnelle et amusez-vous à jouer au Tic-Tac-Toe comme jamais auparavant !",
       "playGameLink": "Jouer au jeu",
-			"secretText": "Mais si vous êtes déjà un pro dans ce jeu et que vous connaissez le mot de passe, vous pouvez accéder à un niveau complètement différent",
-	    "secretLink": "Mode Secret"
+      "secretText": "Mais si vous êtes déjà un pro dans ce jeu et que vous connaissez le mot de passe, vous pouvez accéder à un niveau complètement différent",
+      "secretLink": "Mode Secret"
     },
     "replays": {
       "title": "Contrôles",
@@ -61,15 +63,32 @@
       "noData": "Pas de données à lire",
       "noDataDesc": "Glissez un fichier ici pour le lire"
     },
-		"secret": {
-			"enterPassphrase": "Entrez la phrase secrète",
+    "secret": {
+      "enterPassphrase": "Entrez la phrase secrète",
       "placeholder": "Phrase secrète",
       "errorPassphrase": "Phrase secrète incorrecte. Réessayez.",
       "player": "Joueur",
       "winner": "est le gagnant",
       "tie": "Match nul... Ha-ha-ha, je vais te tuer !",
       "restart": "Redémarrer"
-		}
+    },
+    "install": {
+      "title": "Installer la version de bureau du jeu",
+      "description": "Liens de téléchargement gratuits de ce jeu de Tic Tac Toe 3D",
+      "msi": "Lien de téléchargement MSI",
+      "exe": "Lien de téléchargement EXE",
+      "missMacOS": "Malheureusement, nous n'avons pas de version MacOS disponible pour le moment.",
+      "missLinux": "Malheureusement, nous n'avons pas de version Linux disponible pour le moment.",
+      "systemRequirements": "Configuration requise",
+      "minimum": "Minimum:",
+      "minimumInfo": "OS: Windows 7, Processeur: Intel Core i3, RAM: 4GB, Graphismes: NVIDIA GeForce GTX 660",
+      "recommend": "Recommandé:",
+      "recommendInfo": "OS: Windows 10, Processeur: Intel Core i5, RAM: 8GB, Graphismes: NVIDIA GeForce GTX 970",
+      "instructionsTitle": "Instructions d'installation",
+      "instruct1": "Téléchargez le fichier d'installation du jeu à partir du lien ci-dessous.",
+      "instruct2": "Exécutez le fichier d'installation et suivez les instructions à l'écran.",
+      "instruct3": "Une fois l'installation terminée, lancez le jeu à partir du raccourci sur le bureau."
+    }
   },
   "toast": {
     "gameOver": "Fin du jeu !",
@@ -106,9 +125,9 @@
     "displayGameAs": "Montrer le terrain de jeu comme"
   },
   "loading": {
-  "loading": "Chargement"
+    "loading": "Chargement"
   },
   "dragFile": {
-  "dragFile": "Glissez votre fichier ici"
+    "dragFile": "Glissez votre fichier ici"
   }
 }

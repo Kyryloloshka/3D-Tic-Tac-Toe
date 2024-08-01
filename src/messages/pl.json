@@ -5,7 +5,9 @@
     "rules": "Zasady",
     "about": "O nas",
     "replays": "Powtórki",
-    "language": "Język"
+    "language": "Język",
+    "links": "Linki",
+    "instalation": "Instalacja"
   },
   "page": {
     "home": {
@@ -51,8 +53,8 @@
       "feature4Description": "Choć przyjmujemy klasyczne zasady Tic-Tac-Toe, nasz nowoczesny design i ustawienia 3D oferują świeże i angażujące doświadczenie.",
       "enjoyMessage": "Czy jesteś doświadczonym graczem Tic-Tac-Toe czy nowicjuszem, 3D Tic Tac Toe obiecuje rozrywkowe i wymagające doświadczenie dla graczy w każdym wieku. Zanurz się w świat trójwymiarowej strategii i baw się grając w Tic-Tac-Toe jak nigdy dotąd!",
       "playGameLink": "Grać w grę",
-			"secretText": "Ale jeśli już jesteś profesjonalistą w tej grze i znasz hasło, możesz przejść do zupełnie innego poziomu",
-	    "secretLink": "Tryb Tajny"
+      "secretText": "Ale jeśli już jesteś profesjonalistą w tej grze i znasz hasło, możesz przejść do zupełnie innego poziomu",
+      "secretLink": "Tryb Tajny"
     },
     "replays": {
       "title": "Sterowanie",
@@ -61,15 +63,32 @@
       "noData": "Brak danych do odtworzenia",
       "noDataDesc": "Przeciągnij tutaj plik, aby go odtworzyć"
     },
-		"secret": {
-			"enterPassphrase": "Wprowadź hasło",
+    "secret": {
+      "enterPassphrase": "Wprowadź hasło",
       "placeholder": "Hasło",
       "errorPassphrase": "Nieprawidłowe hasło. Spróbuj ponownie.",
       "player": "Gracz",
       "winner": "jest zwycięzcą",
       "tie": "Remis... Ha-ha-ha, zabiję cię!",
       "restart": "Uruchom ponownie"
-		}
+    },
+    "install": {
+      "title": "Zainstaluj wersję desktopową gry",
+      "description": "Darmowe linki do pobrania tej gry 3D Kółko i Krzyżyk",
+      "msi": "Link do pobrania MSI",
+      "exe": "Link do pobrania EXE",
+      "missMacOS": "Niestety, w tej chwili nie mamy dostępnej wersji na MacOS.",
+      "missLinux": "Niestety, w tej chwili nie mamy dostępnej wersji na Linux.",
+      "systemRequirements": "Wymagania systemowe",
+      "minimum": "Minimalne:",
+      "minimumInfo": "OS: Windows 7, Procesor: Intel Core i3, RAM: 4GB, Grafika: NVIDIA GeForce GTX 660",
+      "recommend": "Zalecane:",
+      "recommendInfo": "OS: Windows 10, Procesor: Intel Core i5, RAM: 8GB, Grafika: NVIDIA GeForce GTX 970",
+      "instructionsTitle": "Instrukcje instalacji",
+      "instruct1": "Pobierz plik instalacyjny gry z poniższego linku.",
+      "instruct2": "Uruchom plik instalacyjny i postępuj zgodnie z instrukcjami wyświetlanymi na ekranie.",
+      "instruct3": "Po zakończeniu instalacji uruchom grę z skrótu na pulpicie."
+    }
   },
   "toast": {
     "gameOver": "Koniec gry!",

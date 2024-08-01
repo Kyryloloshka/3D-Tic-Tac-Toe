@@ -5,7 +5,9 @@
     "rules": "ルール",
     "about": "約",
     "replays": "リプレイ",
-    "language": "言語"
+    "language": "言語",
+    "links": "リンク",
+    "instalation": "インストール"
   },
   "page": {
     "home": {
@@ -51,8 +53,8 @@
       "feature4Description": "Tic-Tac-Toeのクラシックなルールを採用しながらも、私たちのモダンなデザインと3Dの設定は、新鮮で魅力的な体験を提供します。",
       "enjoyMessage": "経験豊富なTic-Tac-Toeプレイヤーであっても、初心者であっても、3D Tic Tac Toeはすべての年齢のプレイヤーに楽しく、挑戦的な体験を約束します。立体的な戦略の世界に飛び込んで、今までにないTic-Tac-Toeを楽しんでください！",
       "playGameLink": "ゲームをプレイ",
-			"secretText": "しかし、このゲームで既にプロでパスワードを知っている場合、まったく異なるレベルに進むことができます",
-	    "secretLink": "秘密のモード"
+      "secretText": "しかし、このゲームで既にプロでパスワードを知っている場合、まったく異なるレベルに進むことができます",
+      "secretLink": "秘密のモード"
     },
     "replays": {
       "title": "コントロール",
@@ -61,15 +63,32 @@
       "noData": "再生するデータがありません",
       "noDataDesc": "再生するにはここにファイルをドラッグしてください"
     },
-		"secret": {
-			"enterPassphrase": "パスフレーズを入力してください",
+    "secret": {
+      "enterPassphrase": "パスフレーズを入力してください",
       "placeholder": "パスフレーズ",
       "errorPassphrase": "パスフレーズが間違っています。もう一度お試しください。",
       "player": "プレイヤー",
       "winner": "が勝者です",
       "tie": "引き分け... ははは、私はあなたを殺す！",
       "restart": "再起動"
-		}
+    },
+    "install": {
+      "title": "ゲームのデスクトップ版をインストールする",
+      "description": "この3D三目並べゲームの無料ダウンロードリンク",
+      "msi": "MSIダウンロードリンク",
+      "exe": "EXEダウンロードリンク",
+      "missMacOS": "残念ながら、現在MacOSバージョンは利用できません。",
+      "missLinux": "残念ながら、現在Linuxバージョンは利用できません。",
+      "systemRequirements": "システム要件",
+      "minimum": "最小要件:",
+      "minimumInfo": "OS: Windows 7, プロセッサ: Intel Core i3, RAM: 4GB, グラフィック: NVIDIA GeForce GTX 660",
+      "recommend": "推奨要件:",
+      "recommendInfo": "OS: Windows 10, プロセッサ: Intel Core i5, RAM: 8GB, グラフィック: NVIDIA GeForce GTX 970",
+      "instructionsTitle": "インストール手順",
+      "instruct1": "以下のリンクからゲームセットアップファイルをダウンロードします。",
+      "instruct2": "セットアップファイルを実行し、画面の指示に従います。",
+      "instruct3": "インストールが完了したら、デスクトップのショートカットからゲームを起動します。"
+    }
   },
   "toast": {
     "gameOver": "ゲームオーバー！",

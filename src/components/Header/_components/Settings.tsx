@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { usePathname } from "@/navigation";
+import { Link, usePathname } from "@/navigation";
 import {
   Select,
   SelectContent,
@@ -15,9 +15,13 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useLocale, useTranslations } from "next-intl";
+import CustomLink from "@/components/CustomLink";
+import { CiMenuKebab } from "react-icons/ci";
 
 const languages = [
   { label: "English", value: "en" },
@@ -45,13 +49,13 @@ const Settings = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className="flex gap-5 cursor-pointer">
-          <div className="h-6 w-6 flex-center rounded-full transition svg-settings">
-            <img src="/assets/icons/settings.svg" alt="settings" />
+          <div className="h-6 w-6 flex-center rounded-full transition">
+            <CiMenuKebab size={36} />
           </div>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-dark-2 p-2 mr-3 md:mr-6 z-[501] flex flex-col gap-1">
-        <DropdownMenuItem>{t("language")}</DropdownMenuItem>
+        <DropdownMenuLabel>{t("language")}</DropdownMenuLabel>
         <DropdownMenuGroup>
           <Select
             defaultValue={localeActive}
@@ -70,6 +74,16 @@ const Settings = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>{t("links")}</DropdownMenuLabel>
+          <DropdownMenuItem>
+            <CustomLink href="/replay" label={t("replays")} />
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <CustomLink href="/install" label={t("instalation")} />
+          </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
