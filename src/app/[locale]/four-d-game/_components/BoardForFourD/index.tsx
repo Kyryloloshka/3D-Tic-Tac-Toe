@@ -16,6 +16,7 @@ const BoardForFourD = ({
   const board = gameState[cubeIndex][boardIndex];
   const line = useStateSelector((state) => state.game4d.winLine);
   const winnerGame = useStateSelector((state) => state.game4d.winner);
+
   const handleClick = (index: number) => {
     if (winnerGame) return;
     const rowIndex = Math.floor(index / 3);
@@ -47,18 +48,43 @@ const BoardForFourD = ({
   };
 
   return (
-    <div className="grid grid-cols-[repeat(3,_100px)] grid-rows-[repeat(3,_100px)] gap-[5px] mx-auto my-5 max-w-[320px]">
+    <div className="grid grid-cols-[repeat(3,_1fr)] grid-rows-[repeat(3,_1fr)] gap-[5px] max-w-[320px]">
       {board.map((row, index) =>
         row.map((cell: null | string, cellIndex: number) => (
           <div
             key={index * 3 + cellIndex}
-            className={`flex items-center select-none bg-dark-2 justify-center w-[100px] h-[100px] text-[32px] font-bold cursor-pointer border-[1px] border-primary-500 transition hover:bg-dark-5 active:bg-dark-4 ${
+            className={`flex relative items-center select-none bg-dark-2 justify-center 2xl:w-[100px] 2xl:h-[100px] xl:w-[80px] xl:h-[80px] lg:w-[60px] lg:h-[60px] md:w-[40px] md:h-[40px] sm:w-[30px] sm:h-[30px] w-[20px] h-[20px] text-[32px] font-bold cursor-pointer border-[1px] border-primary-500 transition hover:brightness-200 active:brightness-150 ${
               isCellIsInWinLine(index, cellIndex) &&
-              "bg-primary-500 text-dark-1"
+              (winnerGame === "X" ? "bg-primary-500" : "bg-secondary-500")
             }`}
             onClick={() => handleClick(index * 3 + cellIndex)}
           >
-            {cell}
+            {cell === "X" ? (
+              <div className="rotate-45 w-full h-full">
+                <div
+                  className={`absolute top-1/2 left-1/2 w-[calc(50%+10px)] h-[8%] ${
+                    isCellIsInWinLine(index, cellIndex)
+                      ? "bg-dark-1"
+                      : "bg-primary-500"
+                  } transform -translate-x-1/2 -translate-y-1/2`}
+                ></div>
+                <div
+                  className={`absolute top-1/2 left-1/2 w-[8%] h-[calc(50%+10px)] ${
+                    isCellIsInWinLine(index, cellIndex)
+                      ? "bg-dark-1"
+                      : "bg-primary-500"
+                  } transform -translate-x-1/2 -translate-y-1/2`}
+                ></div>
+              </div>
+            ) : cell === "O" ? (
+              <div
+                className={`shadow-neon-secondary h-[calc(43%+7px)] w-[calc(43%+7px)] rounded-full ${
+                  isCellIsInWinLine(index, cellIndex)
+                    ? "border-dark-1"
+                    : "border-secondary-500"
+                } xl:border-[8px] lg:border-[6px] md:border-[4px] border-[2px]`}
+              ></div>
+            ) : null}
           </div>
         ))
       )}

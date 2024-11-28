@@ -8,7 +8,7 @@ export const calculateWinner = (
 } => {
   const size = 3;
   const directions = [-1, 0, 1];
-
+  const lines = [];
   const generateDirections = () => {
     const result: [number, number, number, number][] = [];
     for (const d1 of directions) {
@@ -56,6 +56,8 @@ export const calculateWinner = (
     return line;
   };
 
+  let winnerGame = null;
+
   for (let x = 0; x < size; x++) {
     for (let y = 0; y < size; y++) {
       for (let z = 0; z < size; z++) {
@@ -65,7 +67,8 @@ export const calculateWinner = (
           for (const direction of allDirections) {
             const line = checkLine([x, y, z, w], direction, player);
             if (line) {
-              return { winner: player as "X" | "O", line };
+              lines.push(...line);
+              winnerGame = player;
             }
           }
         }
@@ -73,5 +76,5 @@ export const calculateWinner = (
     }
   }
 
-  return { winner: null, line: null }; // Немає переможця
+  return { winner: winnerGame, line: lines };
 };
