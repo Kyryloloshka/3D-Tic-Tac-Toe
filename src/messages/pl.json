@@ -7,7 +7,8 @@
     "replays": "Powtórki",
     "language": "Język",
     "links": "Linki",
-    "instalation": "Instalacja"
+    "instalation": "Instalacja",
+    "4dGame": "4D Gra"
   },
   "page": {
     "home": {
@@ -88,6 +89,11 @@
       "instruct1": "Pobierz plik instalacyjny gry z poniższego linku.",
       "instruct2": "Uruchom plik instalacyjny i postępuj zgodnie z instrukcjami wyświetlanymi na ekranie.",
       "instruct3": "Po zakończeniu instalacji uruchom grę z skrótu na pulpicie."
+    },
+    "game4d": {
+      "rotateScene": "Obróć scenę",
+      "restart": "Uruchom ponownie",
+      "skipAnimation": "Pomiń animację"
     }
   },
   "toast": {

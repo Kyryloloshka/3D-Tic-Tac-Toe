@@ -4,6 +4,7 @@ import BoardForFourD from "./_components/BoardForFourD";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { game4dActions, useActionCreators, useStateSelector } from "@/state";
+import { useTranslations } from "next-intl";
 
 const FourDGamePage = () => {
   const [title, setTitle] = useState("2D");
@@ -14,7 +15,8 @@ const FourDGamePage = () => {
   const fourDGameState = useStateSelector((state) => state.game4d.gameState);
   const winner = useStateSelector((state) => state.game4d.winner);
   const actions = useActionCreators(game4dActions);
-
+  const tWinner = useTranslations("leftNavBar");
+  const t = useTranslations("page.game4d");
   useEffect(() => {
     if (skipAnimation) {
       setTitle("4D");
@@ -65,10 +67,10 @@ const FourDGamePage = () => {
             className="button"
             onClick={toggleIsRotatedScene}
           >
-            Rotate Scene
+            {t("rotateScene")}
           </Button>
           <Button variant="neon" className="button" onClick={restartGame}>
-            Restart Game
+            {t("restart")}
           </Button>
           {!skipAnimation && (
             <Button
@@ -76,16 +78,20 @@ const FourDGamePage = () => {
               className="button"
               onClick={() => setSkipAnimation(true)}
             >
-              Skip animation
+              {t("skipAnimation")}
             </Button>
           )}
         </div>
-        <p>{winner ? `${winner} is winner` : `${turn} - turn`}</p>
+        <p>
+          {winner == null
+            ? `${tWinner("turn")} - ${turn}`
+            : `${tWinner("winner")} - ${winner}`}
+        </p>
         <div
           className={`grid grid-cols-[repeat(3,_1fr)] ${
             isRotatedScene
               ? "gap-[0px]"
-              : "2xl:gap-x-[160px] xl:gap-x-[100px] md:gap-x-[60px] gap-x-[30px] gap-y-[0px]"
+              : "2xl:gap-x-[160px] xl:gap-x-[140px] md:gap-x-[80px] sm:gap-x-[60px] gap-x-[30px] gap-y-[0px]"
           } grid-rows-[repeat(3,_1fr)] duration-2s`}
         >
           {fourDGameState.map((cube, cubeIndex) =>

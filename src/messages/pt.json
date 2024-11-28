@@ -7,7 +7,8 @@
     "replays": "Reprises",
     "language": "Idioma",
     "links": "Links",
-    "instalation": "Instalação"
+    "instalation": "Instalação",
+    "4dGame": "4D Jogo"
   },
   "page": {
     "home": {
@@ -88,6 +89,11 @@
       "instruct1": "Baixe o arquivo de configuração do jogo no link abaixo.",
       "instruct2": "Execute o arquivo de configuração e siga as instruções na tela.",
       "instruct3": "Após a conclusão da instalação, inicie o jogo a partir do atalho na área de trabalho."
+    },
+    "game4d": {
+      "rotateScene": "Girar cena",
+      "restart": "Reiniciar",
+      "skipAnimation": "Pular animação"
     }
   },
   "toast": {

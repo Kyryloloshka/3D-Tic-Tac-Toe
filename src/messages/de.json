@@ -7,7 +7,8 @@
     "replays": "Wiedergaben",
     "language": "Sprache",
     "links": "Links",
-    "instalation": "Installation"
+    "instalation": "Installation",
+    "4dGame": "4D Spiel"
   },
   "page": {
     "home": {
@@ -88,6 +89,11 @@
       "instruct1": "Laden Sie die Setup-Datei des Spiels über den untenstehenden Link herunter.",
       "instruct2": "Führen Sie die Setup-Datei aus und folgen Sie den Anweisungen auf dem Bildschirm.",
       "instruct3": "Nach Abschluss der Installation starten Sie das Spiel über die Desktop-Verknüpfung."
+    },
+    "game4d": {
+      "rotateScene": "Szene drehen",
+      "restart": "Neustart",
+      "skipAnimation": "Animation überspringen"
     }
   },
   "toast": {

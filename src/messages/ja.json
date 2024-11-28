@@ -7,7 +7,8 @@
     "replays": "リプレイ",
     "language": "言語",
     "links": "リンク",
-    "instalation": "インストール"
+    "instalation": "インストール",
+    "4dGame": "4D ゲーム"
   },
   "page": {
     "home": {
@@ -88,6 +89,11 @@
       "instruct1": "以下のリンクからゲームセットアップファイルをダウンロードします。",
       "instruct2": "セットアップファイルを実行し、画面の指示に従います。",
       "instruct3": "インストールが完了したら、デスクトップのショートカットからゲームを起動します。"
+    },
+    "game4d": {
+      "rotateScene": "シーンを回転",
+      "restart": "再起動",
+      "skipAnimation": "アニメーションをスキップ"
     }
   },
   "toast": {

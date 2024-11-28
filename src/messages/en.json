@@ -89,6 +89,11 @@
       "instruct1": "Download the game setup file from the link below.",
       "instruct2": "Run the setup file and follow the on-screen instructions.",
       "instruct3": "Once installation is complete, launch the game from the desktop shortcut."
+    },
+    "game4d": {
+      "rotateScene": "Rotate scene",
+      "restart": "Restart",
+      "skipAnimation": "Skip animation"
     }
   },
   "toast": {

@@ -7,7 +7,8 @@
     "replays": "Rejouer",
     "language": "Langue",
     "links": "Liens",
-    "instalation": "Installation"
+    "instalation": "Installation",
+    "4dGame": "4D Jeu"
   },
   "page": {
     "home": {
@@ -88,6 +89,11 @@
       "instruct1": "Téléchargez le fichier d'installation du jeu à partir du lien ci-dessous.",
       "instruct2": "Exécutez le fichier d'installation et suivez les instructions à l'écran.",
       "instruct3": "Une fois l'installation terminée, lancez le jeu à partir du raccourci sur le bureau."
+    },
+    "game4d": {
+      "rotateScene": "Faire pivoter la scène",
+      "restart": "Redémarrer",
+      "skipAnimation": "Passer l'animation"
     }
   },
   "toast": {
