@@ -12,10 +12,12 @@ export enum DifficultyEnum {
   easy,
   medium,
   hard,
-  expert
+  expert,
 }
 
-export type GameStateType = (Player | null)[];
+export type GameStateType = ("X" | "O" | null)[];
+
+export type GameState4dType = ("X" | "O" | null)[][][][];
 
 export interface HistoryStep {
   player: Player;

@@ -27,6 +27,11 @@ const headerLinks = [
     label: "About",
     translateKey: "about",
   },
+  {
+    route: "/four-d-game",
+    label: "4D Game",
+    translateKey: "4dGame",
+  },
 ];
 
 const HeaderLinks = () => {
