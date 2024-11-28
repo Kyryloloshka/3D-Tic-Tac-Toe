@@ -15,7 +15,7 @@ export enum DifficultyEnum {
   expert,
 }
 
-export type GameStateType = ("X" | "O" | null)[];
+export type GameStateType = (Player | null)[];
 
 export type GameState4dType = ("X" | "O" | null)[][][][];
 

@@ -29,7 +29,7 @@ const Home = () => {
         </Link>
       </div>
       <p className="absolute z-20 left-3 bottom-2 text-primary-500 text-shadow-neon">
-        0.2.1
+        0.2.2
       </p>
     </div>
   );
